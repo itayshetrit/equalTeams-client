@@ -1,6 +1,6 @@
-const devURL = "https://shopping-list-itay.herokuapp.com/";
+// const devURL = "https://shopping-list-itay.herokuapp.com/";
 // const devURL = process.env.URL;
-// const devURL = "http://localhost:8000/";
+const devURL = "http://localhost:8000/";
 const ServerRoutes = {
 	
 	// Auth

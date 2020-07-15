@@ -19,15 +19,25 @@ const Dinamic = () => {
     const upAndDown = async (status, name, act) => {
         let x = (dinamic_list.filter(item => item.name === name))
         let index = dinamic_list.indexOf(x[0])
-        dinamic_list[index].amount = dinamic_list[index].amount + act;
-
-        await edit()
+        if ((dinamic_list[index].amount) < 100 && (dinamic_list[index].amount) > 0) {
+            dinamic_list[index].amount = dinamic_list[index].amount + act;
+            await edit()
+        }
+        else {
+            addToast(<ToastMsg>כמות יכולה להיות בין 0-100</ToastMsg>, { appearance: "error", autoDismiss: true });
+        }
     }
 
     const switchFlag = async (status, name) => {
         let x = (dinamic_list.filter(item => item.name === name))
         let index = dinamic_list.indexOf(x[0])
         dinamic_list[index].status = !status;
+        await edit()
+
+    }
+
+    const deleteProd = async (name) => {
+        dinamic_list = (dinamic_list.filter(item => item.name !== name))
         await edit()
 
     }
@@ -57,13 +67,13 @@ const Dinamic = () => {
         })
     }
 
-    const { dinamic_list } = useSelector(state => state.authReducer.user);
+    let { dinamic_list } = useSelector(state => state.authReducer.user);
     const { smallLoading } = useSelector(state => state.authReducer);
     let list = "רשימה ריקה"
     if (dinamic_list.length > 0) {
         list = dinamic_list.map((item, index) => {
-            return <Products key={index} style={{ alignItems: "center" }}>
-                <div style={{ flex: "0.3" }}><img alt="trash" src={trash} width="15" /></div>
+            return <Products key={index}>
+                <div style={{ flex: "0.3" }}><img onClick={() => deleteProd(item.name)} alt="trash" src={trash} width="15" /></div>
                 <div style={{ flex: "1" }}>{item.name}</div>
                 <FlexRow style={{ flex: "0.7", alignItems: "center" }}>
                     <div><img alt="plus" src={plus} width="15" onClick={() => upAndDown(item.status, item.name, 1)} /></div>
@@ -71,7 +81,7 @@ const Dinamic = () => {
                     <div><img alt="minus" src={minus} width="15" onClick={() => upAndDown(item.status, item.name, -1)} /></div>
                 </FlexRow>
                 <div style={{ flex: "0.7", alignItems: "center", display: "flex", justifyContent: "center" }}>
-                    <Switch width={32} height={16} onColor={'#FFA500'} offColor={'#000000'} checkedIcon={false} uncheckedIcon={false} checked={item.status}
+                    <Switch handleDiameter={10} width={32} height={16} onColor={'#FFA500'} offColor={'#000000'} checked={item.status}
                         onChange={() => switchFlag(item.status, item.name)} /></div>
             </Products>
         })

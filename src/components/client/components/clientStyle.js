@@ -8,7 +8,9 @@ height: 100%; */
 export const Products = styled.div`
 display:flex;
 flex-direction:row;
-margin-top: 5px;
+align-items:center;
+margin-top: 4px;
+margin-bottom: 4px;
 `;
 export const HoldProducts = styled.div`
 width: 90%;

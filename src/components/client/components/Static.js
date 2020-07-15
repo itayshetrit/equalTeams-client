@@ -73,11 +73,11 @@ const Static = () => {
     const { smallLoading } = useSelector(state => state.authReducer);
     let list = "רשימה ריקה"
     if (static_list.length > 0) {
-        static_list = static_list.sort(function (x, y) {
-            return (x.status === y.status) ? 0 : x.status ? 1 : -1;
-        });
+        // static_list = static_list.sort(function (x, y) {
+        //     return (x.status === y.status) ? 0 : x.status ? 1 : -1;
+        // });
         list = static_list.map((item, index) => {
-            return <Products key={index} style={{ alignItems: "center" }}>
+            return <Products key={index}>
                 <div style={{ flex: "0.3" }}><img alt="trash" onClick={() => deleteProd(item.name)} src={trash} width="15" /></div>
                 <div style={{ flex: "1" }}>{item.name}</div>
                 <FlexRow style={{ flex: "0.7", alignItems: "center" }}>
@@ -86,7 +86,7 @@ const Static = () => {
                     <div><img alt="minus" src={minus} width="15" onClick={() => upAndDown(item.status, item.name, -1)} /></div>
                 </FlexRow>
                 <div style={{ flex: "0.7", alignItems: "center", display: "flex", justifyContent: "center" }}>
-                    <Switch width={32} height={16} onColor={'#FFA500'} offColor={'#000000'} checkedIcon={false} uncheckedIcon={false} checked={item.status}
+                    <Switch handleDiameter={10} width={32} height={16} onColor={'#FFA500'} offColor={'#000000'} checked={item.status}
                         onChange={() => switchFlag(item.status, item.name)} /></div>
             </Products>
         })

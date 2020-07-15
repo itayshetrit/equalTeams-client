@@ -73,7 +73,7 @@ const Add = (props) => {
                     <Group>
                         <HoldMain style={{ flexDirection: "row", justifyContent: "space-evenly", width: "70%", margin: "0 auto" }}>
                             <div style={{ color: "black", fontWeight: "bold" }}>קבועה</div>
-                            <Switch width={32} height={16} onColor={'#85dd00'} offColor={'#FFA500'} checkedIcon={false} uncheckedIcon={false} checked={list}
+                            <Switch handleDiameter={10} width={32} height={16} onColor={'#85dd00'} offColor={'#FFA500'} checkedIcon={false} uncheckedIcon={false} checked={list}
                                 onChange={() => setList(!list)} />
                             <div style={{ color: "black", fontWeight: "bold" }}>משתנה</div>
                         </HoldMain>
