@@ -1,0 +1,36 @@
+
+@font-face {
+  font-family: Varela;
+  src: url("../assets//fonts//VarelaRound-Regular.ttf") format("truetype")
+}
+@font-face {
+  font-family: GoogleRegular;
+  src: url("../assets//fonts/Product\ Sans\ Regular.ttf") format("truetype")
+}
+@font-face {
+  font-family: GoogleMedium;
+  src: url("../assets//fonts/Product\ Sans\ Medium\ 500.ttf") format("truetype")
+}
+@font-face {
+  font-family: GoodMorning;
+  src: url("../assets//fonts/Good\ Morning.ttf") format("truetype")
+}
+.App {
+  text-align: center;
+  direction: rtl;
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  /* color: blueviolet; */
+  color: black;
+  font-family: Varela !important;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.8rem;
+  color: white;
+
+}
+.form-input-material {
+  --default-color: white;
+  --border-bottom-color: white;
+}
