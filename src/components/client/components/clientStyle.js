@@ -9,18 +9,22 @@ export const Products = styled.div`
 display:flex;
 flex-direction:row;
 align-items:center;
-margin-top: 4px;
-margin-bottom: 4px;
+/* justify-content:space-between; */
+width:90%;
+margin: 4px auto;
+border: 1.4px solid rgba(255,255,255,0.3);
+padding:5px 5px;
+border-radius:5px;
 `;
 export const HoldProducts = styled.div`
-width: 90%;
+width: 96%;
 margin: 10px auto;
-border-radius:5px;
-max-height: 300px;
+border-radius:4px;
+height: 50vh;
 overflow-y:auto;
 display:flex;
 flex-direction:column;
-box-shadow:0 2px 8px white;
+
 
 `
 

@@ -22,11 +22,11 @@
   max-width: 600px;
   margin: auto;
   /* color: blueviolet; */
-  color: black;
+  /* color: black; */
   font-family: Varela !important;
   display: flex;
   flex-direction: column;
-  font-size: 0.8rem;
+  font-size: 1rem;
   color: white;
 
 }

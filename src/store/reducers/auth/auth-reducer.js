@@ -125,6 +125,7 @@ const productActionStart = (state, action) => {
     })
 }
 const productActionSuccess = (state, action) => {
+	console.log(action)
     return updateObject(state, {
 		smallLoading: false,
 		user: action.user

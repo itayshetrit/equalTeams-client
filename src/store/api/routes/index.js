@@ -11,7 +11,9 @@ const ServerRoutes = {
 	checkAuth: devURL+"users/checkAuth/me", //get
 	
 	// User
+	upAndDown: devURL+"users/me/upanddown",
 	editProduct: devURL+"users/me/update",
+	checkForUpdates: devURL+"users/me/changes",
 	editProductAmount: devURL+"users/editProductAmount/",
 
 	

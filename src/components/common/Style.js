@@ -77,7 +77,18 @@ flex-direction:row;
 justify-content:space-around;
 
 `;
-
+export const Together = styled.div`
+display:flex;
+flex-direction:column;
+justify-content:space-around;
+align-items:center;
+width:30%;
+margin: 0 auto;
+border:2px solid rgba(255,255,255,0.4);
+padding:10px 5px;
+font-size:1rem;
+border-radius:5px;
+`;
 
 
 export const FlexRow2 = styled.div`

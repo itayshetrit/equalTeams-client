@@ -82,6 +82,7 @@ export const Submit = styled.button`
   color: white;
   cursor: pointer;
   &:hover{
+    outline:none;
     background:none !important;
     border: 2px solid blueviolet;
     color:blueviolet;
