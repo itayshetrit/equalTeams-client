@@ -16,3 +16,10 @@ code {
   --purple: rgb(140, 0, 175);
   --red_sign: red;
 }
+a{
+  color: white;
+}
+a:hover{
+  color: white !important;
+  text-decoration: none !important;
+}

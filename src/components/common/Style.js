@@ -43,9 +43,11 @@ export const Card = styled.div`
 export const Title = styled.div`
 font-family: GoogleMedium;
 text-shadow: 0px 1px 2px rgba(0,0,0,0.33);
-font-size:1.8rem;
+font-size:2.8rem;
 color: blueviolet;
-margin: 20px auto;
+display:flex;
+flex-direction:row;
+justify-content:center;
 `;
 
 export const PositionRelative = styled.div`
@@ -82,7 +84,8 @@ display:flex;
 flex-direction:column;
 justify-content:space-around;
 align-items:center;
-width:30%;
+width:25%;
+color: white;
 margin: 0 auto;
 border:2px solid rgba(255,255,255,0.4);
 padding:10px 5px;

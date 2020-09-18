@@ -1,32 +1,33 @@
 import styled from 'styled-components'
 
 export const MainDiv = styled.div`
-    
-    background-image: linear-gradient(120deg, blueviolet 0%, rgba(126, 60, 187, 0.836) 100%);
-    min-height: 100vh;
-
+  height: 100vh;
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  background-image: linear-gradient(120deg, blueviolet 0%, rgba(126, 60, 187, 0.836) 100%);
 `
 export const HoldMain = styled.div`
+height: 100%;
+width:100%;
     display:flex;
     flex-direction: column;
     justify-content:center;
-    align-items:center;
+    /* align-items:center; */
     `
 export const Main = styled.div`
     /* height: 100%; */
     padding:0;
     display:flex;
     flex-direction: column;
-    justify-content:center;
-    align-items:center;
-    min-width:80%;
+    align-self:center;
+    width:80%;
+    max-width:600px;
     font-size: 0.8rem;
     background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-    @media (max-width:768px){
-      width:80%;
-    }
+    
     
 `;
 

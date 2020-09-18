@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Main, HoldMain, Input, MainDiv, Span, Submit, Form, Yet, Group, SpanRed } from './style'
 import { Title, PositionRelative, PlaceHolderImage } from '../common/Style'
 import phone from '../../assets/pics/auth/phone.svg'
+import carts from '../../assets/pics/auth/carts.svg'
 import password from '../../assets/pics/auth/password.svg'
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form'
@@ -17,9 +18,8 @@ const Login = () => {
   const { register, handleSubmit, errors } = useForm()
   const onSubmit = async data => {
     dispatch(login1({ phone: data.phone, password: sha512(data.password) })).then(data => {
-      console.log(data)
       if (data.error) {
-        addToast(<ToastMsg>{data.error.error}</ToastMsg>, { appearance: "error", autoDismiss: true });
+        addToast(<ToastMsg>{data.error}</ToastMsg>, { appearance: "error", autoDismiss: true });
       }
       else {
         addToast(<ToastMsg>התחברת בהצלחה!!</ToastMsg>, { appearance: "success", autoDismiss: true, autoDismissTimeout: 2000 });
@@ -45,7 +45,7 @@ const Login = () => {
           <Group>
             <PositionRelative>
               <PlaceHolderImage src={password} style={{ width: "15px" }} alt="password" />
-              <Input placeholder="סיסמא" name="password" ref={register({ required: true, pattern: /^[A-Za-z0-9א-ת]+$/i, minLength: 6, maxLength: 20 })} />
+              <Input placeholder="סיסמא" name="password" ref={register({ required: true, pattern: /^[A-Za-z1-9א-ת]+$/i, minLength: 6, maxLength: 20 })} />
             </PositionRelative>
             {errors.password && errors.password.type === 'required' && <Span><SpanRed>!</SpanRed><Span> שדה חובה </Span><SpanRed>!</SpanRed></Span>}
             {errors.password && (errors.password.type === 'maxLength' || errors.password.type === 'minLength' ||
@@ -55,6 +55,7 @@ const Login = () => {
         </Form>
       </Main>
     </HoldMain>
+    {/* <img src={p1} width="200" /> */}
 
   </MainDiv>
   )

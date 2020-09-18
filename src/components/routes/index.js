@@ -1,16 +1,15 @@
 export const LogAndReg = {
     login: '/login',
-    register: '/register'
+    answer: '/answer/:id'
 }
 
 export const Client = {
-    client: '/client',
-    add: '/add'
+    clients: '/clients',
+    tables: '/tables'
 }
 export const Admin = {
     admin: '/admin',
-    myclients: '/myclients',
-    waiting: '/waiting',
+    register: '/register'
 }
 const Routes = {
     LogAndReg,

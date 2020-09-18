@@ -29,7 +29,7 @@ const authFailed = (error) => {
 }
 
 export const logout = () => {
-	localStorage.removeItem("node");
+	localStorage.removeItem("bs");
 	return {
 		type: actionTypes.LOGOUT_SUCCESS
 	}
@@ -50,16 +50,12 @@ export const loginStart = () => {
 }
 
 
-export const login1 = (email, password) => {
+export const login1 = (creds) => {
 	return async (dispatch, getState) => {
 		dispatch(loginStart());
-		const creds = {
-			email,
-			password
-		}
 		const { status, data, error } = await authApi.login(creds);
 		if (status === 200 && data.token) {
-			localStorage['node'] = await data.token
+			localStorage['bs'] = await data.token
 			return dispatch(loginSuccess());
 		}
 		else {
@@ -71,7 +67,7 @@ export const login1 = (email, password) => {
 export const checkAuth1 = () => {
 	return async (dispatch, getState) => {
 		dispatch(checkAuthStart());
-		const token = localStorage.getItem('node');
+		const token = localStorage.getItem('bs');
 		if (!token) {
 			dispatch(logout());
 		}
@@ -111,7 +107,7 @@ export const register1 = (body) => {
         dispatch(registerLoading())
         const{status, error} = await authApi.register(body)
 
-        if (status === 201) {
+        if (status === 200) {
             return dispatch(registerSuccess());
         } else {
             return dispatch(registerFail(error));
@@ -142,7 +138,7 @@ export const logoutAll1 = () => {
         dispatch(logoutAllLoading())
         const{status, error} = await authApi.logoutAll()
         if (status === 200) {
-			await localStorage.removeItem('node');
+			await localStorage.removeItem('bs');
             return dispatch(logoutAllSuccess());
         } else {
             return dispatch(logoutAllFail(error));

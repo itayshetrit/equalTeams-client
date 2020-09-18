@@ -1,12 +1,11 @@
 import axios from "axios";
 import ServerRoutes from "./routes/index";
 
-let headers = { Authorization: 'Bearer ' + localStorage['node'] }
-const getAllUsers = async (date) => {
+let headers;
+const getClients = async () => {
     try {
-        headers = { Authorization: 'Bearer ' + localStorage['node'] }
-        const query = "?date=" + date
-        const { status, data, error } = await axios.get(ServerRoutes.getUsers, { headers });
+        headers = { Authorization: 'Bearer ' + localStorage['bs'] }
+        const { status, data, error } = await axios.get(ServerRoutes.getClients, { headers });
         return { status, data, error };
     } catch (error) {
         return {
@@ -18,7 +17,7 @@ const getAllUsers = async (date) => {
 
 const editUserByID = async (flag, id) => {
     try {
-        headers = { Authorization: 'Bearer ' + localStorage['node'] }
+        headers = { Authorization: 'Bearer ' + localStorage['bs'] }
         const { status, data, error } = await axios.patch(ServerRoutes.editUserByID + id, { flag }, { headers });
         return { status, data, error };
     } catch (error) {
@@ -31,7 +30,7 @@ const editUserByID = async (flag, id) => {
 
 const deleteUserByID = async ( id) => {
     try {
-        headers = { Authorization: 'Bearer ' + localStorage['node'] }
+        headers = { Authorization: 'Bearer ' + localStorage['bs'] }
         const { status, data, error } = await axios.delete(ServerRoutes.editUserByID + id, { headers });
         return { status, data, error };
     } catch (error) {
@@ -42,10 +41,8 @@ const deleteUserByID = async ( id) => {
     }
 };
 
-const usersApi = {
-    getAllUsers,
-    editUserByID,
-    deleteUserByID
+const clientsApi = {
+    getClients
 };
 
-export default usersApi;
+export default clientsApi;

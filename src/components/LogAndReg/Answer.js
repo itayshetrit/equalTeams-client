@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Main = () => {
+const Answer = () => {
     return (<div className="animated fadeIn" style={{height:"100%", minHeight:"100vh"}}>
-        Client
+        Answer
     </div>)
 }
 
-export default Main
+export default Answer
