@@ -24,7 +24,7 @@ const Register = (props) => {
       }
     })
   }
-  return (<MainDiv style={{backgroundImage: "linear-gradient(120deg, blueviolet 0%, rgba(126, 60, 187, 0.836) 100%)"}}>
+  return (<MainDiv>
     <Title style={{ color: "white", position: "absolute", top: "0", margin: "40px auto" }}>Be Simple</Title>
     <HoldMain>
     <Main className="animated fadeIn slow">

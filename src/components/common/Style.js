@@ -89,10 +89,23 @@ color: white;
 margin: 0 auto;
 border:2px solid rgba(255,255,255,0.4);
 padding:10px 5px;
-font-size:1rem;
 border-radius:5px;
 `;
 
+export const BorderBlur = styled.div`
+    border:2px solid rgba(255,255,255,0.4);
+    padding:10px 5px;
+    border-radius:5px;
+    width:15%;
+    cursor: pointer;
+    &:hover{
+        color: blueviolet;
+        background:white;
+        font-weight:600;
+        /* transition: linear 300ms; */
+    }
+
+`
 
 export const FlexRow2 = styled.div`
 display:flex;

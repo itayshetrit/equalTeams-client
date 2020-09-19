@@ -9,8 +9,8 @@ const ServerRoutes = {
 	checkAuth: devURL+"users/checkAuth/me", //get
 	
 	// Clients
-	getClients: devURL+"clients",	//get
-	crudClient: devURL+"clients/",	//crud
+	getClients: devURL+"users",	//get
+	crudClient: devURL+"guests/",	//crud
 	editMyUser: devURL+"clients/me/update", //patch
 	
 }

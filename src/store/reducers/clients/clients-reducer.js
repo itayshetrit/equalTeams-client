@@ -2,7 +2,7 @@ import * as actionTypes from '../../actions/clients/actionTypes'
 import { updateObject } from '../../utilities'
 
 const initialState = {
-    turns: [],
+    clients: [],
     loading: false,
     error: null,
     flag: false

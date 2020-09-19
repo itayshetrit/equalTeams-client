@@ -9,6 +9,7 @@ export const Client = {
 }
 export const Admin = {
     admin: '/admin',
+    actions: '/actions',
     register: '/register'
 }
 const Routes = {
