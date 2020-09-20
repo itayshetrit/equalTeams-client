@@ -12,6 +12,8 @@ const ServerRoutes = {
 	getClients: devURL+"users",	//get
 	crudClient: devURL+"guests/",	//crud
 	editMyUser: devURL+"clients/me/update", //patch
+
+	loadTables: devURL+"tables",	//post
 	
 }
 

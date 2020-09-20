@@ -62,7 +62,7 @@ const Register = (props) => {
       </Form>
     </Main>
     </HoldMain>
-    {/* <Logout /> */}
+    <Logout />
   </MainDiv>
   )
 }

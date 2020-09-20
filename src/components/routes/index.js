@@ -5,7 +5,8 @@ export const LogAndReg = {
 
 export const Client = {
     clients: '/clients',
-    tables: '/tables'
+    tables: '/tables',
+    list: '/list'
 }
 export const Admin = {
     admin: '/admin',

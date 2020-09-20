@@ -7,7 +7,7 @@ import list from './files/list.json'
 import tables1 from './files/tables.json'
 import Routes from '../../routes/index';
 import Users from './Users';
-
+import Logout from '../../common/components/LogoutAll'
 import { Together, ToastMsg } from '../../common/Style';
 import { MainDiv } from '../../LogAndReg/style';
 
@@ -15,12 +15,24 @@ import tables from '../../../assets/icons/tables.svg';
 import guests from '../../../assets/icons/guests.svg';
 
 import { addClient } from '../../../store/actions/clients/client-actions'
+import { loadTables } from '../../../store/actions/tables/tables-actions'
 
 const Main1 = () => {
     const [choose, setChoose] = useState('');
     const { addToast } = useToasts();
     // const { error } = useSelector(state => state.clientReducer);
     const dispatch = useDispatch();
+
+    const loadTables1 = async () => {
+        dispatch(loadTables({
+            uid: choose, tables: tables1
+        })).then(res => {
+            if (res.error) {
+                addToast(<ToastMsg>{res.error}</ToastMsg>, { appearance: "error", autoDismiss: true });
+            }
+        })
+    }
+
     const loadGuests = async () => {
         list.map((item, index) => {
             dispatch(addClient({
@@ -36,21 +48,16 @@ const Main1 = () => {
         <div style={{ color: "white", position: "absolute", top: "0", margin: "40px auto", width: "100%", justifyContent: "space-evenly" }}>
             <Users id={choose} func={setChoose} />
         </div>
-        {/* <FlexRow style={{ color: "white", position: "absolute", top: "0", margin: "40px auto" }}>בחירת משתמש</FlexRow> */}
-        {/* <FlexRow style={{ color: "white", position: "absolute", top: "0", margin: "20px auto", width:"100%"  }}><Users /></FlexRow> */}
-
-        {/* <HoldMain> */}
-        {/* <Main className="animated fadeIn slow"> */}
-        <Together onClick={() => loadGuests()}>
+        {choose!==''? <Together onClick={() => loadGuests()}>
             <img src={guests} alt="guests" width="45" />
             <div>טעינת מוזמנים</div>
-        </Together>
-        <Together as={Link} to={Routes.Admin.register}>
+        </Together>:null}
+        {choose!==''? <Together onClick={() => loadTables1()}>
             <img src={tables} alt="tables" width="45" />
             <div>טעינת שולחנות</div>
-        </Together>
+        </Together>:null}
         {/* </Main> */}
-        {/* </HoldMain> */}
+        <Logout />
     </MainDiv>)
 }
 

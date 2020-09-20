@@ -90,6 +90,7 @@ margin: 0 auto;
 border:2px solid rgba(255,255,255,0.4);
 padding:10px 5px;
 border-radius:5px;
+cursor: pointer;
 `;
 
 export const BorderBlur = styled.div`
