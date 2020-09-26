@@ -9,8 +9,11 @@ const ServerRoutes = {
 	checkAuth: devURL+"users/checkAuth/me", //get
 	
 	// Clients
+	// editGuestByID
+	setGuestTable: devURL+"guests/setGuestTable",	//crud
 	getClients: devURL+"users",	//get
 	crudClient: devURL+"guests/",	//crud
+	getGuests: devURL+"guests",	//crud
 	editMyUser: devURL+"clients/me/update", //patch
 
 	loadTables: devURL+"tables",	//post

@@ -17,7 +17,6 @@ const Login = () => {
   const { register, handleSubmit, errors } = useForm()
   const onSubmit = async data => {
     dispatch(login1({ phone: data.phone, password: sha512(data.password) })).then(data => {
-      console.log(data)
       if (data.error) {
         addToast(<ToastMsg>{data.error.error}</ToastMsg>, { appearance: "error", autoDismiss: true });
       }
