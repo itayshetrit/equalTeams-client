@@ -47,7 +47,7 @@ const Tr = (props) => {
             <td style={props.back} style={{ width: "3%" }}>{props.data.accept}</td>
             <td style={x} style={{ width: "8%" }}>
                 {flag ? <div>
-                    <input placeholder={props.data.table} style={{ width: "30%", textAlign: "center", marginLeft: "5%" }}
+                    <input placeholder={props.data.table} style={{ width: "50%", textAlign: "center", marginLeft: "5%" }}
                         onChange={(e) => setTemp(e.target.value)} />
                     <img alt="save" style={{ cursor: "pointer" }} src={save1} width="20" onClick={() => save(props.data._id)} />
                 </div> : props.data.table}</td>

@@ -86,6 +86,7 @@ export const Submit = styled.button`
     background:none !important;
     border: 2px solid blueviolet;
     color:blueviolet;
+    font-weight:600;
   }
 
 `;

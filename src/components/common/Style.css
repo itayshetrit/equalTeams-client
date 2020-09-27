@@ -5,4 +5,14 @@
 }
 .MuiOutlinedInput-input{
     direction: rtl !important;
+    
+}
+.MuiFormHelperText-contained{
+    text-align: center !important;
+    color: red !important;
+}
+
+.modal-content{
+    background: none !important;
+    border: none !important;
 }
