@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { useToasts } from "react-toast-notifications";
 import EditModal from '../../../common/modals/EditModal'
@@ -8,21 +8,32 @@ import telephone from '../../../../assets/pics/guests/call.svg'
 import save1 from '../../../../assets/pics/guests/save.svg'
 import { setGuestTable } from '../../../../store/actions/guests/guest-actions'
 const Tr = (props) => {
+    const uuid = require('uuid');
     const { addToast } = useToasts();
     const dispatch = useDispatch();
     const [flag, setFlag] = useState(false)
     const [temp, setTemp] = useState()
-    const save = async (data) => {
-        
-        await dispatch(setGuestTable({id:data, table:temp}))
+    const { error } = useSelector(state => state.guestReducer);
+    useEffect(() => {
+        if (error) {
+            addToast(error, { appearance: "error", autoDismiss: true });
+        }
+    }, [error]);
+    const save = (data) => {
+        dispatch(setGuestTable({ id: data, table: parseInt(temp) })).then(data => {
+            if (!data.error) {
+
+                props.gG()
+                setFlag(!flag)
+            }
+        })
     }
     let x = ''
     if (props.data.accept > 0 && props.data.table === '') {
-        x = {background: "linear-gradient(to right,white, rgb(255, 174, 0)90%, white)"}
+        x = { background: "linear-gradient(to right,white, rgb(255, 174, 0)90%, white)" }
     }
-
     return (
-        <tr key={props.key}>
+        <tr key={uuid()}>
             <td style={{ width: "5%" }}>{props.key}</td>
             <td style={props.back} onClick={() => setFlag(!flag)} style={{ cursor: "pointer" }}>{props.data.name}</td>
             <td>

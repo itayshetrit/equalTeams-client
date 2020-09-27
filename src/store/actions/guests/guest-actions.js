@@ -4,6 +4,7 @@ import * as actionTypes from './actionTypes';
 
 
 export const guestActionStart = (action) => {
+    
     return {
         type: action
     };
@@ -78,7 +79,7 @@ export const editGuestById = (id) => {
 export const setGuestTable= (body) => {
     return async (dispatch) => {
         dispatch(guestActionStart(actionTypes.SET_GUEST_TABLE_START))
-        const { status, data, error } = await guestApi.addClient(body)
+        const { status, data, error } = await guestApi.setGuestTable(body)
         if (status === 200) {
             return dispatch(guestActionSuccess(actionTypes.SET_GUEST_TABLE_SUCCESS, null));
         } else {

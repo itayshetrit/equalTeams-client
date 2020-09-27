@@ -3,3 +3,6 @@
     background: white;
     font-weight: 600;
 }
+.MuiOutlinedInput-input{
+    direction: rtl !important;
+}

@@ -2,10 +2,10 @@ import axios from "axios";
 import ServerRoutes from "./routes/index";
 
 let headers;
-const setGuestTable = async () => {
+const setGuestTable = async (body) => {
     try {
         headers = { Authorization: 'Bearer ' + localStorage['bs'] }
-        const { status, data, error } = await axios.patch(ServerRoutes.setGuestTable, { headers });
+        const { status, data, error } = await axios.patch(ServerRoutes.setGuestTable, body, { headers });
         return { status, data, error };
     } catch (error) {
         return {

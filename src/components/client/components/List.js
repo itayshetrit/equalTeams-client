@@ -2,17 +2,22 @@ import React, { useEffect, useMemo } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { useToasts } from "react-toast-notifications";
 import Table from 'react-bootstrap/Table'
-
 import { MainDiv, HoldMain, Main } from '../../LogAndReg/style'
 import { ClosenessSumTr, ClosenessTd } from './table/style'
 import { getGuests, cleanGuests } from '../../../store/actions/guests/guests-actions'
 import Logout from '../../common/components/LogoutAll'
 import Thead from './table/Thead';
 import Tr from './table/Tr';
+
 const Main1 = () => {
+    const uuid = require('uuid');
+    console.log(uuid())
     const dispatch = useDispatch();
     const { addToast } = useToasts();
     const { error, guests } = useSelector(state => state.guestsReducer);
+    const gG = () => {
+        dispatch(getGuests())
+    }
     useEffect(() => {
         dispatch(getGuests())
         return () => {
@@ -41,7 +46,7 @@ const Main1 = () => {
                 not += 1;
             }
             if (item.closeness !== closeness) {
-                array.push(<ClosenessSumTr key={(index+1)*20000}>
+                array.push(<ClosenessSumTr key={uuid()}>
                     <ClosenessTd colSpan="13">
                         {count}
                     </ClosenessTd>
@@ -50,23 +55,22 @@ const Main1 = () => {
                 count = 0;
                 closeness = item.closeness
                 clos.push(closeness)
-                array.push(<tr id={closeness} key={(index+1) * 10000}
+                array.push(<tr id={closeness} key={uuid()}
                     style={{
                         background: "rgba(0, 0, 0, 0.85)",
                         fontSize: "larger", color: "white"
                     }}
                 ><td colSpan="13">{item.closeness}</td></tr>)
             }
-            array.push(<Tr back={{background: "rgb(226, 199, 226)"}} data={item} key={index}/>)
+            array.push(<Tr back={{background: "rgb(226, 199, 226)"}} data={item} gG={gG}/>)
         })
-        array.push(<ClosenessSumTr key={9999999999999999999999999999999999999999999}>
+        array.push(<ClosenessSumTr key={uuid()}>
                     <ClosenessTd colSpan="13">
                         {count}
                     </ClosenessTd>
                 </ClosenessSumTr>);
                 all+=count;
     }
-    console.log("List component render")
     return (<MainDiv className="animated fadeIn" style={{ height: "100%", minHeight: "100vh" }}>
         <Table id='myTable' responsive style={{ width: "100%", margin: "2% auto", background: "white", color: "black" }}>
             <Thead />

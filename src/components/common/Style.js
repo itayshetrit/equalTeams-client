@@ -41,7 +41,6 @@ export const Card = styled.div`
     box-shadow: 0 2px 8px rgba(0,0,0,0.4);
 `
 export const Title = styled.div`
-font-family: GoogleMedium;
 text-shadow: 0px 1px 2px rgba(0,0,0,0.33);
 font-size:2.8rem;
 color: blueviolet;

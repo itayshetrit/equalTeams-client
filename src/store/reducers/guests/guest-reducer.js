@@ -7,7 +7,8 @@ const initialState = {
     error: null
 };
 
-const guestActionStart = (state,) => {
+const guestActionStart = (state, action) => {
+    console.log("guestActionStart")
     return updateObject(state, {
         loading: true,
         error: null
@@ -24,13 +25,14 @@ const guestActionSuccess = (state, action) => {
 }
 
 const guestActionFail = (state, action) => {
+    console.log(action)
     return updateObject(state, {
         loading: false,
         error: action.error
     })
 }
 
-export const cleanGuest = (state) => {
+const cleanGuest = (state) => {
     return updateObject(state, {
         ...initialState
         // turns: [],
@@ -50,7 +52,7 @@ const reducer = (state = initialState, action) => {
             actionTypes.DELETE_GUEST_BY_ID_START ||
             actionTypes.SET_GUEST_TABLE_START ||
             actionTypes.ADD_GUEST_START
-            : return guestActionStart(state);
+            : return guestActionStart(state, action);
         case
             actionTypes.GET_GUEST_BY_ID_SUCCESS ||
             actionTypes.EDIT_GUEST_BY_ID_SUCCESS ||

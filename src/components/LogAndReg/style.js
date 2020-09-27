@@ -72,7 +72,6 @@ export const Submit = styled.button`
   border-radius:5px;
   width:50%;
   padding: 5%;
-  font-family: inherit;
   font-size:1.3rem;
   width:100%;
   border: 2px solid white;
@@ -121,7 +120,6 @@ export const Input = styled.input`
   border-bottom: 2px solid rgba(137, 43, 226, 0.37);
   background: none;
   transition: 1s;
-  font-family: inherit;
   position: relative;
   width:100%;
   &:focus {

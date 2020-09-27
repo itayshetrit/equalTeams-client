@@ -1,7 +1,6 @@
 import React from 'react'
 
 const Thead = React.memo(() => {
-    console.log("Thead component render")
     return <thead>
         <tr>
             <th>#</th>

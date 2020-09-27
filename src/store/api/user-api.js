@@ -8,6 +8,7 @@ const login = async (creds) => {
 		return { status, data, error }
 	}
 	catch (err) {
+		console.log(err)
 		return {
 			error: err.response.data,
 			status: err.response.status
