@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Validator from 'validatorjs';
 
 import TextField from '@material-ui/core/TextField';
 import { useSelector, useDispatch } from "react-redux";
@@ -22,54 +21,44 @@ let rules = {
     notes: (/^[ -,A-Zא-תa-z1-9]{2,20}$/)
 };
 const EditGuest = (props) => {
-    let g = 'error';
+    const dispatch = useDispatch();
+    const { addToast } = useToasts();
     const [vname, setVname] = useState(props.data.name)
-    const [ename, setEname] = useState(null)
+    const [ename, setEname] = useState(true)
     const [hname, setHname] = useState(null)
 
     const [vphone, setVphone] = useState(props.data.phone)
-    const [ephone, setEphone] = useState(null)
+    const [ephone, setEphone] = useState(true)
     const [hphone, setHphone] = useState(null)
 
     const [vsum, setVsum] = useState(props.data.sum)
-    const [esum, setEsum] = useState(null)
+    const [esum, setEsum] = useState(true)
     const [hsum, setHsum] = useState(null)
 
     const [vcloseness, setVcloseness] = useState(props.data.closeness)
-    const [ecloseness, setEcloseness] = useState(null)
+    const [ecloseness, setEcloseness] = useState(true)
     const [hcloseness, setHcloseness] = useState(null)
 
-    const [vaccept, setVaccept] = useState(props.data.accept)
-    const [eaccept, setEaccept] = useState(null)
+    const [vaccept, setVaccept] = useState(props.data.accept === undefined ? null : props.data.accept)
+    const [eaccept, setEaccept] = useState(true)
     const [haccept, setHaccept] = useState(null)
 
-    const [vtable, setVtable] = useState(props.data.table)
-    const [etable, setEtable] = useState(null)
+    const [vtable, setVtable] = useState(props.data.table === undefined ? null : props.data.table)
+    const [etable, setEtable] = useState(true)
     const [htable, setHtable] = useState(null)
 
-    const [varrived, setVarrived] = useState(props.data.arrived)
-    const [earrived, setEarrived] = useState(null)
+    const [varrived, setVarrived] = useState(props.data.arrived === undefined ? null : props.data.arrived)
+    const [earrived, setEarrived] = useState(true)
     const [harrived, setHarrived] = useState(null)
 
-    const [vgift, setVgift] = useState(props.data.gift)
-    const [egift, setEgift] = useState(null)
+    const [vgift, setVgift] = useState(props.data.gift === undefined ? null : props.data.gift)
+    const [egift, setEgift] = useState(true)
     const [hgift, setHgift] = useState(null)
 
-    const [vnotes, setVnotes] = useState(props.data.notes)
-    const [enotes, setEnotes] = useState(null)
+    const [vnotes, setVnotes] = useState(props.data.notes === undefined ? null : props.data.notes)
+    const [enotes, setEnotes] = useState(true)
     const [hnotes, setHnotes] = useState(null)
 
-    // const { register, handleSubmit, errors } = useForm()
-    // const onSubmit = async data => {
-    //     dispatch(register1({...data, password: sha512(data.password)})).then(res => {
-    //       if(!res.error){
-    //         addToast(<ToastMsg>הפעולה הצליחה</ToastMsg>, { appearance: "success", autoDismiss: true });
-    //       }
-    //       else{
-    //         addToast(<ToastMsg>{res.error}</ToastMsg>, { appearance: "error", autoDismiss: true });
-    //       }
-    //     })
-    //   }
     const SubmitHandler = async e => {
         e.preventDefault()
         if ((rules.name).test(vname)) {
@@ -108,7 +97,7 @@ const EditGuest = (props) => {
             setEcloseness(true)
         }
 
-        if ((rules.accept).test(vaccept)) {
+        if ((rules.accept).test(vaccept) || vaccept===null) {
             setHaccept(null)
             setEaccept(false)
         }
@@ -117,7 +106,7 @@ const EditGuest = (props) => {
             setEaccept(true)
         }
 
-        if ((rules.table).test(vtable)) {
+        if ((rules.table).test(vtable) || vtable===null) {
             setHtable(null)
             setEtable(false)
         }
@@ -126,7 +115,7 @@ const EditGuest = (props) => {
             setEtable(true)
         }
 
-        if ((rules.arrived).test(varrived)) {
+        if ((rules.arrived).test(varrived) || varrived===null) {
             setHarrived(null)
             setEarrived(false)
         }
@@ -135,7 +124,7 @@ const EditGuest = (props) => {
             setEarrived(true)
         }
 
-        if ((rules.gift).test(vgift)) {
+        if ((rules.gift).test(vgift) || vgift===null) {
             setHgift(null)
             setEgift(false)
         }
@@ -144,7 +133,7 @@ const EditGuest = (props) => {
             setEgift(true)
         }
 
-        if ((rules.notes).test(vnotes)) {
+        if ((rules.notes).test(vnotes) || vnotes===null) {
             setHnotes(null)
             setEnotes(false)
         }
@@ -152,7 +141,32 @@ const EditGuest = (props) => {
             setHnotes("2-20 אותיות וספרות בלבד")
             setEnotes(true)
         }
-
+        if (!enotes && !egift && !earrived && !etable && !eaccept && !ecloseness && !esum && !ephone && !ename) {
+            let p = {
+                name: vname,
+                phone: vphone,
+                sum: vsum,
+                closeness: vcloseness,
+                accept: vaccept,
+                table: vtable,
+                arrived: varrived,
+                gift: vgift,
+                notes: vnotes
+            }
+            console.log(p)
+            dispatch(editGuestById(p,props.data._id)).then(res => {
+                console.log(res)
+                if (!res.error) {
+                    props.gG()
+                    console.log("good")
+                    addToast(<ToastMsg>הפעולה הצליחה</ToastMsg>, { appearance: "success", autoDismiss: true });
+                }
+                else {
+                    console.log("bad")
+                    addToast(<ToastMsg>{res.error}</ToastMsg>, { appearance: "error", autoDismiss: true });
+                }
+            })
+        }
         // let data = {
         //     name: vname
         // }
@@ -162,20 +176,13 @@ const EditGuest = (props) => {
         //     name: data.name, phone: data.phone, sum: data.sum, closeness: data.closeness,
         //     accept: data.accept, table: data.table, arrived: data.arrived, gift: data.gift, note: data.note
         // }
-        // dispatch(register1(p)).then(res => {
-        //     if(!res.error){
-        //       addToast(<ToastMsg>הפעולה הצליחה</ToastMsg>, { appearance: "success", autoDismiss: true });
-        //     }
-        //     else{
-        //       addToast(<ToastMsg>{res.error}</ToastMsg>, { appearance: "error", autoDismiss: true });
-        //     }
-        //   })
+
 
     }
 
     return (
         <HoldMain>
-            <Main className="animated fadeIn slow">
+            <Main className="animated fadeIn">
                 <Title style={{ fontSize: "1.8rem", margin: "20px auto" }}>עריכה</Title>
                 <Form onSubmit={SubmitHandler} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
 

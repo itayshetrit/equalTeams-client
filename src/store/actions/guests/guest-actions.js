@@ -52,10 +52,10 @@ export const cleanGuest = () => {
 //     }
 // }
 
-export const editGuestById = (id) => {
+export const editGuestById = (body, id) => {
     return async (dispatch) => {
         dispatch(guestActionStart(actionTypes.EDIT_GUEST_BY_ID_START))
-        const { status, data, error } = await guestApi.editGuestById(id)
+        const { status, data, error } = await guestApi.editGuestByID(body, id)
         if (status === 200) {
             return dispatch(guestActionSuccess(actionTypes.EDIT_GUEST_BY_ID_SUCCESS, null));
         } else {

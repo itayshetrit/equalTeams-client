@@ -55,7 +55,7 @@ const Tr = (props) => {
             <td>{props.data.gift}</td>
             <td>{props.data.note}</td>
             <td style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
-                <EditModal data={props.data} />
+                <EditModal data={props.data} gG={props.gG}/>
                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                      <DeleteModal del={props.del} id={props.data._id} />
             </td>

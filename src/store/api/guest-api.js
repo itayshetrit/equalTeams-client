@@ -15,10 +15,12 @@ const setGuestTable = async (body) => {
     }
 };
 
-const editGuestByID = async (flag, id) => {
+const editGuestByID = async (body, id) => {
+    console.log(body)
+    console.log(id)
     try {
         headers = { Authorization: 'Bearer ' + localStorage['bs'] }
-        const { status, data, error } = await axios.patch(ServerRoutes.editGuestByID + id, { flag }, { headers });
+        const { status, data, error } = await axios.patch(ServerRoutes.crudGuest + id, body , { headers });
         return { status, data, error };
     } catch (error) {
         return {

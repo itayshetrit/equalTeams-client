@@ -10,7 +10,7 @@ const EditModal = (props) => {
         <div>
             <div onClick={handleShow} ><img alt="edit" src={pencil} width="22" style={{cursor: "pointer"}} /></div>
             <Modal show={show} onHide={handleClose} animation={true}>
-            <Edit data={props.data} handleClose={handleClose}/>
+            <Edit data={props.data} handleClose={handleClose} gG={props.gG}/>
             </Modal>
         </div>
     );

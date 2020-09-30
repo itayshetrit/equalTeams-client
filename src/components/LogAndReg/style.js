@@ -118,15 +118,19 @@ export const SpanRed = styled.span`
 
 export const Input = styled.input`
   border: none;
-  border-bottom: 2px solid rgba(137, 43, 226, 0.37);
+  color: white;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.37);
   background: none;
   transition: 1s;
   position: relative;
   width:100%;
   &:focus {
     outline: none;
-    border-bottom-color: blueviolet;
+    border-bottom-color: white;
     transition: 1s;
+  }
+  &::placeholder{
+    color:white;
   }
 `;
 
