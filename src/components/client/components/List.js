@@ -10,7 +10,7 @@ import { getGuests, cleanGuests } from '../../../store/actions/guests/guests-act
 import Logout from '../../common/components/LogoutAll'
 import Thead from './table/Thead';
 import Tr from './table/Tr';
-
+import EditModal from '../../common/modals/EditModal'
 const Main1 = () => {
     const uuid = require('uuid');
     const dispatch = useDispatch();
@@ -101,7 +101,7 @@ const Main1 = () => {
                    
                     <Input placeholder="חיפוש" id='user' onChange={() => myFunction(1, "user")}/>
                 </div>
-                <div>הוספה</div>
+                <div><EditModal act={"add"} button={"הוספה"} gG={gG} /></div>
             </FlexRow>
 
             <Table id='myTable' responsive style={{ width: "100%", margin: "2% auto", background: "white", color: "black" }}>

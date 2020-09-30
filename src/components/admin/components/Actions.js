@@ -14,7 +14,7 @@ import { MainDiv } from '../../LogAndReg/style';
 import tables from '../../../assets/icons/tables.svg';
 import guests from '../../../assets/icons/guests.svg';
 
-import { addClient } from '../../../store/actions/clients/client-actions'
+import { addGuest } from '../../../store/actions/clients/client-actions'
 import { loadTables } from '../../../store/actions/tables/tables-actions'
 
 const Main1 = () => {
@@ -35,7 +35,7 @@ const Main1 = () => {
 
     const loadGuests = async () => {
         list.map((item, index) => {
-            dispatch(addClient({
+            dispatch(addGuest({
                 uid: choose, phone: (item.טלפון).toString(), name: item.שם, sum: item.כמות, closeness: item.קירבה
             })).then(res => {
                 if (res.error) {

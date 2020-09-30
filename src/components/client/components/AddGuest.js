@@ -6,7 +6,7 @@ import { useToasts } from "react-toast-notifications";
 import { connect } from 'react-redux';
 import { Main, MainDiv, Input, Span, Submit, HoldMain, Form, Yet, Group, SpanRed } from '../../LogAndReg/style'
 import { ToastMsg, Title, PositionRelative, PlaceHolderImage } from '../../common/Style'
-import { editGuestById } from '../../../store/actions/guests/guest-actions'
+import { addGuest } from '../../../store/actions/clients/client-actions'
 // import { useForm } from 'react-hook-form'
 
 let rules = {
@@ -21,41 +21,42 @@ let rules = {
     notes: (/^[ -,A-Zא-תa-z1-9]{2,20}$/)
 };
 const EditGuest = (props) => {
+    const { user } = useSelector(state => state.authReducer);
     const dispatch = useDispatch();
     const { addToast } = useToasts();
-    const [vname, setVname] = useState(props.data.name === undefined ? null : props.data.name)
+    const [vname, setVname] = useState(null )
     const [ename, setEname] = useState(true)
     const [hname, setHname] = useState(null)
 
-    const [vphone, setVphone] = useState(props.data.phone === undefined ? null : props.data.phone)
+    const [vphone, setVphone] = useState(null)
     const [ephone, setEphone] = useState(true)
     const [hphone, setHphone] = useState(null)
 
-    const [vsum, setVsum] = useState(props.data.sum === undefined ? null : props.data.sum)
+    const [vsum, setVsum] = useState(null   )
     const [esum, setEsum] = useState(true)
     const [hsum, setHsum] = useState(null)
 
-    const [vcloseness, setVcloseness] = useState(props.data.closeness === undefined ? null : props.data.closeness)
+    const [vcloseness, setVcloseness] = useState(null   )
     const [ecloseness, setEcloseness] = useState(true)
     const [hcloseness, setHcloseness] = useState(null)
 
-    const [vaccept, setVaccept] = useState(props.data.accept === undefined ? null : props.data.accept)
+    const [vaccept, setVaccept] = useState(null )
     const [eaccept, setEaccept] = useState(true)
     const [haccept, setHaccept] = useState(null)
 
-    const [vtable, setVtable] = useState(props.data.table === undefined ? null : props.data.table)
+    const [vtable, setVtable] = useState(null   )
     const [etable, setEtable] = useState(true)
     const [htable, setHtable] = useState(null)
 
-    const [varrived, setVarrived] = useState(props.data.arrived === undefined ? null : props.data.arrived)
+    const [varrived, setVarrived] = useState(null   )
     const [earrived, setEarrived] = useState(true)
     const [harrived, setHarrived] = useState(null)
 
-    const [vgift, setVgift] = useState(props.data.gift === undefined ? null : props.data.gift)
+    const [vgift, setVgift] = useState(null )
     const [egift, setEgift] = useState(true)
     const [hgift, setHgift] = useState(null)
 
-    const [vnotes, setVnotes] = useState(props.data.notes === undefined ? null : props.data.notes)
+    const [vnotes, setVnotes] = useState(null   )
     const [enotes, setEnotes] = useState(true)
     const [hnotes, setHnotes] = useState(null)
 
@@ -143,6 +144,7 @@ const EditGuest = (props) => {
         }
         if (!enotes && !egift && !earrived && !etable && !eaccept && !ecloseness && !esum && !ephone && !ename) {
             let p = {
+                uid: user._id,
                 name: vname,
                 phone: vphone,
                 sum: vsum,
@@ -153,9 +155,9 @@ const EditGuest = (props) => {
                 gift: vgift,
                 notes: vnotes
             }
-            dispatch(editGuestById(p, props.data._id)).then(res => {
-                console.log(res)
+            dispatch(addGuest(p)).then(res => {
                 if (!res.error) {
+                    props.handleClose()
                     props.gG()
                     addToast(<ToastMsg>הפעולה הצליחה</ToastMsg>, { appearance: "success", autoDismiss: true });
                 }
@@ -204,7 +206,7 @@ const EditGuest = (props) => {
                         required
                         helperText={hphone}
                         error={ephone}
-                        style={{ marginBottom: "15px" }}
+                        style={{ marginBottom: "15px", direction: "rtl" }}
                     />
 
                     <TextField
@@ -216,7 +218,7 @@ const EditGuest = (props) => {
                         required
                         helperText={hsum}
                         error={esum}
-                        style={{ marginBottom: "15px" }}
+                        style={{ marginBottom: "15px", direction: "rtl" }}
                     />
 
                     <TextField

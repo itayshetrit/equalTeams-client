@@ -43,10 +43,10 @@ const deleteClientById = async (id) => {
 };
 
 
-const addClient = async (body) => {
+const addGuest = async (body) => {
     try {
         headers = { Authorization: 'Bearer ' + localStorage['bs'] }
-        const { status, data, error } = await axios.post(ServerRoutes.crudClient, body, { headers });
+        const { status, data, error } = await axios.post(ServerRoutes.crudGuest, body, { headers });
         return { status, data, error };
     } catch (error) {
         return {
@@ -60,7 +60,7 @@ const clientApi = {
     getClientById,
     deleteClientById,
     editClientById,
-    addClient
+    addGuest
 };
 
 export default clientApi;

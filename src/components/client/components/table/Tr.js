@@ -6,6 +6,7 @@ import DeleteModal from '../../../common/modals/DeleteModal'
 import whatsapp from '../../../../assets/pics/guests/whatsapp.svg'
 import telephone from '../../../../assets/pics/guests/call.svg'
 import save1 from '../../../../assets/pics/guests/save.svg'
+import pencil from '../../../../assets/pics/guests/pencil.svg'
 import { setGuestTable } from '../../../../store/actions/guests/guest-actions'
 const Tr = (props) => {
     const uuid = require('uuid');
@@ -53,9 +54,9 @@ const Tr = (props) => {
                 </div> : props.data.table}</td>
             <td>{props.data.arrived}</td>
             <td>{props.data.gift}</td>
-            <td>{props.data.note}</td>
+            <td>{props.data.notes}</td>
             <td style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
-                <EditModal data={props.data} gG={props.gG}/>
+                <EditModal data={props.data} gG={props.gG} act={"edit"} button={<img alt="edit" src={pencil} width="22" style={{cursor: "pointer"}} />}/>
                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                      <DeleteModal del={props.del} id={props.data._id} />
             </td>

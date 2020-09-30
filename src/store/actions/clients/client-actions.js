@@ -63,10 +63,10 @@ export const editClientById = (id) => {
     }
 }
 
-export const addClient= (body) => {
+export const addGuest= (body) => {
     return async (dispatch) => {
         dispatch(clientActionStart(actionTypes.ADD_CLIENT_START))
-        const { status, data, error } = await clientApi.addClient(body)
+        const { status, data, error } = await clientApi.addGuest(body)
         if (status === 200) {
             return dispatch(clientActionSuccess(actionTypes.ADD_CLIENT_SUCCESS, null));
         } else {

@@ -16,11 +16,11 @@
     background: none !important;
     border: none !important;
 }
-.MuiFormLabel-root.Mui-focused{
+.MuiFormLabel-root.Mui-focused:focus{
     color: white !important;
 }
 
-.MuiFormLabel-root{
+/* .MuiFormLabel-root{
     border: none !important;
     color: white !important;
-}
+} */
