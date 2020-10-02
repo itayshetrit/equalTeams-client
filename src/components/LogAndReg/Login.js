@@ -1,13 +1,11 @@
 import React from "react";
 import { useDispatch } from 'react-redux';
-import { Main, HoldMain, Input, MainDiv, Span, Submit, Form, Yet, Group, SpanRed } from './style'
+import { Main, HoldMain, Input, MainDiv, Span, Submit, Form, Group, SpanRed } from './style'
 import { Title, PositionRelative, PlaceHolderImage } from '../common/Style'
 import phone from '../../assets/pics/auth/phone.svg'
 import password from '../../assets/pics/auth/password.svg'
-import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form'
 import { sha512 } from 'js-sha512'
-import Routes from '../routes/index'
 import { login1 } from '../../store/actions/auth/auth-actions'
 import { useToasts } from "react-toast-notifications";
 import { ToastMsg } from '../common/Style'

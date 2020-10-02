@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
-import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { useToasts } from "react-toast-notifications";
 
 import list from './files/list.json'
 import tables1 from './files/tables.json'
-import Routes from '../../routes/index';
 import Users from './Users';
 import Logout from '../../common/components/LogoutAll'
 import { Together, ToastMsg } from '../../common/Style';

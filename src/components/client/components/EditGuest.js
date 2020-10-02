@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 
 import TextField from '@material-ui/core/TextField';
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useToasts } from "react-toast-notifications";
-import { connect } from 'react-redux';
-import { Main, MainDiv, Input, Span, Submit, HoldMain, Form, Yet, Group, SpanRed } from '../../LogAndReg/style'
-import { ToastMsg, Title, PositionRelative, PlaceHolderImage } from '../../common/Style'
+import { Main,  Submit, HoldMain, Form } from '../../LogAndReg/style'
+import { ToastMsg, Title} from '../../common/Style'
 import { editGuestById } from '../../../store/actions/guests/guest-actions'
 // import { useForm } from 'react-hook-form'
 
@@ -154,9 +153,9 @@ const EditGuest = (props) => {
                 notes: vnotes
             }
             dispatch(editGuestById(p, props.data._id)).then(res => {
-                console.log(res)
                 if (!res.error) {
                     props.gG()
+                    props.handleClose()
                     addToast(<ToastMsg>הפעולה הצליחה</ToastMsg>, { appearance: "success", autoDismiss: true });
                 }
                 else {
@@ -197,7 +196,7 @@ const EditGuest = (props) => {
                     />
                     <TextField
                         onChange={(e) => setVphone(e.target.value)}
-                        id="outlined-name"
+                        id="outlined-phone"
                         label="מס' פלאפון"
                         defaultValue={vphone}
                         variant="outlined"
@@ -209,7 +208,7 @@ const EditGuest = (props) => {
 
                     <TextField
                         onChange={(e) => setVsum(e.target.value)}
-                        id="outlined-name"
+                        id="outlined-sum"
                         label="הוזמנו"
                         defaultValue={vsum}
                         variant="outlined"
@@ -221,7 +220,7 @@ const EditGuest = (props) => {
 
                     <TextField
                         onChange={(e) => setVcloseness(e.target.value)}
-                        id="outlined-name"
+                        id="outlined-closeness"
                         label="קירבה"
                         defaultValue={vcloseness}
                         variant="outlined"
@@ -233,7 +232,7 @@ const EditGuest = (props) => {
 
                     <TextField
                         onChange={(e) => setVaccept(e.target.value)}
-                        id="outlined-name"
+                        id="outlined-accept"
                         label="אישרו"
                         defaultValue={vaccept}
                         variant="outlined"
@@ -244,7 +243,7 @@ const EditGuest = (props) => {
 
                     <TextField
                         onChange={(e) => setVtable(e.target.value)}
-                        id="outlined-name"
+                        id="outlined-table"
                         label="שולחן"
                         defaultValue={vtable}
                         variant="outlined"
@@ -255,7 +254,7 @@ const EditGuest = (props) => {
 
                     <TextField
                         onChange={(e) => setVarrived(e.target.value)}
-                        id="outlined-name"
+                        id="outlined-arrived"
                         label="הגיעו"
                         defaultValue={varrived}
                         variant="outlined"
@@ -266,7 +265,7 @@ const EditGuest = (props) => {
 
                     <TextField
                         onChange={(e) => setVgift(e.target.value)}
-                        id="outlined-name"
+                        id="outlined-gift"
                         label="מתנה"
                         defaultValue={vgift}
                         variant="outlined"
@@ -277,7 +276,7 @@ const EditGuest = (props) => {
 
                     <TextField
                         onChange={(e) => setVnotes(e.target.value)}
-                        id="outlined-name"
+                        id="outlined-notes"
                         label="הערות"
                         defaultValue={vnotes}
                         variant="outlined"

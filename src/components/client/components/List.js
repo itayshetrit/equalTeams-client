@@ -1,17 +1,20 @@
-import React, { useEffect, useMemo } from 'react'
-import TextField from '@material-ui/core/TextField';
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { useToasts } from "react-toast-notifications";
 import Table from 'react-bootstrap/Table'
-import { MainDiv,Input } from '../../LogAndReg/style'
-import { ClosenessSumTr, ClosenessTd } from './table/style'
-import { FlexRow } from '../../common/Style'
+import { MainDiv, Input } from '../../LogAndReg/style'
+import { ClosenessSumTr, ClosenessTd, Options, ClosenessTr } from './table/style'
+import { FlexRow, ToastMsg } from '../../common/Style'
 import { getGuests, cleanGuests } from '../../../store/actions/guests/guests-actions'
+import { setGuestTable } from '../../../store/actions/guests/guest-actions'
 import Logout from '../../common/components/LogoutAll'
 import Thead from './table/Thead';
 import Tr from './table/Tr';
 import EditModal from '../../common/modals/EditModal'
+let chooses = [];
 const Main1 = () => {
+    const [choise, setChoise] = useState(false)
+    const [table, setTable] = useState('')
     const uuid = require('uuid');
     const dispatch = useDispatch();
     const { addToast } = useToasts();
@@ -30,50 +33,106 @@ const Main1 = () => {
             addToast(error, { appearance: "error", autoDismiss: true });
         }
     }, [error]);
+
     let clos = []
     let array = [];
     let count = 0;
     let all = 0;
     let not = 0;
     let closeness = '';
-    let back = ""
-    if (guests) {
-        guests.map((item, index) => {
-            if (item.accept > 0) {
-                back = "green_td";
-                count += item.accept;
-            }
-            else if (item.accept === 0) {
-                not += 1;
-            }
-            if (item.closeness !== closeness) {
-                array.push(<ClosenessSumTr key={uuid()}>
+    const del = async (p) => {
+        // await axios.delete(localStorage['username']+"/" + p + ".json").then(res => {
+        //     del2(p)
+        // })
+        console.log("del: " + p)
+    }
+    const add_del = (item) => {
+        let exist = chooses.filter(x => x.id === item.id)
+        if (exist[0]) {
+            chooses = chooses.filter(x => x.id !== item.id)
+        }
+        else {
+            chooses.push(item)
+        }
+    }
+    if (guests.length>0) {
+        // debugger;
+        for (let i = 0; i < guests.length - 1; i++) {
+            let back = "";
+            
+            if (guests[i].closeness !== closeness && i !== 0) {
+                array.push(<ClosenessSumTr key={i * 1000}>
                     <ClosenessTd colSpan="13">
                         {count}
                     </ClosenessTd>
                 </ClosenessSumTr>);
                 all += count;
                 count = 0;
-                closeness = item.closeness
-                clos.push(closeness)
-                array.push(<tr id={closeness} key={uuid()}
-                    style={{
-                        background: "rgba(0, 0, 0, 0.85)",
-                        fontSize: "larger", color: "white"
-                    }}
-                ><td colSpan="13">{item.closeness}</td></tr>)
             }
-            array.push(<Tr back={{ background: "rgb(226, 199, 226)" }} data={item} gG={gG} />)
-        })
-        array.push(<ClosenessSumTr key={uuid()}>
-            <ClosenessTd colSpan="13">
-                {count}
-            </ClosenessTd>
-        </ClosenessSumTr>);
+            if (guests[i].closeness !== closeness) {
+                closeness = guests[i].closeness
+                clos.push(closeness)
+                array.push(<ClosenessTr id={closeness} key={(i + 5) * 10000}>
+                    <td colSpan="13">{guests[i].closeness}</td>
+                </ClosenessTr>)
+            }
+            if (guests[i].accept > 0) {
+                back = "back"
+                count += guests[i].accept;
+            }
+            else if (guests[i].accept === 0) {
+                not += 1;
+            }
+            if (choise) {
+                array.push(<Tr gG={gG} back={back} del={del} key={i}
+                    index={<input type="checkbox" className="checkbox animated fadeInRight" onClick={() => add_del(guests[i])} />} data={guests[i]} />)
+            }
+            else {
+                array.push(<Tr gG={gG} back={back} del={del} key={i} index={i + 1} data={guests[i]} />)
+            }
+        }
+        array.push(<ClosenessSumTr id={closeness} key={guests.length}>
+            <ClosenessTd colSpan="13">{count}</ClosenessTd>
+        </ClosenessSumTr>)
         all += count;
-    }
 
-    function myFunction(x, y) {
+        // guests.map((item, index) => {
+        //     back = "";
+        //     if (item.accept > 0) {
+        //         back = "back";
+        //         count += item.accept;
+        //     }
+        //     else if (item.accept === 0) {
+        //         not += 1;
+
+        //     }
+        //     if (item.closeness !== closeness) {
+        //         array.push(<ClosenessSumTr key={uuid()}>
+        //             <ClosenessTd colSpan="13">
+        //                 {count}
+        //             </ClosenessTd>
+        //         </ClosenessSumTr>);
+        //         all += count;
+        //         count = 0;
+        //         closeness = item.closeness
+        //         clos.push(closeness)
+        //         array.push(<ClosenessTr id={closeness} key={uuid()}>
+        //             <td colSpan="13">{item.closeness}</td>
+        //         </ClosenessTr>)
+        //     }
+        //     array.push(<Tr back={back} data={item} gG={gG} />)
+        // })
+        // array.push(<ClosenessSumTr id={closeness} key={uuid()}>
+        //     <ClosenessTd colSpan="13">
+        //         {count}
+        //     </ClosenessTd>
+        // </ClosenessSumTr>);
+        // all += count;
+    }
+    let choose = clos.map((item, index) => {
+        return <a key={index} href={"#" + item}>{item}</a>
+    })
+    const search = (x, y) => {
         var input, filter, table, tr, td, i, txtValue;
         input = document.getElementById(y);
         filter = input.value.toUpperCase();
@@ -91,19 +150,42 @@ const Main1 = () => {
             }
         }
     }
-    return (<MainDiv className="animated fadeIn" style={{ height: "100%", minHeight: "100vh" }}>
+    const save = (id,table) => {
+        dispatch(setGuestTable({ id, table })).then(data => {
+            if (!data.error) {
+
+                gG()
+                addToast(<ToastMsg>הפעולה הצליחה</ToastMsg>, { appearance: "success", autoDismiss: true });
+            }
+            else {
+                addToast(<ToastMsg>{data.error}</ToastMsg>, { appearance: "error", autoDismiss: true });
+            }
+        })
+    }
+    const apply = async () => {
+        // await Promise.all(chooses.map(async (item) => {
+        //     await axios.put(localStorage['username']+"/" + item.id + ".json", { ...item, table: table }).then(res => { });
+        // }));
+        // chooses = [];
+        // load()
+    }
+    return (<MainDiv id="start" className="animated fadeIn" style={{ height: "100%", minHeight: "100vh" }}>
         <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
 
 
-            <FlexRow style={{ marginBottom: "15px", marginTop: "15px", direction: "rtl", color:"white", alignItems:"center" }}>
+            <FlexRow style={{ marginBottom: "15px", marginTop: "15px", direction: "rtl", color: "white", alignItems: "center" }}>
                 <div>שולחנות</div>
                 <div>
-                   
-                    <Input placeholder="חיפוש" id='user' onChange={() => myFunction(1, "user")}/>
+                    <Input placeholder="חיפוש" id='user' onChange={() => search(1, "user")} />
                 </div>
+                <div style={{cursor:"pointer"}} onClick={() => setChoise(!choise)}>בחירה מרובה</div>
+                {choise ? <div style={{ width: "11%" }}><input placeholder="שולחן" className="animated fadeInDown" type="number" min="0" max="50"
+                    onChange={(e) => setTable(e.target.value)} /><div className="s animated fadeInDown"
+                        onClick={() => apply()}>שליחה</div></div>
+                    : <div style={{ opacity: "0", width: "11%" }}>הקהקרהר</div>}
                 <div><EditModal act={"add"} button={"הוספה"} gG={gG} /></div>
             </FlexRow>
-
+            <Options>{choose}</Options>
             <Table id='myTable' responsive style={{ width: "100%", margin: "2% auto", background: "white", color: "black" }}>
                 <Thead />
                 <tbody>

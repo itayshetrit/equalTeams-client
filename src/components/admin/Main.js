@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import Routes from '../routes/index'
 import { Together } from '../common/Style'
-import { MainDiv, HoldMain, Main } from './../LogAndReg/style'
+import { MainDiv} from './../LogAndReg/style'
 import users from '../../assets/icons/users.svg'
 import actions1 from '../../assets/icons/actions1.svg'
 import Logout from './../common/components/LogoutAll'

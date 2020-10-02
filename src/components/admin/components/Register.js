@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from 'react-redux';
-import { Main, MainDiv, Input, Span, Submit, HoldMain, Form, Yet, Group, SpanRed } from '../../LogAndReg/style'
+import { Main, MainDiv, Input, Span, Submit, HoldMain, Form, Group, SpanRed } from '../../LogAndReg/style'
 import { useToasts} from "react-toast-notifications";
 import { useForm } from 'react-hook-form'
 import user from '../../../assets/pics/auth/user.svg'

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal'
 import Edit from '../../client/components/EditGuest'
 import Add from '../../client/components/AddGuest'
-import pencil from '../../../assets/pics/guests/pencil.svg'
 const EditModal = (props) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);

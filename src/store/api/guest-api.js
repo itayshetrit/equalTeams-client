@@ -16,8 +16,6 @@ const setGuestTable = async (body) => {
 };
 
 const editGuestByID = async (body, id) => {
-    console.log(body)
-    console.log(id)
     try {
         headers = { Authorization: 'Bearer ' + localStorage['bs'] }
         const { status, data, error } = await axios.patch(ServerRoutes.crudGuest + id, body , { headers });

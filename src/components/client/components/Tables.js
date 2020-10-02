@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { MainDiv, HoldMain, Main } from '../../LogAndReg/style'
+import { MainDiv} from '../../LogAndReg/style'
 
 import Logout from '../../common/components/LogoutAll'
 const Main1 = () => {
