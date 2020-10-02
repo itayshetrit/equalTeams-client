@@ -3,6 +3,10 @@ const GlobalStyle = createGlobalStyle`
 html{
     width:100%;
     height: 100%;
+    scroll-behavior: smooth !important;
+}
+::selection {
+  background: rgb(209, 158, 209);
 }
 /* html > * {
     font-family: 'felix';

@@ -33,7 +33,26 @@ const Main1 = () => {
             addToast(error, { appearance: "error", autoDismiss: true });
         }
     }, [error]);
+    const save = (id,table) => {
+        dispatch(setGuestTable({ id, table })).then(data => {
+            if (!data.error) {
 
+                gG()
+                addToast(<ToastMsg>הפעולה הצליחה</ToastMsg>, { appearance: "success", autoDismiss: true });
+            }
+            else {
+                addToast(<ToastMsg>{data.error}</ToastMsg>, { appearance: "error", autoDismiss: true });
+            }
+        })
+    }
+    const apply = async () => {
+        chooses.map(async(item,index) => {
+            await save(item._id,table)
+        })
+        chooses=[];
+        setChoise(!choise)
+
+    }
     let clos = []
     let array = [];
     let count = 0;
@@ -47,9 +66,9 @@ const Main1 = () => {
         console.log("del: " + p)
     }
     const add_del = (item) => {
-        let exist = chooses.filter(x => x.id === item.id)
+        let exist = chooses.filter(x => x._id === item._id)
         if (exist[0]) {
-            chooses = chooses.filter(x => x.id !== item.id)
+            chooses = chooses.filter(x => x._id !== item._id)
         }
         else {
             chooses.push(item)
@@ -84,50 +103,19 @@ const Main1 = () => {
                 not += 1;
             }
             if (choise) {
-                array.push(<Tr gG={gG} back={back} del={del} key={i}
+                array.push(<Tr save={save} gG={gG} back={back} del={del} key={i}
                     index={<input type="checkbox" className="checkbox animated fadeInRight" onClick={() => add_del(guests[i])} />} data={guests[i]} />)
             }
             else {
-                array.push(<Tr gG={gG} back={back} del={del} key={i} index={i + 1} data={guests[i]} />)
+                array.push(<Tr save={save} gG={gG} back={back} del={del} key={i} index={i + 1} data={guests[i]} />)
             }
         }
-        array.push(<ClosenessSumTr id={closeness} key={guests.length}>
+        array.push(<ClosenessSumTr key={guests.length}>
             <ClosenessTd colSpan="13">{count}</ClosenessTd>
         </ClosenessSumTr>)
         all += count;
 
-        // guests.map((item, index) => {
-        //     back = "";
-        //     if (item.accept > 0) {
-        //         back = "back";
-        //         count += item.accept;
-        //     }
-        //     else if (item.accept === 0) {
-        //         not += 1;
-
-        //     }
-        //     if (item.closeness !== closeness) {
-        //         array.push(<ClosenessSumTr key={uuid()}>
-        //             <ClosenessTd colSpan="13">
-        //                 {count}
-        //             </ClosenessTd>
-        //         </ClosenessSumTr>);
-        //         all += count;
-        //         count = 0;
-        //         closeness = item.closeness
-        //         clos.push(closeness)
-        //         array.push(<ClosenessTr id={closeness} key={uuid()}>
-        //             <td colSpan="13">{item.closeness}</td>
-        //         </ClosenessTr>)
-        //     }
-        //     array.push(<Tr back={back} data={item} gG={gG} />)
-        // })
-        // array.push(<ClosenessSumTr id={closeness} key={uuid()}>
-        //     <ClosenessTd colSpan="13">
-        //         {count}
-        //     </ClosenessTd>
-        // </ClosenessSumTr>);
-        // all += count;
+        
     }
     let choose = clos.map((item, index) => {
         return <a key={index} href={"#" + item}>{item}</a>
@@ -150,25 +138,7 @@ const Main1 = () => {
             }
         }
     }
-    const save = (id,table) => {
-        dispatch(setGuestTable({ id, table })).then(data => {
-            if (!data.error) {
-
-                gG()
-                addToast(<ToastMsg>הפעולה הצליחה</ToastMsg>, { appearance: "success", autoDismiss: true });
-            }
-            else {
-                addToast(<ToastMsg>{data.error}</ToastMsg>, { appearance: "error", autoDismiss: true });
-            }
-        })
-    }
-    const apply = async () => {
-        // await Promise.all(chooses.map(async (item) => {
-        //     await axios.put(localStorage['username']+"/" + item.id + ".json", { ...item, table: table }).then(res => { });
-        // }));
-        // chooses = [];
-        // load()
-    }
+    
     return (<MainDiv id="start" className="animated fadeIn" style={{ height: "100%", minHeight: "100vh" }}>
         <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
 
@@ -179,9 +149,9 @@ const Main1 = () => {
                     <Input placeholder="חיפוש" id='user' onChange={() => search(1, "user")} />
                 </div>
                 <div style={{cursor:"pointer"}} onClick={() => setChoise(!choise)}>בחירה מרובה</div>
-                {choise ? <div style={{ width: "11%" }}><input placeholder="שולחן" className="animated fadeInDown" type="number" min="0" max="50"
-                    onChange={(e) => setTable(e.target.value)} /><div className="s animated fadeInDown"
-                        onClick={() => apply()}>שליחה</div></div>
+                {choise ? <div style={{ width: "11%" }}><Input style={{width:"100%"}} placeholder="שולחן" className="animated fadeInDown" type="number" min="0" max="50"
+                    onChange={(e) => setTable(e.target.value)} /><div className="s animated fadeInDown" style={{cursor:"pointer"}}
+                        onClick={() => apply()}>עדכון</div></div>
                     : <div style={{ opacity: "0", width: "11%" }}>הקהקרהר</div>}
                 <div><EditModal act={"add"} button={"הוספה"} gG={gG} /></div>
             </FlexRow>

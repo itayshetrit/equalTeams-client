@@ -21,19 +21,19 @@ const Tr = (props) => {
             addToast(error, { appearance: "error", autoDismiss: true });
         }
     }, [error]);
-    const save = (data) => {
-        dispatch(setGuestTable({ id: data, table: parseInt(temp) })).then(data => {
-            if (!data.error) {
+    // const save = (data) => {
+    //     dispatch(setGuestTable({ id: data, table: parseInt(temp) })).then(data => {
+    //         if (!data.error) {
 
-                props.gG()
-                setFlag(!flag)
-                addToast(<ToastMsg>הפעולה הצליחה</ToastMsg>, { appearance: "success", autoDismiss: true });
-            }
-            else {
-                addToast(<ToastMsg>{data.error}</ToastMsg>, { appearance: "error", autoDismiss: true });
-            }
-        })
-    }
+    //             props.gG()
+    //             setFlag(!flag)
+    //             addToast(<ToastMsg>הפעולה הצליחה</ToastMsg>, { appearance: "success", autoDismiss: true });
+    //         }
+    //         else {
+    //             addToast(<ToastMsg>{data.error}</ToastMsg>, { appearance: "error", autoDismiss: true });
+    //         }
+    //     })
+    // }
     let seat = ''
     if (props.data.accept > 0 && props.data.table === null) {
         seat = "seat"
@@ -55,7 +55,7 @@ const Tr = (props) => {
                 {flag ? <div>
                     <input placeholder={props.data.table} style={{ width: "50%", textAlign: "center", marginLeft: "5%" }}
                         onChange={(e) => setTemp(e.target.value)} />
-                    <img alt="save" style={{ cursor: "pointer" }} src={save1} width="20" onClick={() => save(props.data._id)} />
+                    <img alt="save" style={{ cursor: "pointer" }} src={save1} width="20" onClick={() => props.save(props.data._id,parseInt(temp))} />
                 </div> : props.data.table}</td>
             <td>{props.data.arrived}</td>
             <td>{props.data.gift}</td>
