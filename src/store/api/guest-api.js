@@ -28,10 +28,10 @@ const editGuestByID = async (body, id) => {
     }
 };
 
-const deleteUserByID = async ( id) => {
+const deleteGuest = async ( id) => {
     try {
         headers = { Authorization: 'Bearer ' + localStorage['bs'] }
-        const { status, data, error } = await axios.delete(ServerRoutes.editUserByID + id, { headers });
+        const { status, data, error } = await axios.delete(ServerRoutes.crudGuest + id, { headers });
         return { status, data, error };
     } catch (error) {
         return {
@@ -43,7 +43,8 @@ const deleteUserByID = async ( id) => {
 
 const guestsApi = {
     setGuestTable,
-    editGuestByID
+    editGuestByID,
+    deleteGuest
 };
 
 export default guestsApi;

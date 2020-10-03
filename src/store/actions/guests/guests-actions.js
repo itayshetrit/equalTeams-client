@@ -38,3 +38,16 @@ export const getGuests = () => {
         }
     }
 }
+
+export const getTablesGuests = () => {
+    return async (dispatch) => {
+        dispatch(getGuestsStart(actionTypes.GET_GUESTS_START))
+        const{status,data,error} = await guestsApi.getTablesGuests()
+        if (status === 200) {
+            return dispatch(getGuestsSuccess(actionTypes.GET_GUESTS_SUCCESS,data));
+        } else {
+            return dispatch(getGuestsFail(actionTypes.GET_GUESTS_FAIL,error));
+        }
+    }
+}
+

@@ -11,8 +11,10 @@ import Logout from '../../common/components/LogoutAll'
 import Thead from './table/Thead';
 import Tr from './table/Tr';
 import EditModal from '../../common/modals/EditModal'
+import saveIcon from '../../../assets/pics/guests/save2.svg'
 let chooses = [];
 const Main1 = () => {
+    
     const [choise, setChoise] = useState(false)
     const [table, setTable] = useState('')
     const uuid = require('uuid');
@@ -33,7 +35,7 @@ const Main1 = () => {
             addToast(error, { appearance: "error", autoDismiss: true });
         }
     }, [error]);
-    const save = (id,table) => {
+    const save = (id, table) => {
         dispatch(setGuestTable({ id, table })).then(data => {
             if (!data.error) {
 
@@ -46,10 +48,10 @@ const Main1 = () => {
         })
     }
     const apply = async () => {
-        chooses.map(async(item,index) => {
-            await save(item._id,table)
+        chooses.map(async (item, index) => {
+            await save(item._id, table)
         })
-        chooses=[];
+        chooses = [];
         setChoise(!choise)
 
     }
@@ -74,11 +76,11 @@ const Main1 = () => {
             chooses.push(item)
         }
     }
-    if (guests.length>0) {
+    if (guests.length > 0) {
         // debugger;
         for (let i = 0; i < guests.length - 1; i++) {
             let back = "";
-            
+            console.log(guests[i].table)
             if (guests[i].closeness !== closeness && i !== 0) {
                 array.push(<ClosenessSumTr key={i * 1000}>
                     <ClosenessTd colSpan="13">
@@ -115,7 +117,7 @@ const Main1 = () => {
         </ClosenessSumTr>)
         all += count;
 
-        
+
     }
     let choose = clos.map((item, index) => {
         return <a key={index} href={"#" + item}>{item}</a>
@@ -138,8 +140,12 @@ const Main1 = () => {
             }
         }
     }
-    
+
+    const whatsapp1 = () => {
+        
+    }
     return (<MainDiv id="start" className="animated fadeIn" style={{ height: "100%", minHeight: "100vh" }}>
+        <button onClick={() => whatsapp1()}>whatsapp</button>
         <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
 
 
@@ -148,10 +154,10 @@ const Main1 = () => {
                 <div>
                     <Input placeholder="חיפוש" id='user' onChange={() => search(1, "user")} />
                 </div>
-                <div style={{cursor:"pointer"}} onClick={() => setChoise(!choise)}>בחירה מרובה</div>
-                {choise ? <div style={{ width: "11%" }}><Input style={{width:"100%"}} placeholder="שולחן" className="animated fadeInDown" type="number" min="0" max="50"
-                    onChange={(e) => setTable(e.target.value)} /><div className="s animated fadeInDown" style={{cursor:"pointer"}}
-                        onClick={() => apply()}>עדכון</div></div>
+                <div style={{ cursor: "pointer" }} onClick={() => setChoise(!choise)}>בחירה מרובה</div>
+                {choise ? <FlexRow style={{ width: "10%" }}><Input style={{ width: "100%" }} placeholder="שולחן" className="animated fadeInDown" type="number" min="0" max="50"
+                    onChange={(e) => setTable(e.target.value)} /><div className="s animated fadeInDown" style={{ cursor: "pointer", marginRight: "8px" }}
+                        onClick={() => apply()}><img src={saveIcon} width="25" /></div></FlexRow>
                     : <div style={{ opacity: "0", width: "11%" }}>הקהקרהר</div>}
                 <div><EditModal act={"add"} button={"הוספה"} gG={gG} /></div>
             </FlexRow>

@@ -144,12 +144,12 @@ const EditGuest = (props) => {
             let p = {
                 name: vname,
                 phone: vphone,
-                sum: vsum,
+                sum: parseInt(vsum),
                 closeness: vcloseness,
-                accept: vaccept,
-                table: vtable,
-                arrived: varrived,
-                gift: vgift,
+                accept: parseInt(vaccept),
+                table: parseInt(vtable),
+                arrived: parseInt(varrived),
+                gift: parseInt(vgift),
                 notes: vnotes
             }
             dispatch(editGuestById(p, props.data._id)).then(res => {
@@ -189,6 +189,7 @@ const EditGuest = (props) => {
                         label="שם מלא"
                         defaultValue={vname}
                         variant="outlined"
+                        color="primary"
                         required
                         helperText={hname}
                         error={ename}

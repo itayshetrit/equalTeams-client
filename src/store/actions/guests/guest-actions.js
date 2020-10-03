@@ -87,3 +87,15 @@ export const setGuestTable= (body) => {
         }
     }
 }
+
+export const deleteGuest= (id) => {
+    return async (dispatch) => {
+        dispatch(guestActionStart(actionTypes.DELETE_GUEST_BY_ID_START))
+        const { status, data, error } = await guestApi.deleteGuest(id)
+        if (status === 200) {
+            return dispatch(guestActionSuccess(actionTypes.DELETE_GUEST_BY_ID_SUCCESS, null));
+        } else {
+            return dispatch(guestActionFail(actionTypes.DELETE_GUEST_BY_ID_FAIL, error));
+        }
+    }
+}

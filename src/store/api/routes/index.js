@@ -7,7 +7,7 @@ const ServerRoutes = {
 	logoutAll: devURL+"users/logoutAll", //post	
 	login: devURL+"users/login", //post
 	checkAuth: devURL+"users/checkAuth/me", //get
-	
+
 	// Clients
 	// editGuestByID
 	// editGuestByID: devURL+"guests/",	//crud
@@ -15,8 +15,9 @@ const ServerRoutes = {
 	getClients: devURL+"users",	//get
 	crudGuest: devURL+"guests/",	//crud
 	getGuests: devURL+"guests",	//crud
+	getTablesGuests: devURL+"guests/tables",	//crud
 	editMyUser: devURL+"clients/me/update", //patch
-
+	
 	loadTables: devURL+"tables",	//post
 	
 }

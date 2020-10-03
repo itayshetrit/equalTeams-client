@@ -15,6 +15,19 @@ const getGuests = async () => {
     }
 };
 
+const getTablesGuests = async () => {
+    try {
+        headers = { Authorization: 'Bearer ' + localStorage['bs'] }
+        const { status, data, error } = await axios.get(ServerRoutes.getTablesGuests, { headers });
+        return { status, data, error };
+    } catch (error) {
+        return {
+            error: error.response.data.error,
+            status: error.response.status
+        };
+    }
+};
+
 const editUserByID = async (flag, id) => {
     try {
         headers = { Authorization: 'Bearer ' + localStorage['bs'] }
@@ -41,8 +54,10 @@ const deleteUserByID = async ( id) => {
     }
 };
 
+
 const guestsApi = {
-    getGuests
+    getGuests,
+    getTablesGuests
 };
 
 export default guestsApi;

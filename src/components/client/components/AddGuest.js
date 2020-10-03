@@ -146,12 +146,12 @@ const EditGuest = (props) => {
                 uid: user._id,
                 name: vname,
                 phone: vphone,
-                sum: vsum,
+                sum: parseInt(vsum),
                 closeness: vcloseness,
-                accept: vaccept,
-                table: vtable,
-                arrived: varrived,
-                gift: vgift,
+                accept: parseInt(vaccept),
+                table: parseInt(vtable),
+                arrived: parseInt(varrived),
+                gift: parseInt(vgift),
                 notes: vnotes
             }
             dispatch(addGuest(p)).then(res => {

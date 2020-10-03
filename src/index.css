@@ -15,7 +15,7 @@ code {
 :root {
   --purple: rgb(140, 0, 175);
   --red_sign: red;
-  --primary-color: blueviolet;
+  --primary: blueviolet;
 }
 a{
   color: white;
