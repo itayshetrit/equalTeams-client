@@ -145,7 +145,6 @@ const Main1 = () => {
         
     }
     return (<MainDiv id="start" className="animated fadeIn" style={{ height: "100%", minHeight: "100vh" }}>
-        <button onClick={() => whatsapp1()}>whatsapp</button>
         <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
 
 

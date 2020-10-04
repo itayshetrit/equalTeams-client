@@ -5,13 +5,14 @@ import { useToasts } from "react-toast-notifications";
 import { MainDiv } from '../../LogAndReg/style'
 import { getTablesGuests, cleanGuests } from '../../../store/actions/guests/guests-actions'
 import Logout from '../../common/components/LogoutAll'
+import Table2 from './Table2'
 const Main1 = () => {
     const { error, guests } = useSelector(state => state.guestsReducer);
 
-
+    const [select, setSelect] = useState(false)
     const dispatch = useDispatch();
     const { addToast } = useToasts();
-
+    let chooses = [];
 
     useEffect(() => {
         dispatch(getTablesGuests())
@@ -19,13 +20,25 @@ const Main1 = () => {
             dispatch(cleanGuests());
         }
     }, [])
+
+    const add_del = (item) => {
+        let exist = chooses.filter(x => x.id === item.id)
+        if (exist[0]) {
+            chooses = chooses.filter(x => x.id !== item.id)
+        }
+        else {
+            chooses.push(item)
+        }
+        console.log(chooses);
+    }
+
+    let array = [];
+    let tables = []
+    let count = 0;
+    let table = '';
     if (guests.length > 0) {
 
 
-        let array = [];
-        let tables = []
-        let count = 0;
-        let table = '';
         for (let i = 0; i < guests.length; i++) {
             if (guests[i].accept > 0 && guests[i].table !== null) {//dont show
                 if (guests[i].table !== table) {
@@ -38,14 +51,16 @@ const Main1 = () => {
                     array = [];
                 }
                 array.push(guests[i])
-                count += parseInt(y[i].accept, 10)
+                count += parseInt(guests[i].accept, 10)
             }
         }
         tables.push(<Table2 add_del={add_del} select={select} key={guests.length} array={array} />)
 
     }
     return (<MainDiv className="animated fadeIn" style={{ height: "100%", minHeight: "100vh" }}>
-
+        <div style={{ display: "flex", flexWrap: "wrap" }}>
+            {tables}
+        </div>
         <Logout />
     </MainDiv>)
 }
