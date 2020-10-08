@@ -1,9 +1,8 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table'
-import { connect } from 'react-redux';
 import Tr2 from './Tr2'
 const Table2 = (props) => {
-    let background = "radial-gradient(circle, rgba(172, 120, 172, 1) 0%, #d8c7e07a 100%)"
+    // let background = "radial-gradient(circle, rgba(172, 120, 172, 1) 0%, #d8c7e07a 100%)"
     let array = props.array.map((item, index) => {
         return <Tr2 add_del={props.add_del} select={props.select} key={index} data={item} />
     })
@@ -40,7 +39,7 @@ const Table2 = (props) => {
                 <tbody>
                     {array}
                     <tr style={{
-                        background: background,
+                        background: "radial-gradient(circle, rgba(172, 120, 172, 1) 0%, #d8c7e07a 100%)",
                         color: "white", fontSize: "1.4rem"
                     }} className="lol_bottom">
                         {/* <td className="lol_bottom" colSpan="5">{sum} / {count}</td></tr> */}
@@ -50,9 +49,5 @@ const Table2 = (props) => {
         </div>
     );
 }
-const mapStateToProps = (state) => {
-    return {
-        users: state.users
-    }
-}
-export default connect(mapStateToProps)(Table2);
+
+export default Table2;

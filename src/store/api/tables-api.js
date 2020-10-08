@@ -15,9 +15,22 @@ const loadTables1 = async (body) => {
     }
 };
 
+const getTables = async () => {
+    try {
+        headers = { Authorization: 'Bearer ' + localStorage['bs'] }
+        const { status, data, error } = await axios.get(ServerRoutes.getTables, { headers });
+        return { status, data, error };
+    } catch (error) {
+        return {
+            error: error.response.data.error,
+            status: error.response.status
+        };
+    }
+};
 
 const tablesApi = {
-    loadTables1
+    loadTables1,
+    getTables
 };
 
 export default tablesApi;

@@ -30,3 +30,21 @@ export const loadTables= (body) => {
         }
     }
 }
+
+export const getTables= () => {
+    return async (dispatch) => {
+        dispatch(tablesActionStart(actionTypes.GET_TABLES_START))
+        const { status, data, error } = await tablesApi.getTables()
+        if (status === 200) {
+            return dispatch(tablesActionSuccess(actionTypes.GET_TABLES_SUCCESS, data));
+        } else {
+            return dispatch(tablesActionFail(actionTypes.GET_TABLES_FAIL, error));
+        }
+    }
+}
+
+export const cleanTables = () => {
+    return {
+        type: actionTypes.CLEAN_TABLES
+    }
+}

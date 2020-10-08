@@ -78,7 +78,7 @@ const Main1 = () => {
     }
     if (guests.length > 0) {
         // debugger;
-        for (let i = 0; i < guests.length - 1; i++) {
+        for (let i = 0; i < guests.length; i++) {
             let back = "";
             console.log(guests[i].table)
             if (guests[i].closeness !== closeness && i !== 0) {
