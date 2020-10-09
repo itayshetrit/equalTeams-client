@@ -55,7 +55,7 @@ export const cleanGuest = () => {
 export const editGuestById = (body, id) => {
     return async (dispatch) => {
         dispatch(guestActionStart(actionTypes.EDIT_GUEST_BY_ID_START))
-        const { status, data, error } = await guestApi.editGuestByID(body, id)
+        const { status, error } = await guestApi.editGuestByID(body, id)
         if (status === 200) {
             return dispatch(guestActionSuccess(actionTypes.EDIT_GUEST_BY_ID_SUCCESS, null));
         } else {
@@ -79,7 +79,7 @@ export const editGuestById = (body, id) => {
 export const setGuestTable= (body) => {
     return async (dispatch) => {
         dispatch(guestActionStart(actionTypes.SET_GUEST_TABLE_START))
-        const { status, data, error } = await guestApi.setGuestTable(body)
+        const { status, error } = await guestApi.setGuestTable(body)
         if (status === 200) {
             return dispatch(guestActionSuccess(actionTypes.SET_GUEST_TABLE_SUCCESS, null));
         } else {
@@ -91,7 +91,7 @@ export const setGuestTable= (body) => {
 export const deleteGuest= (id) => {
     return async (dispatch) => {
         dispatch(guestActionStart(actionTypes.DELETE_GUEST_BY_ID_START))
-        const { status, data, error } = await guestApi.deleteGuest(id)
+        const { status, error } = await guestApi.deleteGuest(id)
         if (status === 200) {
             return dispatch(guestActionSuccess(actionTypes.DELETE_GUEST_BY_ID_SUCCESS, null));
         } else {

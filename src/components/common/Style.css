@@ -12,10 +12,10 @@
     color: red !important;
 }
 
-.modal-content{
+/* .modal-content{
     background: none !important;
     border: none !important;
-}
+} */
 .MuiFormLabel-root.Mui-focused:focus{
     color: white !important;
 }

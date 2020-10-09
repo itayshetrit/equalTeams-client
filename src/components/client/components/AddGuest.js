@@ -181,7 +181,7 @@ const EditGuest = (props) => {
 
     return (
         <HoldMain>
-            <Main className="animated fadeIn">
+            <Main className="animated fadeIn" style={{width:"100%"}}>
                 <Title style={{ fontSize: "1.8rem", margin: "20px auto" }}>עריכה</Title>
                 <Form onSubmit={SubmitHandler} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
 

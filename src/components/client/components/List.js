@@ -6,7 +6,7 @@ import { MainDiv, Input } from '../../LogAndReg/style'
 import { ClosenessSumTr, ClosenessTd, Options, ClosenessTr } from './table/style'
 import { FlexRow, ToastMsg } from '../../common/Style'
 import { getGuests, cleanGuests } from '../../../store/actions/guests/guests-actions'
-import { setGuestTable } from '../../../store/actions/guests/guest-actions'
+import { setGuestTable, deleteGuest } from '../../../store/actions/guests/guest-actions'
 import Logout from '../../common/components/LogoutAll'
 import Thead from './table/Thead';
 import Tr from './table/Tr';
@@ -16,8 +16,7 @@ let chooses = [];
 const Main1 = () => {
     
     const [choise, setChoise] = useState(false)
-    const [table, setTable] = useState('')
-    const uuid = require('uuid');
+    const [table, setTable] = useState()
     const dispatch = useDispatch();
     const { addToast } = useToasts();
     const { error, guests } = useSelector(state => state.guestsReducer);
@@ -49,11 +48,10 @@ const Main1 = () => {
     }
     const apply = async () => {
         chooses.map(async (item, index) => {
-            await save(item._id, table)
+            await save(item._id, parseInt(table))
         })
         chooses = [];
         setChoise(!choise)
-
     }
     let clos = []
     let array = [];
@@ -61,11 +59,17 @@ const Main1 = () => {
     let all = 0;
     let not = 0;
     let closeness = '';
-    const del = async (p) => {
-        // await axios.delete(localStorage['username']+"/" + p + ".json").then(res => {
-        //     del2(p)
-        // })
-        console.log("del: " + p)
+    const del = async (id) => {
+        dispatch(deleteGuest( id )).then(data => {
+            if (!data.error) {
+
+                gG()
+                addToast(<ToastMsg>הפעולה הצליחה</ToastMsg>, { appearance: "success", autoDismiss: true });
+            }
+            else {
+                addToast(<ToastMsg>{data.error}</ToastMsg>, { appearance: "error", autoDismiss: true });
+            }
+        })
     }
     const add_del = (item) => {
         let exist = chooses.filter(x => x._id === item._id)
@@ -80,7 +84,6 @@ const Main1 = () => {
         // debugger;
         for (let i = 0; i < guests.length; i++) {
             let back = "";
-            console.log(guests[i].table)
             if (guests[i].closeness !== closeness && i !== 0) {
                 array.push(<ClosenessSumTr key={i * 1000}>
                     <ClosenessTd colSpan="13">
@@ -141,9 +144,6 @@ const Main1 = () => {
         }
     }
 
-    const whatsapp1 = () => {
-        
-    }
     return (<MainDiv id="start" className="animated fadeIn" style={{ height: "100%", minHeight: "100vh" }}>
         <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
 
@@ -156,11 +156,15 @@ const Main1 = () => {
                 <div style={{ cursor: "pointer" }} onClick={() => setChoise(!choise)}>בחירה מרובה</div>
                 {choise ? <FlexRow style={{ width: "10%" }}><Input style={{ width: "100%" }} placeholder="שולחן" className="animated fadeInDown" type="number" min="0" max="50"
                     onChange={(e) => setTable(e.target.value)} /><div className="s animated fadeInDown" style={{ cursor: "pointer", marginRight: "8px" }}
-                        onClick={() => apply()}><img src={saveIcon} width="25" /></div></FlexRow>
+                        onClick={() => apply()}><img alt="saveIcon" src={saveIcon} width="25" /></div></FlexRow>
                     : <div style={{ opacity: "0", width: "11%" }}>הקהקרהר</div>}
                 <div><EditModal act={"add"} button={"הוספה"} gG={gG} /></div>
             </FlexRow>
             <Options>{choose}</Options>
+            <FlexRow style={{ marginBottom: "15px", marginTop: "15px", direction: "rtl", color: "white", alignItems: "center" }}>
+            <div>מגיעים: {all}</div>
+            <div>לא מגיעים: {not}</div>
+            </FlexRow>
             <Table id='myTable' responsive style={{ width: "100%", margin: "2% auto", background: "white", color: "black" }}>
                 <Thead />
                 <tbody>

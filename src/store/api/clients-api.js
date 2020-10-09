@@ -15,32 +15,6 @@ const getClients = async () => {
     }
 };
 
-const editUserByID = async (flag, id) => {
-    try {
-        headers = { Authorization: 'Bearer ' + localStorage['bs'] }
-        const { status, data, error } = await axios.patch(ServerRoutes.editUserByID + id, { flag }, { headers });
-        return { status, data, error };
-    } catch (error) {
-        return {
-            error: error.response.data,
-            status: error.response.status
-        };
-    }
-};
-
-const deleteUserByID = async ( id) => {
-    try {
-        headers = { Authorization: 'Bearer ' + localStorage['bs'] }
-        const { status, data, error } = await axios.delete(ServerRoutes.editUserByID + id, { headers });
-        return { status, data, error };
-    } catch (error) {
-        return {
-            error: error.response.data,
-            status: error.response.status
-        };
-    }
-};
-
 const clientsApi = {
     getClients
 };

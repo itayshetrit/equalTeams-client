@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useToasts } from "react-toast-notifications";
-import { ToastMsg} from '../../../common/Style'
 import EditModal from '../../../common/modals/EditModal'
 import DeleteModal from '../../../common/modals/DeleteModal'
 import whatsapp from '../../../../assets/pics/guests/whatsapp.svg'
 import telephone from '../../../../assets/pics/guests/call.svg'
 import save1 from '../../../../assets/pics/guests/save.svg'
 import pencil from '../../../../assets/pics/guests/pencil.svg'
-import { setGuestTable } from '../../../../store/actions/guests/guest-actions'
 const Tr = (props) => {
     // const uuid = require('uuid');
     const { addToast } = useToasts();
-    const dispatch = useDispatch();
     const [flag, setFlag] = useState(false)
     const [temp, setTemp] = useState()
     const { error } = useSelector(state => state.guestReducer);
@@ -21,19 +18,7 @@ const Tr = (props) => {
             addToast(error, { appearance: "error", autoDismiss: true });
         }
     }, [error]);
-    // const save = (data) => {
-    //     dispatch(setGuestTable({ id: data, table: parseInt(temp) })).then(data => {
-    //         if (!data.error) {
 
-    //             props.gG()
-    //             setFlag(!flag)
-    //             addToast(<ToastMsg>הפעולה הצליחה</ToastMsg>, { appearance: "success", autoDismiss: true });
-    //         }
-    //         else {
-    //             addToast(<ToastMsg>{data.error}</ToastMsg>, { appearance: "error", autoDismiss: true });
-    //         }
-    //     })
-    // }
     let seat = ''
     if (props.data.accept > 0 && props.data.table === null) {
         seat = "seat"

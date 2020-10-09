@@ -22,7 +22,7 @@ export const tablesActionFail = (action, error) => {
 export const loadTables= (body) => {
     return async (dispatch) => {
         dispatch(tablesActionStart(actionTypes.LOAD_TABLES_START))
-        const { status, data, error } = await tablesApi.loadTables1(body)
+        const { status, error } = await tablesApi.loadTables1(body)
         if (status === 200) {
             return dispatch(tablesActionSuccess(actionTypes.LOAD_TABLES_SUCCESS, null));
         } else {

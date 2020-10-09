@@ -42,7 +42,7 @@ export const getClientById = (id) => {
 export const deleteClientById = (id) => {
     return async (dispatch) => {
         dispatch(clientActionStart(actionTypes.DELETE_CLIENT_BY_ID_START))
-        const { status, data, error } = await clientApi.deleteClientById(id)
+        const { status, error } = await clientApi.deleteClientById(id)
         if (status === 200) {
             return dispatch(clientActionSuccess(actionTypes.DELETE_CLIENT_BY_ID_SUCCESS, null));
         } else {
@@ -54,7 +54,7 @@ export const deleteClientById = (id) => {
 export const editClientById = (id) => {
     return async (dispatch) => {
         dispatch(clientActionStart(actionTypes.EDIT_CLIENT_BY_ID_START))
-        const { status, data, error } = await clientApi.editClientById(id)
+        const { status, error } = await clientApi.editClientById(id)
         if (status === 200) {
             return dispatch(clientActionSuccess(actionTypes.EDIT_CLIENT_BY_ID_SUCCESS, null));
         } else {
@@ -66,7 +66,7 @@ export const editClientById = (id) => {
 export const addGuest= (body) => {
     return async (dispatch) => {
         dispatch(clientActionStart(actionTypes.ADD_CLIENT_START))
-        const { status, data, error } = await clientApi.addGuest(body)
+        const { status, error } = await clientApi.addGuest(body)
         if (status === 200) {
             return dispatch(clientActionSuccess(actionTypes.ADD_CLIENT_SUCCESS, null));
         } else {
