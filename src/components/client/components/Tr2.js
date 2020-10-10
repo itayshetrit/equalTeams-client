@@ -5,10 +5,22 @@ const Tr2 = (props) => {
 
     const [flag, setFlag] = useState(false)
     const [temp, setTemp] = useState('')
-    
-    
+
+    let x;
+    if (props.data.arrived) {
+
+        if (props.data.arrived < props.data.accept) {
+            x = "red";
+        }
+        else if (props.data.arrived > props.data.accept) {
+            x = "orange";
+        }
+        else {
+            x = "green";
+        }
+    }
     return (
-        <tr key={props.data.id}>
+        <tr key={props.data.id} className={x}>
             <td onClick={() => setFlag(!flag)} style={{ cursor: "pointer" }}>{props.data.name}</td>
             <td>{props.data.closeness}</td>
             {/* <td>{props.data.arrived ? props.data.arrived +"/"+props.data.accept : props.data.accept}</td> */}

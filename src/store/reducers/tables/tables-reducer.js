@@ -46,14 +46,16 @@ export const cleantables = (state, action) => {
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         // all tables actions
-        case
-            actionTypes.LOAD_TABLES_START ||
-            actionTypes.GET_TABLES_START
-            : return tablesActionStart(state, action);
-        case
-            actionTypes.LOAD_TABLES_SUCCESS ||
-            actionTypes.GET_TABLES_SUCCESS
-            : return tablesActionSuccess(state, action);
+
+        // case
+        case actionTypes.LOAD_TABLES_START: return tablesActionStart(state, action);
+        case actionTypes.GET_TABLES_START: return tablesActionStart(state, action);
+        // : return tablesActionStart(state, action);
+        case actionTypes.LOAD_TABLES_SUCCESS: return tablesActionSuccess(state, action);
+        case actionTypes.GET_TABLES_SUCCESS: return tablesActionSuccess(state, action);
+        // : return tablesActionSuccess(state, action);
+        // case actionTypes.LOAD_TABLES_START || actionTypes.GET_TABLES_START: return tablesActionStart(state, action);
+        // case actionTypes.LOAD_TABLES_SUCCESS || actionTypes.GET_TABLES_SUCCESS: return tablesActionSuccess(state, action);
         case
             actionTypes.LOAD_TABLES_FAIL ||
             actionTypes.GET_TABLES_FAIL

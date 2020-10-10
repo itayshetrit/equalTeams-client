@@ -12,7 +12,7 @@ import Table2 from './Table2'
 let chooses = [];
 const Main1 = () => {
     const { error, guests } = useSelector(state => state.guestsReducer);
-    const { tables } = useSelector(state => state.tablesReducer);
+
     const [table, setTable] = useState()
     const [choise, setChoise] = useState(false)
     const dispatch = useDispatch();
@@ -74,7 +74,6 @@ const Main1 = () => {
 
 
         for (let i = 0; i < guests.length; i++) {
-
             if (guests[i].accept > 0 && guests[i].table !== null) {//dont show
                 if (guests[i].table !== tempTable) {
                     if (array.length > 0) {

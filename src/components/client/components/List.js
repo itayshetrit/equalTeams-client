@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { HashLink } from 'react-router-hash-link';
 import { useSelector, useDispatch } from "react-redux";
 import { useToasts } from "react-toast-notifications";
 import Table from 'react-bootstrap/Table'
@@ -12,6 +13,7 @@ import Thead from './table/Thead';
 import Tr from './table/Tr';
 import EditModal from '../../common/modals/EditModal'
 import saveIcon from '../../../assets/pics/guests/save2.svg'
+import up from '../../../assets/pics/guests/up.svg'
 let chooses = [];
 const Main1 = () => {
     
@@ -123,7 +125,7 @@ const Main1 = () => {
 
     }
     let choose = clos.map((item, index) => {
-        return <a key={index} href={"#" + item}>{item}</a>
+        return <HashLink key={index} smooth to={"/list#" + item}>{item}</HashLink>
     })
     const search = (x, y) => {
         var input, filter, table, tr, td, i, txtValue;
@@ -144,12 +146,12 @@ const Main1 = () => {
         }
     }
 
-    return (<MainDiv id="start" className="animated fadeIn" style={{ height: "100%", minHeight: "100vh" }}>
+    return (<MainDiv className="animated fadeIn" style={{ height: "100%", minHeight: "100vh" }}>
         <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
 
 
             <FlexRow style={{ marginBottom: "15px", marginTop: "15px", direction: "rtl", color: "white", alignItems: "center" }}>
-                <div>שולחנות</div>
+                <div id="start">שולחנות</div>
                 <div>
                     <Input placeholder="חיפוש" id='user' onChange={() => search(1, "user")} />
                 </div>
@@ -171,6 +173,8 @@ const Main1 = () => {
                     {array}
                 </tbody>
             </Table>
+            <div className="sticky_bottom"><HashLink smooth to="/list#start"><img alt="up" className="animated bounce delay-5s" style={{ animationIterationCount: "2" }} src={up} width="40" /></HashLink></div>
+
             <Logout />
         </div>
     </MainDiv>)

@@ -37,3 +37,29 @@ a:hover{
   border-radius: 6px;
   
 }
+.red{
+  background-color: rgba(255, 0, 0, 0.5);
+}
+.green{
+  background-color: rgba(0, 128, 0, 0.5);
+}
+.orange{
+  background-color: rgba(255, 166, 0, 0.5);
+}
+.sticky_bottom {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  width: 10%;
+  float: right;
+
+  
+}
+.sticky_bottom::a {
+  float: right;
+  margin-right: 10%;
+  margin-bottom: 10%;
+  padding: 4% 4%;
+  border-radius: 5px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.777), -2px -2px 8px rgba(0, 0, 0, 0.777);
+}
