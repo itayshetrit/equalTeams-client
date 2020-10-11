@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from 'react-redux';
-import { Main, HoldMain, Input, MainDiv, Span, Submit, Form, Group, SpanRed } from './style'
+import { Main, HoldMain, RInput, MainDiv, Span, Submit, Form, Group, SpanRed } from './style'
 import { Title, PositionRelative, PlaceHolderImage } from '../common/Style'
 import phone from '../../assets/pics/auth/phone.svg'
 import password from '../../assets/pics/auth/password.svg'
@@ -32,7 +32,7 @@ const Login = () => {
           <Group>
             <PositionRelative>
               <PlaceHolderImage src={phone} style={{ width: "15px" }} alt="phone" />
-              <Input placeholder="מס' פלאפון" name="phone" ref={register({ required: true, pattern: /^[0]{1}[5]{1}[0-9]{8}$/ })} />
+              <RInput placeholder="מס' פלאפון" name="phone" ref={register({ required: true, pattern: /^[0]{1}[5]{1}[0-9]{8}$/ })} />
             </PositionRelative>
             {errors.phone && errors.phone.type === 'required' && <Span><SpanRed>!</SpanRed><Span> שדה חובה </Span><SpanRed>!</SpanRed></Span>}
             {errors.phone && (errors.phone.type === 'maxLength' || errors.phone.type === 'minLength' ||
@@ -42,7 +42,7 @@ const Login = () => {
           <Group>
             <PositionRelative>
               <PlaceHolderImage src={password} style={{ width: "15px" }} alt="password" />
-              <Input placeholder="סיסמא" name="password" ref={register({ required: true, pattern: /^[A-Za-z0-9א-ת]+$/i, minLength: 6, maxLength: 20 })} />
+              <RInput placeholder="סיסמא" name="password" ref={register({ required: true, pattern: /^[A-Za-z0-9א-ת]+$/i, minLength: 6, maxLength: 20 })} />
             </PositionRelative>
             {errors.password && errors.password.type === 'required' && <Span><SpanRed>!</SpanRed><Span> שדה חובה </Span><SpanRed>!</SpanRed></Span>}
             {errors.password && (errors.password.type === 'maxLength' || errors.password.type === 'minLength' ||

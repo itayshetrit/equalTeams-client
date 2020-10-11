@@ -8,30 +8,23 @@ const Table2 = (props) => {
     let array = props.array.map((item, index) => {
         return <Tr2 add_del={props.add_del} save={props.save} gG={props.gG} choise={props.choise} key={index} data={item} />
     })
-    let count = 0;
+    let countAccept = 0;
     let table = props.array[0].table
     for (let i = 0; i < props.array.length; i++) {
-        if (parseInt(props.array[i].arrived, 10) > 0 && parseInt(props.array[i].arrived, 10) < parseInt(props.array[i].accept, 10)) {
-            count += parseInt(props.array[i].arrived, 10)
-        }
-        else {
-            count += parseInt(props.array[i].accept, 10)
-        }
-
+        countAccept += props.array[i].accept;
     }
-    // let amount = props.users.filter(x => x.closeness === 'תתת')
-    // console.log(amount)
-    // let sum = (amount[0].tables[0][props.array[0].table])
-    // if (count > sum) {
-    //     background = "radial-gradient(circle, rgba(255, 136, 0, 0.85) 0%, #d69b5786 100%)";
-    // }
-    // let sum2 = props.array[0].table
-    // let amount;
-    // if(tables.length>0){
-    //     amount=tables[2]
-    //     console.log(amount);
-    // }
-    console.log(tables[table]);
+    var background = "radial-gradient(circle, rgba(172, 120, 172, 1) 0%, #d8c7e07a 100%)";
+    if (tables[table] !== []) {
+        if (parseInt(countAccept) === parseInt(tables[table])) {
+            background = "linear-gradient(to right, white , rgba(0, 128, 0, 0.5), rgba(0, 128, 0, 0.5), white)";
+        }
+        else if (countAccept > tables[table]) {
+            background = "linear-gradient(to right, white , rgb(255, 166, 0, 0.5), rgb(255, 166, 0, 0.5), white)";
+        }
+    }
+
+
+    // console.log(tables[table]);
     return (
         <div style={{ flex: "1 0 21%" }}>
             <Table style={{ background: "white", width: "80%", margin: "2% auto", borderRadius: "5px" }}>
@@ -47,11 +40,11 @@ const Table2 = (props) => {
                 <tbody>
                     {array}
                     <tr style={{
-                        background: "radial-gradient(circle, rgba(172, 120, 172, 1) 0%, #d8c7e07a 100%)",
+                        background: background,
                         color: "white", fontSize: "1.1rem"
-                    }} className="lol_bottom">
+                    }}>
                         {/* <td className="lol_bottom" colSpan="5">{sum} / {count}</td></tr> */}
-                        <td className="lol_bottom" colSpan="5">{tables[table] + " / " + count}</td></tr>
+                        <td className="lol_bottom" colSpan="5">{tables[table] + " / " + countAccept}</td></tr>
                 </tbody>
             </Table>
         </div>

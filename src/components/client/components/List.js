@@ -1,22 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { HashLink } from 'react-router-hash-link';
 import { useSelector, useDispatch } from "react-redux";
 import { useToasts } from "react-toast-notifications";
-import Table from 'react-bootstrap/Table'
-import { MainDiv, Input } from '../../LogAndReg/style'
-import { ClosenessSumTr, ClosenessTd, Options, ClosenessTr } from './table/style'
-import { FlexRow, ToastMsg } from '../../common/Style'
-import { getGuests, cleanGuests } from '../../../store/actions/guests/guests-actions'
-import { setGuestTable, deleteGuest } from '../../../store/actions/guests/guest-actions'
+import Table from 'react-bootstrap/Table';
+import { MainDiv, Input } from '../../LogAndReg/style';
+import { ClosenessSumTr, ClosenessTd, Options, ClosenessTr } from './table/style';
+import { FlexRow, ToastMsg, Title } from '../../common/Style';
+import { getGuests, cleanGuests } from '../../../store/actions/guests/guests-actions';
+import { setGuestTable, deleteGuest } from '../../../store/actions/guests/guest-actions';
 import Logout from '../../common/components/LogoutAll'
 import Thead from './table/Thead';
 import Tr from './table/Tr';
-import EditModal from '../../common/modals/EditModal'
-import saveIcon from '../../../assets/pics/guests/save2.svg'
-import up from '../../../assets/pics/guests/up.svg'
+import EditModal from '../../common/modals/EditModal';
+import saveIcon from '../../../assets/pics/guests/save2.svg';
+import up from '../../../assets/pics/guests/up.svg';
+import Routes from '../../routes/index';
+import { Link } from "react-router-dom";
 let chooses = [];
 const Main1 = () => {
-    
+
     const [choise, setChoise] = useState(false)
     const [table, setTable] = useState()
     const dispatch = useDispatch();
@@ -62,7 +64,7 @@ const Main1 = () => {
     let not = 0;
     let closeness = '';
     const del = async (id) => {
-        dispatch(deleteGuest( id )).then(data => {
+        dispatch(deleteGuest(id)).then(data => {
             if (!data.error) {
 
                 gG()
@@ -146,12 +148,16 @@ const Main1 = () => {
         }
     }
 
-    return (<MainDiv className="animated fadeIn" style={{ height: "100%", minHeight: "100vh" }}>
+    return (<MainDiv id="start" className="animated fadeIn" style={{ height: "100%", minHeight: "100vh" }}>
         <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
+
+            <Title style={{ color: "white", margin: "20px auto", fontFamily: "GoogleMedium", textDecoration: "underline" }}>
+                <Link style={{ color: "white" }} to={Routes.Client.clients}>Be Simple</Link>
+            </Title>
 
 
             <FlexRow style={{ marginBottom: "15px", marginTop: "15px", direction: "rtl", color: "white", alignItems: "center" }}>
-                <div id="start">שולחנות</div>
+                <Link style={{ color: "white" }} to={Routes.Client.tables}>שולחנות</Link>
                 <div>
                     <Input placeholder="חיפוש" id='user' onChange={() => search(1, "user")} />
                 </div>
@@ -164,8 +170,8 @@ const Main1 = () => {
             </FlexRow>
             <Options>{choose}</Options>
             <FlexRow style={{ marginBottom: "15px", marginTop: "15px", direction: "rtl", color: "white", alignItems: "center" }}>
-            <div>מגיעים: {all}</div>
-            <div>לא מגיעים: {not}</div>
+                <div>מגיעים: {all}</div>
+                <div>לא מגיעים: {not}</div>
             </FlexRow>
             <Table id='myTable' responsive style={{ width: "100%", margin: "2% auto", background: "white", color: "black" }}>
                 <Thead />

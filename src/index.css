@@ -50,9 +50,12 @@ a:hover{
   position: -webkit-sticky;
   position: sticky;
   bottom: 0;
-  width: 10%;
+  width: min-content;
   float: right;
-
+  margin-right: 10px;
+  box-shadow: 0 2px 4px white, 0 -2px 4px black;
+  border-radius: 10px;
+  padding: 3px;
   
 }
 .sticky_bottom::a {

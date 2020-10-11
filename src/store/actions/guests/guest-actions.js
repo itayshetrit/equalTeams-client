@@ -1,8 +1,6 @@
 import guestApi from '../../api/guest-api';
 import * as actionTypes from './actionTypes';
 
-
-
 export const guestActionStart = (action) => {
     
     return {
@@ -28,30 +26,6 @@ export const cleanGuest = () => {
     }
 }
 
-// export const getClientById = (id) => {
-//     return async (dispatch) => {
-//         dispatch(clientActionStart(actionTypes.GET_CLIENT_BY_ID_START))
-//         const { status, data, error } = await guestApi.getClientById(id)
-//         if (status === 200) {
-//             return dispatch(clientActionSuccess(actionTypes.GET_CLIENT_BY_ID_SUCCESS, data));
-//         } else {
-//             return dispatch(clientActionFail(actionTypes.GET_CLIENT_BY_ID_FAIL, error));
-//         }
-//     }
-// }
-
-// export const deleteClientById = (id) => {
-//     return async (dispatch) => {
-//         dispatch(clientActionStart(actionTypes.DELETE_CLIENT_BY_ID_START))
-//         const { status, data, error } = await guestApi.deleteClientById(id)
-//         if (status === 200) {
-//             return dispatch(clientActionSuccess(actionTypes.DELETE_CLIENT_BY_ID_SUCCESS, null));
-//         } else {
-//             return dispatch(clientActionFail(actionTypes.DELETE_CLIENT_BY_ID_FAIL, error));
-//         }
-//     }
-// }
-
 export const editGuestById = (body, id) => {
     return async (dispatch) => {
         dispatch(guestActionStart(actionTypes.EDIT_GUEST_BY_ID_START))
@@ -63,18 +37,6 @@ export const editGuestById = (body, id) => {
         }
     }
 }
-
-// export const addClient= (body) => {
-//     return async (dispatch) => {
-//         dispatch(clientActionStart(actionTypes.ADD_CLIENT_START))
-//         const { status, data, error } = await guestApi.addClient(body)
-//         if (status === 200) {
-//             return dispatch(clientActionSuccess(actionTypes.ADD_CLIENT_SUCCESS, null));
-//         } else {
-//             return dispatch(clientActionFail(actionTypes.ADD_CLIENT_FAIL, error));
-//         }
-//     }
-// }
 
 export const setGuestTable= (body) => {
     return async (dispatch) => {

@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { useToasts } from "react-toast-notifications";
-import { ToastMsg, FlexRow } from '../../common/Style'
-import { MainDiv, Input } from '../../LogAndReg/style'
-import { getTables, cleanTables } from '../../../store/actions/tables/tables-actions'
-import { getTablesGuests, cleanGuests } from '../../../store/actions/guests/guests-actions'
-import { setGuestTable } from '../../../store/actions/guests/guest-actions'
-import Logout from '../../common/components/LogoutAll'
-import saveIcon from '../../../assets/pics/guests/save2.svg'
-import Table2 from './Table2'
+import { ToastMsg, FlexRow, Title } from '../../common/Style';
+import { MainDiv, Input } from '../../LogAndReg/style';
+import { getTables, cleanTables } from '../../../store/actions/tables/tables-actions';
+import { getTablesGuests, cleanGuests } from '../../../store/actions/guests/guests-actions';
+import { setGuestTable } from '../../../store/actions/guests/guest-actions';
+import Logout from '../../common/components/LogoutAll';
+import saveIcon from '../../../assets/pics/guests/save2.svg';
+import Table2 from './Table2';
+import Routes from '../../routes/index';
+import { Link } from "react-router-dom";
 let chooses = [];
 const Main1 = () => {
     const { error, guests } = useSelector(state => state.guestsReducer);
@@ -93,8 +95,12 @@ const Main1 = () => {
     }
     return (<MainDiv className="animated fadeIn" style={{ height: "100%", minHeight: "100vh" }}>
         <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
+            <Title style={{ color: "white", margin: "20px auto", fontFamily: "GoogleMedium", textDecoration: "underline" }}>
+                <Link style={{ color: "white" }} to={Routes.Client.clients}>Be Simple</Link>
+            </Title>
             <FlexRow style={{ marginBottom: "15px", marginTop: "15px", direction: "rtl", color: "white", alignItems: "center" }}>
                 <div style={{ cursor: "pointer" }} onClick={() => setChoise(!choise)}>בחירה מרובה</div>
+                <Link style={{ color: "white" }} id="start" to={Routes.Client.list}>רשימה</Link>
                 {choise ? <FlexRow style={{ width: "20%" }}><Input style={{ width: "100%" }} placeholder="שולחן" className="animated fadeInDown" type="number" min="0" max="50"
                     onChange={(e) => setTable(e.target.value)} /><div className="s animated fadeInDown" style={{ cursor: "pointer", marginRight: "8px" }}
                         onClick={() => apply()}><img alt="saveIcon" src={saveIcon} width="25" /></div></FlexRow>

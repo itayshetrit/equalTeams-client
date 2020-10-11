@@ -134,6 +134,24 @@ export const Input = styled.input`
   }
 `;
 
+export const RInput = styled.input`
+  border: none;
+  color: black;
+  border-bottom: 2px solid rgba(137, 43, 226, 0.5);
+  background: none;
+  transition: 1s;
+  position: relative;
+  width:100%;
+  &:focus {
+    outline: none;
+    border-bottom-color: blueviolet;
+    transition: 1s;
+  }
+  &::placeholder{
+    color:black;
+  }
+`;
+
 export const Wellcome = styled.div`
     background: 50% 100%/50% 50% no-repeat radial-gradient(ellipse at bottom, rgba(71, 65, 65, 0.962), rgba(71, 65, 65, 0.962), rgba(71, 65, 65, 0.962));
     -webkit-background-clip: text;
