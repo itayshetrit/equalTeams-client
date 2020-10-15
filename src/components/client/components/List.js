@@ -18,7 +18,7 @@ import Routes from '../../routes/index';
 import { Link } from "react-router-dom";
 let chooses = [];
 const Main1 = () => {
-
+    const [part1, setPart1] = useState('נוי וירדן מתחתנים, להלן לינק עם אישור הגעה ופרטי האירוע: ')
     const [choise, setChoise] = useState(false)
     const [table, setTable] = useState()
     const dispatch = useDispatch();
@@ -112,11 +112,11 @@ const Main1 = () => {
                 not += 1;
             }
             if (choise) {
-                array.push(<Tr save={save} gG={gG} back={back} del={del} key={i}
+                array.push(<Tr part1={part1} save={save} gG={gG} back={back} del={del} key={i}
                     index={<input type="checkbox" className="checkbox animated fadeInRight" onClick={() => add_del(guests[i])} />} data={guests[i]} />)
             }
             else {
-                array.push(<Tr save={save} gG={gG} back={back} del={del} key={i} index={i + 1} data={guests[i]} />)
+                array.push(<Tr part1={part1} save={save} gG={gG} back={back} del={del} key={i} index={i + 1} data={guests[i]} />)
             }
         }
         array.push(<ClosenessSumTr key={guests.length}>
@@ -170,7 +170,8 @@ const Main1 = () => {
             </FlexRow>
             <Options>{choose}</Options>
             <FlexRow style={{ marginBottom: "15px", marginTop: "15px", direction: "rtl", color: "white", alignItems: "center" }}>
-                <div>מגיעים: {all}</div>
+            <div>מגיעים: {all}</div>
+            <Input style={{width:"50%"}} defaultValue={part1} id='user' onChange={(e) => setPart1(e.target.value)} />
                 <div>לא מגיעים: {not}</div>
             </FlexRow>
             <Table id='myTable' responsive style={{ width: "100%", margin: "2% auto", background: "white", color: "black" }}>

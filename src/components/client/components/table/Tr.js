@@ -10,7 +10,7 @@ import pencil from '../../../../assets/pics/guests/pencil.svg'
 const Tr = (props) => {
     // const uuid = require('uuid');
     const { addToast } = useToasts();
-    const [part1, setPart1] = useState('נוי וירדן מתחתנים, להלן לינק עם אישור הגעה ופרטי האירוע: ')
+    const [part1, setPart1] = useState(props.part1)
     const [part2, setPart2] = useState('https://the-wedding-1.web.app/')
     const [part3, setPart3] = useState('noy-yarden/')
     // const [part1, setPart1] = useState('')
@@ -33,7 +33,6 @@ const Tr = (props) => {
             <td style={{ width: "5%" }}>{props.index}</td>
             <td className={props.back} onClick={() => setFlag(!flag)} style={{ cursor: "pointer" }}>{props.data.name}</td>
             <td>
-
                 <a href={'https://api.whatsapp.com/send?phone=972' + props.data.phone + '&text=' + part1 + part2 + part3 + props.data._id}><img alt="whatsapp" width="20" src={whatsapp} /></a>
             </td>
             <td><a href={"tel:" + props.data.phone}><img alt="telephone" width="20" src={telephone} /></a></td>

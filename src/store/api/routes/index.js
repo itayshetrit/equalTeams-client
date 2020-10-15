@@ -1,5 +1,5 @@
-// const devURL = "https://the-wedding-itay.herokuapp.com/";
-const devURL = "http://localhost:8000/";
+const devURL = "https://be-simple-api.herokuapp.com/";
+// const devURL = "http://localhost:8000/";
 const ServerRoutes = {
 	
 	// Auth
