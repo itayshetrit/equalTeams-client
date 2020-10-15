@@ -24,7 +24,7 @@ const Login = () => {
     })
   }
   return (<MainDiv>
-    <Title style={{ color: "white", position: "absolute", top: "0", margin: "40px auto" }}>Be Simple</Title>
+    <Title style={{ color: "white", position: "absolute", top: "0", margin: "40px auto" }}>Gal Vaizman</Title>
     <HoldMain>
       <Main>
         <Title style={{ fontSize: "1.8rem", margin: "20px auto" }}>Login</Title>

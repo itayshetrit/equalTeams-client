@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const MainDiv = styled.div`
   height: 100vh;
   display:flex;
-  flex-direction:row;
+  flex-direction:column;
   justify-content:center;
   background-image: linear-gradient(120deg, blueviolet 0%, rgba(126, 60, 187, 0.836) 100%);
 `

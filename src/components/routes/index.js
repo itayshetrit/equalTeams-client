@@ -10,8 +10,8 @@ export const Client = {
 }
 export const Admin = {
     admin: '/admin',
-    actions: '/actions',
-    register: '/register'
+    get_users: '/get_users',
+    add_user: '/add_user'
 }
 const Routes = {
     LogAndReg,

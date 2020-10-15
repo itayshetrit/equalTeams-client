@@ -42,6 +42,7 @@ export const Card = styled.div`
 `
 export const Title = styled.div`
 text-shadow: 0px 1px 2px rgba(0,0,0,0.33);
+font-family: "GoogleMedium";
 font-size:2.8rem;
 color: blueviolet;
 display:flex;
@@ -60,6 +61,7 @@ width:15px;
 cursor: pointer;
 top:50%;
 transform:translate(0,-50%);
+
 `;
 
 export const FlexRowPrice = styled.div`
