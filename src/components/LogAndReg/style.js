@@ -1,7 +1,9 @@
 import styled from 'styled-components'
 
 export const MainDiv = styled.div`
-  height: 100vh;
+  width:100%;
+  height: 100%;
+  min-height: 100vh;
   display:flex;
   flex-direction:column;
   justify-content:center;
@@ -62,6 +64,7 @@ export const Yet = styled.a`
 export const Group = styled.div`
 width:100%;
 margin-bottom:10%;
+text-align: center;
 `;
 
 export const Form = styled.form`

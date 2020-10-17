@@ -4,7 +4,7 @@ import ServerRoutes from "./routes/index";
 let headers;
 const getGuests = async () => {
     try {
-        headers = { Authorization: 'Bearer ' + localStorage['bs'] }
+        headers = { Authorization: 'Bearer ' + localStorage['gal'] }
         const { status, data, error } = await axios.get(ServerRoutes.getGuests, { headers });
         return { status, data, error };
     } catch (error) {
@@ -17,7 +17,7 @@ const getGuests = async () => {
 
 const getTablesGuests = async () => {
     try {
-        headers = { Authorization: 'Bearer ' + localStorage['bs'] }
+        headers = { Authorization: 'Bearer ' + localStorage['gal'] }
         const { status, data, error } = await axios.get(ServerRoutes.getTablesGuests, { headers });
         return { status, data, error };
     } catch (error) {

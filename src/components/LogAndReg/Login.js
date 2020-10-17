@@ -23,7 +23,7 @@ const Login = () => {
       }
     })
   }
-  return (<MainDiv>
+  return (<MainDiv style={{alignItems:"center"}}>
     <Title style={{ color: "white", position: "absolute", top: "0", margin: "40px auto" }}>Gal Vaizman</Title>
     <HoldMain>
       <Main>

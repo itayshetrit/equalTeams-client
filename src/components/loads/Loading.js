@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
-import spinner from './spinner.svg'
+// import spinner from './spinner.svg'
+import spinner from './football.gif'
 const AnimationContainer = styled.div`
 	height: 100vh;
 	display: flex;
@@ -11,7 +12,7 @@ const AnimationContainer = styled.div`
 
 const Loading = () => {
     return(<AnimationContainer>
-        <img src={spinner} width="200" alt="spinner" />
+        <img src={spinner} width="500" alt="spinner" />
     </AnimationContainer>)
 }
 

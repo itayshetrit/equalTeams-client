@@ -1,23 +1,19 @@
 import React from 'react'
 
-const Thead = React.memo(() => {
+const TheadUsers = React.memo(() => {
     return <thead>
         <tr>
             <th>#</th>
             <th>שם</th>
             <th>ווצאפ</th>
             <th>שיחה</th>
-            <th>מספר</th>
-            <th>הוזמנו</th>
-            <th>קירבה</th>
-            <th>אישרו</th>
-            <th>שולחן</th>
-            <th>הגיעו</th>
-            <th>מתנה</th>
+            <th>התקפה</th>
+            <th>הגנה</th>
+            <th>כביסה</th>
             <th>הערות</th>
             <th>עריכה/מחיקה</th>
 
         </tr>
     </thead>
 })
-export default Thead;
+export default TheadUsers;

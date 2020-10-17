@@ -4,7 +4,7 @@ import ServerRoutes from "./routes/index";
 let headers;
 const setGuestTable = async (body) => {
     try {
-        headers = { Authorization: 'Bearer ' + localStorage['bs'] }
+        headers = { Authorization: 'Bearer ' + localStorage['gal'] }
         const { status, data, error } = await axios.patch(ServerRoutes.setGuestTable, body, { headers });
         return { status, data, error };
     } catch (error) {
@@ -17,7 +17,7 @@ const setGuestTable = async (body) => {
 
 const editGuestByID = async (body, id) => {
     try {
-        headers = { Authorization: 'Bearer ' + localStorage['bs'] }
+        headers = { Authorization: 'Bearer ' + localStorage['gal'] }
         const { status, data, error } = await axios.patch(ServerRoutes.crudGuest + id, body , { headers });
         return { status, data, error };
     } catch (error) {
@@ -30,7 +30,7 @@ const editGuestByID = async (body, id) => {
 
 const deleteGuest = async ( id) => {
     try {
-        headers = { Authorization: 'Bearer ' + localStorage['bs'] }
+        headers = { Authorization: 'Bearer ' + localStorage['gal'] }
         const { status, data, error } = await axios.delete(ServerRoutes.crudGuest + id, { headers });
         return { status, data, error };
     } catch (error) {

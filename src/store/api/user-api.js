@@ -1,74 +1,66 @@
-import axios from 'axios';
-import ServerRoutes from './routes/index';
-let headers = { Authorization: 'Bearer ' + localStorage['bs'] }
-const login = async (creds) => {
-	try {
-		headers = { Authorization: 'Bearer ' + localStorage['bs'] }
-		const { status, data, error } = await axios.post(ServerRoutes.login, creds)
-		return { status, data, error }
-	}
-	catch (err) {
-		console.log(err)
-		return {
-			error: err.response.data,
-			status: err.response.status
-		};
-	}
-}
+import axios from "axios";
+import ServerRoutes from "./routes/index";
 
-const checkAuth = async () => {
-	try {
+let headers = { Authorization: 'Bearer ' + localStorage['gal'] }
+const getClientById = async (id) => {
+    try {
+        headers = { Authorization: 'Bearer ' + localStorage['gal'] }
+        const { status, data, error } = await axios.get(ServerRoutes.crudClient + id, { headers });
+        return { status, data, error };
+    } catch (error) {
+        return {
+            error: error.response.data.error,
+            status: error.response.status
+        };
+    }
+};
 
-		headers = { Authorization: 'Bearer ' + localStorage['bs'] }
-		const { status, data, error } = await axios.get(ServerRoutes.checkAuth, { headers });
-		return { status, data, error }
-	}
-	catch (err) {
+const editUserById = async (id, body) => {
+    try {
+        headers = { Authorization: 'Bearer ' + localStorage['gal'] }
+        const { status, data, error } = await axios.patch(ServerRoutes.crudUser + id, body, { headers });
+        return { status, data, error };
+    } catch (error) {
+        // console
+        return {
+            error: error.response.data,
+            status: error.response.status
+        };
+    }
+};
 
-		return {
-			error: err.message,
-			status: err.response.status
-		};
-	}
-}
-
-
-const register = async (body) => {
-	try {
-		headers = { Authorization: 'Bearer ' + localStorage['bs'] }
-		const { status, data, error } = await axios.post(ServerRoutes.register, body, { headers });
-
-		return { status, data, error }
-	}
-	catch (err) {
-		return {
-			error: "קיימת שגיאה, יתכן ומספר זה רשום במערכת, פנה למנהל המערכת לעזרה",
-			status: err.response.status
-		};
-	}
-}
+const deleteClientById = async (id) => {
+    try {
+        headers = { Authorization: 'Bearer ' + localStorage['gal'] }
+        const { status, data, error } = await axios.delete(ServerRoutes.crudClient + id, { headers });
+        return { status, data, error };
+    } catch (error) {
+        return {
+            error: error.response.data,
+            status: error.response.status
+        };
+    }
+};
 
 
-const logoutAll = async () => {
-	try {
-		headers = { Authorization: 'Bearer ' + localStorage['bs'] }
-		const { status, data, error } = await axios.post(ServerRoutes.logoutAll, null, { headers });
-		return { status, data, error }
-	}
-	catch (err) {
-		return {
-			error: "קיימת שגיאה, פנה למנהל המערכת לעזרה",
-			status: err.response.status
-		};
-	}
-}
+const addUser = async (body) => {
+    try {
+        headers = { Authorization: 'Bearer ' + localStorage['gal'] }
+        const { status, data, error } = await axios.post(ServerRoutes.crudUser, body, { headers });
+        return { status, data, error };
+    } catch (error) {
+        return {
+            error: error.response.data.error,
+            status: error.response.status
+        };
+    }
+};
 
+const clientApi = {
+    getClientById,
+    deleteClientById,
+    editUserById,
+    addUser
+};
 
-const userApi = {
-	login,
-	checkAuth,
-	register,
-	logoutAll
-}
-
-export default userApi;
+export default clientApi;

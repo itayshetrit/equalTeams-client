@@ -1,36 +1,36 @@
-import * as actionTypes from '../../actions/clients/actionTypes'
+import * as actionTypes from '../../actions/users/actionTypes'
 import { updateObject } from '../../utilities'
 
 const initialState = {
-    clients: [],
+    users: [],
     loading: false,
     error: null,
     flag: false
 };
 
-const getClientsStart = (state, action) => {
+const getUsersStart = (state, action) => {
     return updateObject(state, {
         loading: true,
         error: null
     })
 }
 
-const getClientsSuccess = (state, action) => {
+const getUsersSuccess = (state, action) => {
     return updateObject(state, {
-        clients: action.clients,
+        users: action.users,
         loading: false,
         error: null,
     })
 }
 
-const getClientsFail = (state, action) => {
+const getUsersFail = (state, action) => {
     return updateObject(state, {
         loading: false,
         error: action.error
     })
 }
 
-export const cleanClients = (state, action) => {
+export const cleanUsers = (state, action) => {
     return updateObject(state, {
         ...initialState
         // turns: [],
@@ -42,11 +42,11 @@ export const cleanClients = (state, action) => {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        // get all clients actions
-        case actionTypes.GET_CLIENTS_START: return getClientsStart(state, action);
-        case actionTypes.GET_CLIENTS_SUCCESS: return getClientsSuccess(state, action);
-        case actionTypes.GET_CLIENTS_FAIL: return getClientsFail(state, action);
-        case actionTypes.CLEAN_CLIENTS: return cleanClients(state, action);
+        // get all users actions
+        case actionTypes.GET_USERS_START: return getUsersStart(state, action);
+        case actionTypes.GET_USERS_SUCCESS: return getUsersSuccess(state, action);
+        case actionTypes.GET_USERS_FAIL: return getUsersFail(state, action);
+        case actionTypes.CLEAN_USERS: return cleanUsers(state, action);
         default:
             return state;
     }

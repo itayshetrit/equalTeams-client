@@ -1,5 +1,5 @@
 import * as actionTypes from './actionTypes';
-import authApi from '../../api/user-api';
+import authApi from '../../api/auth-api';
 
 const loginSuccess = () => {
 	return {
@@ -29,7 +29,7 @@ const authFailed = (error) => {
 }
 
 export const logout = () => {
-	localStorage.removeItem("bs");
+	localStorage.removeItem("gal");
 	return {
 		type: actionTypes.LOGOUT_SUCCESS
 	}
@@ -55,7 +55,7 @@ export const login1 = (creds) => {
 		dispatch(loginStart());
 		const { status, data, error } = await authApi.login(creds);
 		if (status === 200 && data.token) {
-			localStorage['bs'] = await data.token
+			localStorage['gal'] = await data.token
 			return dispatch(loginSuccess());
 		}
 		else {
@@ -67,7 +67,7 @@ export const login1 = (creds) => {
 export const checkAuth1 = () => {
 	return async (dispatch, getState) => {
 		dispatch(checkAuthStart());
-		const token = localStorage.getItem('bs');
+		const token = localStorage.getItem('gal');
 		if (!token) {
 			dispatch(logout());
 		}
@@ -102,18 +102,7 @@ export const registerFail = error => {
     };
 };
 
-export const register1 = (body) => {
-    return async (dispatch,getState) => {
-        dispatch(registerLoading())
-        const{status, error} = await authApi.register(body)
 
-        if (status === 200) {
-            return dispatch(registerSuccess());
-        } else {
-            return dispatch(registerFail(error));
-        }
-    }
-}
 
 export const logoutAllLoading = () => {
     return {
@@ -138,7 +127,7 @@ export const logoutAll1 = () => {
         dispatch(logoutAllLoading())
         const{status, error} = await authApi.logoutAll()
         if (status === 200) {
-			await localStorage.removeItem('bs');
+			await localStorage.removeItem('gal');
             return dispatch(logoutAllSuccess());
         } else {
             return dispatch(logoutAllFail(error));

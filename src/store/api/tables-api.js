@@ -1,10 +1,10 @@
 import axios from "axios";
 import ServerRoutes from "./routes/index";
 
-let headers = { Authorization: 'Bearer ' + localStorage['bs'] }
+let headers = { Authorization: 'Bearer ' + localStorage['gal'] }
 const loadTables1 = async (body) => {
     try {
-        headers = { Authorization: 'Bearer ' + localStorage['bs'] }
+        headers = { Authorization: 'Bearer ' + localStorage['gal'] }
         const { status, data, error } = await axios.post(ServerRoutes.loadTables ,body, { headers });
         return { status, data, error };
     } catch (error) {
@@ -17,7 +17,7 @@ const loadTables1 = async (body) => {
 
 const getTables = async () => {
     try {
-        headers = { Authorization: 'Bearer ' + localStorage['bs'] }
+        headers = { Authorization: 'Bearer ' + localStorage['gal'] }
         const { status, data, error } = await axios.get(ServerRoutes.getTables, { headers });
         return { status, data, error };
     } catch (error) {

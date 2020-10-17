@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 
-import trash from '../../../assets/pics/guests/trash.svg'
 const DeleteModal = (props) => {
     const [show, setShow] = useState(false);
 
@@ -15,13 +14,13 @@ const DeleteModal = (props) => {
 
     return (
         <div>
-            <div onClick={handleShow} ><img alt="trash" src={trash} width="22" style={{cursor: "pointer"}} /></div>
+            <div onClick={handleShow} style={{cursor:"pointer"}}>{props.button}</div>
             <Modal show={show} onHide={handleClose} animation={true}>
-                <Modal.Header style={{display:"flex" , justifyContent:"center"}}>
+                <Modal.Header style={{display:"flex" , justifyContent:"center", backgroundColor:"white"}}>
                     <Modal.Title>מחיקת רשומה</Modal.Title>
                 </Modal.Header>
-                <Modal.Body style={{ textAlign: "center" }}>?האם את/ה בטוח/ה שברצונך למחוק רשומה זו</Modal.Body>
-                <Modal.Footer style={{ justifyContent: "space-around" }}>
+                <Modal.Body style={{ textAlign: "center", backgroundColor:"white" }}>?האם את/ה בטוח/ה שברצונך למחוק רשומה זו</Modal.Body>
+                <Modal.Footer style={{ justifyContent: "space-around", backgroundColor:"white" }}>
                     <Button variant="success" onClick={handleClose}>
                         לא
                     </Button>
