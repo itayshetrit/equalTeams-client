@@ -24,6 +24,8 @@ const EditUser = props => {
         dispatch(editUserById(props.data._id, { ...data, attack, defense, laundry })).then(res => {
             if (!res.error) {
                 addToast(<ToastMsg>הפעולה הצליחה</ToastMsg>, { appearance: "success", autoDismiss: true });
+                props.handleClose()
+                props.gU()
             }
             else {
                 console.log((res.error));
@@ -116,16 +118,6 @@ const EditUser = props => {
                         errors.phone.type === 'pattern') && <Span><SpanRed>!</SpanRed><Span> מספר פלאפון לא חוקי </Span><SpanRed>!</SpanRed></Span>}
                 </Group>
 
-                <Group>
-                    <PositionRelative>
-                        <PlaceHolderImage src={notes} style={{ width: "15px" }} alt="notes" />
-                        <RInput defaultValue={props.data.notes} placeholder="הערות" name="notes" ref={register({ pattern: /^[,-. A-Za-z0-9א-ת]+$/i, minLength: 2, maxLength: 20 })} />
-                    </PositionRelative>
-
-                    {errors.notes && errors.notes.type === 'required' && <Span><SpanRed>!</SpanRed><Span> שדה חובה </Span><SpanRed>!</SpanRed></Span>}
-                    {errors.notes && (errors.notes.type === 'maxLength' || errors.notes.type === 'minLength' ||
-                        errors.notes.type === 'pattern') && <Span><SpanRed>!</SpanRed><Span> 2-20 אותיות וספרות בלבד </Span><SpanRed>!</SpanRed></Span>}
-                </Group>
                 <Submit type="submit">שמירה</Submit>
             </Form>
         </Main>

@@ -61,7 +61,6 @@ const GetUsers = () => {
                 <td>{item.attack}</td>
                 <td>{item.defense}</td>
                 <td>{item.laundry}</td>
-                <td>{item.notes}</td>
                 <td style={{ display: "flex", flexDirection: "row", justifyContent: "center" }}>
                     <EditModal data={item} gU={gU} button={<img alt="edit" src={pencil} width="22"/>} />
                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

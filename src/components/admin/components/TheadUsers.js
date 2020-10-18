@@ -10,7 +10,6 @@ const TheadUsers = React.memo(() => {
             <th>התקפה</th>
             <th>הגנה</th>
             <th>כביסה</th>
-            <th>הערות</th>
             <th>עריכה/מחיקה</th>
 
         </tr>
