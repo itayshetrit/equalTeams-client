@@ -14,6 +14,7 @@ import infinite from '../assets/spinners/spinner.svg'
 // import infinite from '../assets/spinners/football.gif'
 
 function App({ history }) {
+  const election = useSelector(state => state.electionsReducer);
   const auth = useSelector(state => state.authReducer);
   const user = useSelector(state => state.userReducer);
   const users = useSelector(state => state.usersReducer);
@@ -46,7 +47,7 @@ function App({ history }) {
   return (
     <div className="App animated fadeIn">
       <ToastProvider placement="bottom-center">{view}</ToastProvider>
-      <Modal centered show={user.loading || users.loading} animation={true}>
+      <Modal centered show={user.loading || users.loading || election.loading} animation={true}>
         <Modal.Body style={{ textAlign: "center", color: "black", direction: "rtl"}}><img alt="infinite" src={infinite} width="200" /></Modal.Body>
       </Modal>
     </div>
