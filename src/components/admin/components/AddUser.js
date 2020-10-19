@@ -25,7 +25,7 @@ const AddUser = (props) => {
       }
     })
   }
-  return (<MainDiv>
+  return (<MainDiv className="animated fadeIn">
     <Title style={{ textDecoration: "underline", margin: "30px auto", color: "white" }}>Gal Vaizman</Title>
     <HoldMain>
       <Main className="animated fadeIn slow">

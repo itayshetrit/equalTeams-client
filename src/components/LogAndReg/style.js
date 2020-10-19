@@ -6,15 +6,16 @@ export const MainDiv = styled.div`
   min-height: 100vh;
   display:flex;
   flex-direction:column;
-  justify-content:center;
+  justify-content:space-evenly;
+  align-items:center;
   background-image: linear-gradient(120deg, blueviolet 0%, rgba(126, 60, 187, 0.836) 100%);
 `
 export const HoldMain = styled.div`
-height: 100%;
-width:100%;
+    height: 100%;
+    width:100%;
     display:flex;
     flex-direction: column;
-    justify-content:center;
+    /* justify-content:center; */
     /* align-items:center; */
     `
 export const Main = styled.div`

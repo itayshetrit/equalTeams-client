@@ -29,10 +29,10 @@ const editUserById = async (id, body) => {
     }
 };
 
-const deleteClientById = async (id) => {
+const deleteUserById = async (id) => {
     try {
         headers = { Authorization: 'Bearer ' + localStorage['gal'] }
-        const { status, data, error } = await axios.delete(ServerRoutes.crudClient + id, { headers });
+        const { status, data, error } = await axios.delete(ServerRoutes.crudUser + id, { headers });
         return { status, data, error };
     } catch (error) {
         return {
@@ -58,7 +58,7 @@ const addUser = async (body) => {
 
 const clientApi = {
     getClientById,
-    deleteClientById,
+    deleteUserById,
     editUserById,
     addUser
 };

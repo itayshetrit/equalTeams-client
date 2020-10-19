@@ -3,7 +3,8 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Routes from '../routes/index'
 import Admin from './Main'
 import AddUser from './components/AddUser'
-import Actions from './components/GetUsers'
+import GetUsers from './components/GetUsers'
+import Elections from './components/Elections'
 
 
 
@@ -12,7 +13,8 @@ const AdminSwitch = () => {
     <Switch>
         <Route path={Routes.Admin.admin} component={Admin}></Route>
         <Route path={Routes.Admin.add_user} component={AddUser}></Route>
-        <Route path={Routes.Admin.get_users} component={Actions}></Route>
+        <Route path={Routes.Admin.get_users} component={GetUsers}></Route>
+        <Route path={Routes.Admin.elections} component={Elections}></Route>
         <Redirect from="/" to={Routes.Admin.admin} />
     </Switch>
   )

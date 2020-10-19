@@ -11,7 +11,7 @@ const ServerRoutes = {
 	// Clients
 	// editGuestByID
 	// editGuestByID: devURL+"guests/",	//crud
-	getUsers: devURL+"users",	//get
+	getUsers: devURL+"usersByStadium/",	//get
 	crudUser: devURL+"users/",	//crud
 
 

@@ -9,6 +9,7 @@ const DeleteModal = (props) => {
     const modal_del = () => {
         props.del(props.id);
         setShow(false);
+        props.gU()
     }
     const handleShow = () => setShow(true);
 

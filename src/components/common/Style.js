@@ -180,3 +180,42 @@ background: 50% 100%/50% 50% no-repeat radial-gradient(ellipse at bottom, #fff, 
         }
     }
 `;
+
+export const RegularHover = styled.div`
+    color: rgba(255, 255, 255, 0.94);
+    padding: 1% 2%;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: large;
+    box-shadow: 0 1px 8px rgba(255, 255, 255, 0.777), 0 -1px 8px rgba(255, 255, 255, 0.777);
+    border-radius: 5px;
+    transition: 0.3s;
+    &:hover {
+        color: rebeccapurple !important;
+        background: white;
+        font-weight:bold;
+    }
+`
+
+export const Options = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width:100%;
+    div {
+        color: rgba(255, 255, 255, 0.94);
+        padding: 0 1%;
+        /* margin: 0 0.5%; */
+        cursor: pointer;
+        text-decoration: none;
+        font-size: large;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.777), -1px -1px 4px rgba(255, 255, 255, 0.777);
+        border-radius: 5px;
+        transition: 0.3s;
+        &:hover {
+            color: rebeccapurple !important;
+            background: white;
+            font-weight:bold;
+        }
+    }
+`

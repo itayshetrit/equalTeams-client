@@ -2,10 +2,10 @@ import axios from "axios";
 import ServerRoutes from "./routes/index";
 
 let headers;
-const getUsers = async () => {
+const getUsers = async (team) => {
     try {
         headers = { Authorization: 'Bearer ' + localStorage['gal'] }
-        const { status, data, error } = await axios.get(ServerRoutes.getUsers, { headers });
+        const { status, data, error } = await axios.get(ServerRoutes.getUsers + team, { headers });
         return { status, data, error };
     } catch (error) {
         return {

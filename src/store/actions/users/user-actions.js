@@ -76,6 +76,18 @@ export const editUserById = (id, body) => {
     }
 }
 
+export const deleteUserById = (id, body) => {
+    return async (dispatch) => {
+        dispatch(userActionStart(actionTypes.DELETE_USER_BY_ID_START))
+        const { status, error } = await userApi.deleteUserById(id)
+        if (status === 200) {
+            return dispatch(userActionSuccess(actionTypes.DELETE_USER_BY_ID_SUCCESS, null));
+        } else {
+            return dispatch(userActionFail(actionTypes.DELETE_USER_BY_ID_FAIL, error));
+        }
+    }
+}
+
 // export const addGuest= (body) => {
 //     return async (dispatch) => {
 //         dispatch(clientActionStart(actionTypes.ADD_CLIENT_START))

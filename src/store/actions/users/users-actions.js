@@ -25,10 +25,10 @@ export const cleanUsers = () => {
     }
 }
 
-export const getUsers = () => {
+export const getUsers = (team) => {
     return async (dispatch) => {
         dispatch(getUsersStart(actionTypes.GET_USERS_START))
-        const{status,data,error} = await usersApi.getUsers()
+        const{status,data,error} = await usersApi.getUsers(team)
         if (status === 200) {
             return dispatch(getUsersSuccess(actionTypes.GET_USERS_SUCCESS,data));
         } else {

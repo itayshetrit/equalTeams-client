@@ -11,6 +11,7 @@ export const Client = {
 export const Admin = {
     admin: '/admin',
     get_users: '/get_users',
+    elections: '/elections/:team',
     add_user: '/add_user'
 }
 const Routes = {
