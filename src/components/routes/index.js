@@ -1,5 +1,6 @@
 export const LogAndReg = {
     login: '/login',
+    register: '/register',
     answer: '/answer/:id'
 }
 

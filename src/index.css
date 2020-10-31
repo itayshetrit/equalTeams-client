@@ -17,19 +17,7 @@ code {
   --red_sign: red;
   --primary: blueviolet;
 }
-a{
-  color: white;
-}
-a:hover{
-  color: white !important;
-  text-decoration: none !important;
-}
-.back{
-  background: rgba(172, 120, 172, 0.788);
-}
-.seat{
-  background: rgba(255, 174, 0, 0.699);
-}
+
 .checkbox{
   width: 15px;
   height: 15px;
@@ -37,15 +25,7 @@ a:hover{
   border-radius: 6px;
   
 }
-.red{
-  background-color: rgba(255, 0, 0, 0.5);
-}
-.green{
-  background-color: rgba(0, 128, 0, 0.5);
-}
-.orange{
-  background-color: rgba(255, 166, 0, 0.5);
-}
+
 .sticky_bottom {
   position: -webkit-sticky;
   position: sticky;

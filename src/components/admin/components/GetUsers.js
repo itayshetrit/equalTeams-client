@@ -125,7 +125,8 @@ const GetUsers = (props) => {
                     }} alt="minus" src={minus} width="20" /></div>}
                 </div>
             </div>
-            {go && <RegularHover onClick={async () => {
+            {go && 
+            <RegularHover onClick={async () => {
                 //    await setNumOfTeams1(numOfTeams);
                 //    await setList1(chooses);
 

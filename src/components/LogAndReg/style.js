@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const MainDiv = styled.div`
   width:100%;
@@ -53,12 +53,11 @@ export const Main1 = styled.div`
     
 `;
 export const Yet = styled.a`
-  color:black;
-  color: blueviolet;
+  cursor: pointer;
+  color: blueviolet !important;
   font-weight: bold;
   &:hover{
-    text-decoration: none !important;
-    color: blueviolet;
+    text-decoration: none;
   }
 `
 
@@ -153,46 +152,5 @@ export const RInput = styled.input`
   }
   &::placeholder{
     color:black;
-  }
-`;
-
-export const Wellcome = styled.div`
-    background: 50% 100%/50% 50% no-repeat radial-gradient(ellipse at bottom, rgba(71, 65, 65, 0.962), rgba(71, 65, 65, 0.962), rgba(71, 65, 65, 0.962));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-align: center;
-    -webkit-animation: reveal 3000ms ease-in-out forwards 200ms, glow 2500ms linear infinite 2000ms;
-    animation: reveal 3000ms ease-in-out forwards 200ms, glow 2500ms linear infinite 2000ms;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height: 20vh;
-    font-size:2rem;
-  @-webkit-keyframes reveal {
-    80% {
-      letter-spacing: 8px;
-    }
-    100% {
-      background-size: 300% 300%;
-    }
-  }
-  @keyframes reveal {
-    80% {
-      letter-spacing: 8px;
-    }
-    100% {
-      background-size: 300% 300%;
-    }
-  }
-  @-webkit-keyframes glow {
-    40% {
-      text-shadow: 0 0 8px #fff;
-    }
-  }
-  @keyframes glow {
-    40% {
-      text-shadow: 0 0 8px #fff;
-    }
   }
 `;

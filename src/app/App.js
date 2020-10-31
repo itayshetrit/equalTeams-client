@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Modal from 'react-bootstrap/Modal'
 import { useSelector, useDispatch } from 'react-redux'
 import Loading from '../components/loads/Loading'
-import { checkAuth1 } from '../store/actions/auth/auth-actions'
+import { checkAuth } from '../store/actions/auth/auth-actions'
 import UnAuthNav from '../components/LogAndReg/UnAuthNav' //login and register
 // import ClientNav from '../components/client/ClientSwitch' // client
 import AdminNav from '../components/admin/AdminSwitch' // admin
@@ -14,15 +14,15 @@ import infinite from '../assets/spinners/spinner.svg'
 // import infinite from '../assets/spinners/football.gif'
 
 function App({ history }) {
-  const election = useSelector(state => state.electionsReducer);
+  // const election = useSelector(state => state.electionsReducer);
   const auth = useSelector(state => state.authReducer);
-  const user = useSelector(state => state.userReducer);
-  const users = useSelector(state => state.usersReducer);
+  // const user = useSelector(state => state.userReducer);
+  // const users = useSelector(state => state.usersReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (!auth.user) {
-      dispatch(checkAuth1());
+      dispatch(checkAuth());
     }
   }, [auth.authenticated]);
   
@@ -47,9 +47,9 @@ function App({ history }) {
   return (
     <div className="App animated fadeIn">
       <ToastProvider placement="bottom-center">{view}</ToastProvider>
-      <Modal centered show={user.loading || users.loading || election.loading} animation={true}>
+      {/* <Modal centered show={user.loading || users.loading || election.loading} animation={true}>
         <Modal.Body style={{ textAlign: "center", color: "black", direction: "rtl"}}><img alt="infinite" src={infinite} width="200" /></Modal.Body>
-      </Modal>
+      </Modal> */}
     </div>
   );
 }

@@ -5,8 +5,8 @@ const ServerRoutes = {
 	// Auth
 	register: devURL + "users/add", //post
 	logoutAll: devURL + "users/logoutAll", //post	
-	login: devURL + "users/login", //post
-	checkAuth: devURL + "users/checkAuth/me", //get
+	login: devURL + "auth/login", //post
+	checkAuth: devURL + "auth/checkAuth", //get
 
 	// Clients
 	// editGuestByID

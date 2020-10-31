@@ -42,7 +42,7 @@ export const Card = styled.div`
 `
 export const Title = styled.div`
 text-shadow: 0px 1px 2px rgba(0,0,0,0.33);
-font-family: "GoogleMedium";
+font-family: "Title";
 font-size:2.8rem;
 color: blueviolet;
 display:flex;

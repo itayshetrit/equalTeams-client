@@ -15,6 +15,11 @@
   font-family: GoodMorning;
   src: url("../assets//fonts/Good\ Morning.ttf") format("truetype")
 }
+
+@font-face {
+  font-family: Title;
+  src: url("../assets/fonts//NightmarePills-BV2w.ttf") format("truetype")
+}
 .App {
   text-align: center;
   direction: rtl;
