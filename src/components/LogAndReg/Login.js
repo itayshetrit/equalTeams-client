@@ -1,20 +1,27 @@
 import React from "react";
 import { useDispatch } from 'react-redux';
-import { Main, HoldMain, RInput, MainDiv, Span, Submit, Form, Group, SpanRed } from './style'
-import { Title, PositionRelative, PlaceHolderImage } from '../common/Style'
-import phone from '../../assets/pics/auth/phone.svg'
-import password from '../../assets/pics/auth/password.svg'
-import { useForm } from 'react-hook-form'
-import { sha512 } from 'js-sha512'
-import { login1 } from '../../store/actions/auth/auth-actions'
+import { Link } from "react-router-dom";
+import { useForm } from 'react-hook-form';
 import { useToasts } from "react-toast-notifications";
-import { ToastMsg } from '../common/Style'
+
+import Routes from '../routes/index';
+
+import { sha512 } from 'js-sha512';
+
+import { Main, HoldMain, RInput, MainDiv, Span, Submit, Form, Group, SpanRed, Yet } from './style';
+import { Title, PositionRelative, PlaceHolderImage } from '../common/Style';
+import { ToastMsg } from '../common/Style';
+
+import phone from '../../assets/pics/auth/phone.svg';
+import password from '../../assets/pics/auth/password.svg';
+import { login } from '../../store/actions/auth/auth-actions';
+
 const Login = () => {
   const { addToast } = useToasts();
   const dispatch = useDispatch();
   const { register, handleSubmit, errors } = useForm()
   const onSubmit = async data => {
-    dispatch(login1({ phone: data.phone, password: sha512(data.password) })).then(data => {
+    dispatch(login({ phone: data.phone, password: sha512(data.password) })).then(data => {
       if (data.error) {
         addToast(<ToastMsg>{data.error.error}</ToastMsg>, { appearance: "error", autoDismiss: true });
       }
@@ -23,11 +30,11 @@ const Login = () => {
       }
     })
   }
-  return (<MainDiv style={{alignItems:"center"}}>
-    <Title style={{ color: "white", position: "absolute", top: "0", margin: "40px auto" }}>Gal Vaizman</Title>
+  return (<MainDiv className="App animated fadeIn">
+    <Title style={{ color: "white", position: "absolute", top: "0", margin: "40px auto" }}>Equal Teams</Title>
     <HoldMain>
       <Main>
-        <Title style={{ fontSize: "1.8rem", margin: "20px auto" }}>Login</Title>
+        <Title style={{ fontSize: "1.8rem", margin: "20px auto",fontFamily: "Varela" }}>התחברות</Title>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <Group>
             <PositionRelative>
@@ -50,6 +57,7 @@ const Login = () => {
           </Group>
           <Submit type="submit">התחברות</Submit>
         </Form>
+        <Yet as={Link} to={Routes.LogAndReg.register}>עוד לא נרשמתם?</Yet>
       </Main>
     </HoldMain>
 

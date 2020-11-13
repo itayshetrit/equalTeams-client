@@ -53,12 +53,12 @@ export const Main1 = styled.div`
     
 `;
 export const Yet = styled.a`
-  color:black;
-  color: blueviolet;
+  cursor: pointer;
+  color: blueviolet !important;
   font-weight: bold;
+  margin-bottom: 20px;
   &:hover{
-    text-decoration: none !important;
-    color: blueviolet;
+    text-decoration: none;
   }
 `
 
@@ -81,16 +81,17 @@ export const Submit = styled.button`
   border: 2px solid white;
   margin:20px auto;
   background-image: linear-gradient(120deg, blueviolet 0%, rgba(126, 60, 187, 0.836) 100%);
-  transition: all 0.5s;
+  transition: all 0.4s;
   outline:none;
   color: white;
   cursor: pointer;
   &:hover{
+    transition: all 0.2s;
     outline:none;
     background:none !important;
     border: 2px solid blueviolet;
     color:blueviolet;
-    font-weight:600;
+    /* font-weight:600; */
   }
 
 `;

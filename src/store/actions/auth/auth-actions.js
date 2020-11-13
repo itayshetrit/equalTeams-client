@@ -1,137 +1,123 @@
 import * as actionTypes from './actionTypes';
 import authApi from '../../api/auth-api';
 
-const loginSuccess = () => {
+
+
+const authActionStart = (action) => {
 	return {
-		type: actionTypes.AUTH_SUCCESS
+		type: action
 	}
 }
 
-const checkAuthStart = () => {
+const authActionSuccess = (action,user) => {
 	return {
-		type: actionTypes.AUTH_USER_INFO_START
+		type: action,
+		user
 	};
-}
+};
 
-const authUserInfoSuccess = (user) => {
+const authActionFailed = (action,error) => {
 	return {
-		type: actionTypes.AUTH_USER_INFO_SUCCESS,
-		user: user,
-	}
-}
-
-
-const authFailed = (error) => {
-	return {
-		type: actionTypes.AUTH_FAILED,
+		type: action,
 		error
 	}
 }
 
-export const logout = () => {
+const logout = (action) => {
 	localStorage.removeItem("gal");
 	return {
-		type: actionTypes.LOGOUT_SUCCESS
+		type: action
 	}
 }
 
-export const setAuthRedirectPath = (path) => {
-	return {
-		type: actionTypes.SET_AUTH_REDIRECT_PATH,
-		path: path
-	};
-};
+// export const setAuthRedirectPath = (path) => {
+// 	return {
+// 		type: actionTypes.SET_AUTH_REDIRECT_PATH,
+// 		path: path
+// 	};
+// };
 
 
-export const loginStart = () => {
-	return {
-		type: actionTypes.AUTH_LOGIN
-	}
-}
 
 
-export const login1 = (creds) => {
-	return async (dispatch, getState) => {
-		dispatch(loginStart());
+export const login = (creds) => {
+	return async (dispatch) => {
+		dispatch(authActionStart(actionTypes.LOGIN_START));
 		const { status, data, error } = await authApi.login(creds);
 		if (status === 200 && data.token) {
 			localStorage['gal'] = await data.token
-			return dispatch(loginSuccess());
+			return dispatch(authActionSuccess(actionTypes.AUTH_SUCCESS,data.user));
 		}
 		else {
-			return dispatch(authFailed(error))
+			return dispatch(authActionFailed(actionTypes.AUTH_FAILED,error))
 		}
 	}
 }
 
-export const checkAuth1 = () => {
+export const checkAuth = () => {
 	return async (dispatch, getState) => {
-		dispatch(checkAuthStart());
+		dispatch(authActionStart(actionTypes.CHECK_AUTH_START));
 		const token = localStorage.getItem('gal');
 		if (!token) {
-			dispatch(logout());
+			dispatch(logout(actionTypes.LOCAL_LOGOUT_SUCCESS));
 		}
 		else {
 			const { status, data, error } = await authApi.checkAuth();
 			if (status === 200) {
-				return dispatch(authUserInfoSuccess(data));
+				return dispatch(authActionSuccess(actionTypes.CHECK_AUTH_SUCCESS, data));
 			}
 			else {
-				return dispatch(authFailed(error));
+				return dispatch(authActionFailed(actionTypes.AUTH_FAILED,error));
 			}
 		}
 
 	};
 };
 
-export const registerLoading = () => {
-    return {
-        type: actionTypes.REGISTER_START
-    };
-};
-export const registerSuccess = () => {
-    return {
-        type: actionTypes.REGISTER_SUCCESS,
-    };
-};
+export const registration = (body) => {
+    return async (dispatch) => {
+        dispatch(authActionStart(actionTypes.REGISTER_START))
+        const{status, error} = await authApi.register(body)
 
-export const registerFail = error => {
-    return {
-        type: actionTypes.REGISTER_FAIL,
-        error
-    };
-};
+        if (status === 200) {
+            return dispatch(authActionSuccess(actionTypes.REGISTER_SUCCESS,null));
+        } else {
+            return dispatch(authActionFailed(actionTypes.REGISTER_FAIL, error));
+        }
+    }
+}
 
 
 
-export const logoutAllLoading = () => {
-    return {
-        type: actionTypes.LOGOUT_START
-    };
+
+export const logoutAllLoading = (action) => {
+	return {
+		type: action
+	};
 };
-export const logoutAllSuccess = () => {
-    return {
-        type: actionTypes.LOGOUT_SUCCESS,
-    };
+export const logoutAllSuccess = (action) => {
+	return {
+		type: action,
+	};
 };
 
-export const logoutAllFail = error => {
-    return {
-        type: actionTypes.LOGOUT_FAIL,
-        error
-    };
+export const logoutAllFail = (action, error) => {
+	return {
+		type: action,
+		error
+	};
 };
 
 export const logoutAll1 = () => {
-    return async (dispatch,getState) => {
-        dispatch(logoutAllLoading())
-        const{status, error} = await authApi.logoutAll()
-        if (status === 200) {
+	return async (dispatch, getState) => {
+		dispatch(logoutAllLoading(actionTypes.LOCAL_LOGOUT_START))
+		const { status, error } = await authApi.logoutAll()
+		if (status === 200) {
 			await localStorage.removeItem('gal');
-            return dispatch(logoutAllSuccess());
-        } else {
-            return dispatch(logoutAllFail(error));
-        }
-    }
+			return dispatch(logoutAllSuccess(actionTypes.LOCAL_LOGOUT_SUCCESS));
+		} else {
+			return dispatch(logoutAllFail(error));
+		}
+	}
 }
 

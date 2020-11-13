@@ -1,41 +1,44 @@
 import React from "react";
 import { useDispatch } from 'react-redux';
-import { Main, HoldMain, Input, MainDiv, Span, Submit, Form, Yet, Group, SpanRed } from './style'
-import { Title, PositionRelative, PlaceHolderImage } from '../common/Style'
-import phone from '../../assets/pics/auth/phone.svg'
-import carts from '../../assets/pics/auth/carts.svg'
-import password from '../../assets/pics/auth/password.svg'
-import { Link } from 'react-router-dom';
-import { useForm } from 'react-hook-form'
-import { sha512 } from 'js-sha512'
-import Routes from '../routes/index'
-import { login1 } from '../../store/actions/auth/auth-actions'
+import { Link } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
-import { ToastMsg } from '../common/Style'
-const Login = () => {
+import { useForm } from 'react-hook-form';
+import { sha512 } from 'js-sha512';
+
+import Routes from '../routes/index';
+
+import { Main, HoldMain, RInput, MainDiv, Span, Submit, Form, Group, SpanRed, Yet } from './style';
+import { Title, PositionRelative, PlaceHolderImage, ToastMsg } from '../common/Style';
+
+import phone from '../../assets/pics/auth/phone.svg';
+import password from '../../assets/pics/auth/password.svg';
+
+import { registration } from '../../store/actions/auth/auth-actions';
+
+const Register = () => {
   const { addToast } = useToasts();
   const dispatch = useDispatch();
   const { register, handleSubmit, errors } = useForm()
   const onSubmit = async data => {
-    dispatch(login1({ phone: data.phone, password: sha512(data.password) })).then(data => {
+    dispatch(registration({ phone: data.phone, password: sha512(data.password) })).then(data => {
       if (data.error) {
         addToast(<ToastMsg>{data.error}</ToastMsg>, { appearance: "error", autoDismiss: true });
       }
       else {
-        addToast(<ToastMsg>התחברת בהצלחה!!</ToastMsg>, { appearance: "success", autoDismiss: true, autoDismissTimeout: 2000 });
+        addToast(<ToastMsg>נרשמת בהצלחה!!</ToastMsg>, { appearance: "success", autoDismiss: true, autoDismissTimeout: 2000 });
       }
     })
   }
-  return (<MainDiv>
-    <Title style={{ color: "white", position: "absolute", top: "0", margin: "40px auto" }}>Be Simple</Title>
+  return (<MainDiv className="App animated fadeIn">
+    <Title style={{ color: "white", position: "absolute", top: "0", margin: "40px auto" }}>Equal Teams</Title>
     <HoldMain>
       <Main>
-        <Title style={{ fontSize: "1.8rem", margin: "20px auto" }}>Login</Title>
+        <Title style={{ fontSize: "1.8rem", margin: "20px auto", fontFamily: "Varela" }}>הרשמה</Title>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <Group>
             <PositionRelative>
               <PlaceHolderImage src={phone} style={{ width: "15px" }} alt="phone" />
-              <Input placeholder="מס' פלאפון" name="phone" ref={register({ required: true, pattern: /^[0]{1}[5]{1}[0-9]{8}$/ })} />
+              <RInput placeholder="מס' פלאפון" name="phone" ref={register({ required: true, pattern: /^[0]{1}[5]{1}[0-9]{8}$/ })} />
             </PositionRelative>
             {errors.phone && errors.phone.type === 'required' && <Span><SpanRed>!</SpanRed><Span> שדה חובה </Span><SpanRed>!</SpanRed></Span>}
             {errors.phone && (errors.phone.type === 'maxLength' || errors.phone.type === 'minLength' ||
@@ -45,20 +48,20 @@ const Login = () => {
           <Group>
             <PositionRelative>
               <PlaceHolderImage src={password} style={{ width: "15px" }} alt="password" />
-              <Input placeholder="סיסמא" name="password" ref={register({ required: true, pattern: /^[A-Za-z1-9א-ת]+$/i, minLength: 6, maxLength: 20 })} />
+              <RInput placeholder="סיסמא" name="password" ref={register({ required: true, pattern: /^[A-Za-z0-9א-ת]+$/i, minLength: 6, maxLength: 20 })} />
             </PositionRelative>
             {errors.password && errors.password.type === 'required' && <Span><SpanRed>!</SpanRed><Span> שדה חובה </Span><SpanRed>!</SpanRed></Span>}
             {errors.password && (errors.password.type === 'maxLength' || errors.password.type === 'minLength' ||
               errors.password.type === 'pattern') && <Span><SpanRed>!</SpanRed><Span> 6-20 אותיות וספרות בלבד </Span><SpanRed>!</SpanRed></Span>}
           </Group>
-          <Submit type="submit">התחברות</Submit>
+          <Submit type="submit">הרשמה</Submit>
         </Form>
+        <Yet as={Link} to={Routes.LogAndReg.login}>כבר רשום?</Yet>
       </Main>
     </HoldMain>
-    {/* <img src={p1} width="200" /> */}
 
   </MainDiv>
   )
 }
 
-export default Login;
+export default Register;

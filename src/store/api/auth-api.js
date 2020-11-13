@@ -32,17 +32,15 @@ const checkAuth = async () => {
 	}
 }
 
-
 const register = async (body) => {
 	try {
 		headers = { Authorization: 'Bearer ' + localStorage['gal'] }
 		const { status, data, error } = await axios.post(ServerRoutes.register, body, { headers });
-
-		return { status, data, error }
+		return { status, data, error };
 	}
 	catch (err) {
 		return {
-			error: "קיימת שגיאה, יתכן ומספר זה רשום במערכת, פנה למנהל המערכת לעזרה",
+			error: err.response.data.error,
 			status: err.response.status
 		};
 	}

@@ -4,28 +4,10 @@ const initialState = {
 	user: null,
 	authenticated: false,
 	error: null,
-	loading: false,
-	smallLoading: false,
-	authRedirectPath: null
+	loading: false
 }
 
-const authStart = (state, action) => {
-	return updateObject(state, {
-		error: null, 
-		user: null,
-		authenticated: false, 
-		loading: true
-	});
-}
-
-const authUserInfoStart = (state, action) => {
-	return updateObject(state, {
-		loading: true,
-		error: null
-	});
-}
-
-const authUserInfoSuccess = (state, action) => {
+const checkAuthSuccess = (state, action) => {
 	return updateObject(state, {
 		user: action.user,
 		loading: false,
@@ -34,21 +16,13 @@ const authUserInfoSuccess = (state, action) => {
 	});
 }
 
-
 const authSuccess = (state, action) => {
 	return updateObject(state, {
+		user: action.user,
 		authenticated: true,
 		loading: false,
 		error:null
 	});
-}
-
-const authLogin = (state, action) => {
-	return updateObject(state , {
-		user: null,
-		authenticated: false,
-		loading: true
-	})
 }
 
 const authFail = (state, action) => {
@@ -60,34 +34,14 @@ const authFail = (state, action) => {
 	});
 }
 
-const authStartLogout = (state, action) => {
-	return updateObject(state, {
-		loading: true,
-	});
-}
-
-const authLogout = (state, action) => {
-	return updateObject(state, {
-		user: null,
-		authenticated: false,
-		error: null,
-		loading: false,
-		authRedirectPath: '/login'
-	});
-}
-
-const setAuthRedirectPath = (state, action) => {
-	return updateObject(state, {authRedirectPath: action.path});
-}
-
-
-
-const registerStart = (state, action) => {
+const authActionStart = (state, action) => {
     return updateObject(state, {
         loading: true,
         error: null
     })
 }
+
+
 const registerSuccess = (state, action) => {
     return updateObject(state, {
         loading: false,
@@ -101,16 +55,10 @@ const registerFailed = (state, action) => {
     })
 }
 
-const logoutStart = (state, action) => {
-    return updateObject(state, {
-        loading: true,
-        error: null
-    })
-}
-const logoutSuccess = (state, action) => {
+const localLogoutSuccess = (state, action) => {
     return updateObject(state, {...initialState} )
 }
-const logoutFailed = (state, action) => {
+const localLogoutFailed = (state, action) => {
     return updateObject(state, {
         loading: false,
         error: action.error
@@ -118,49 +66,26 @@ const logoutFailed = (state, action) => {
 }
 
 
-const productActionStart = (state, action) => {
-    return updateObject(state, {
-        smallLoading: true,
-        error: null
-    })
-}
-const productActionSuccess = (state, action) => {
-	console.log(action)
-    return updateObject(state, {
-		smallLoading: false,
-		user: action.user
-	} )
-}
-const productActionFailed = (state, action) => {
-    return updateObject(state, {
-        smallLoading: false,
-        error: action.error
-    })
-}
+
 
 const reducer = ( state = initialState, action ) => {
     switch ( action.type ) {
-        case actionTypes.AUTH_START: return authStart(state, action);
-        case actionTypes.AUTH_SUCCESS: return authSuccess(state, action);
+		
+		case actionTypes.LOGIN_START: return authActionStart(state,action);
         case actionTypes.AUTH_FAILED: return authFail(state, action);
-        case actionTypes.AUTH_USER_INFO_START: return authUserInfoStart(state, action);
-        case actionTypes.AUTH_USER_INFO_SUCCESS: return authUserInfoSuccess(state, action);
-		case actionTypes.AUTH_LOGIN: return authLogin(state,action);
-		case actionTypes.AUTH_START_LOGOUT: return authStartLogout(state, action);
-        case actionTypes.AUTH_LOGOUT: return authLogout(state, action);
-		case actionTypes.SET_AUTH_REDIRECT_PATH: return setAuthRedirectPath(state,action);
-
-		case actionTypes.REGISTER_START: return registerStart(state, action);
+        case actionTypes.AUTH_SUCCESS: return authSuccess(state, action);
+		
+        case actionTypes.CHECK_AUTH_START: return authActionStart(state, action);
+		case actionTypes.CHECK_AUTH_SUCCESS: return checkAuthSuccess(state, action);
+		
+		case actionTypes.REGISTER_START: return authActionStart(state, action);
         case actionTypes.REGISTER_SUCCESS: return registerSuccess(state, action);
 		case actionTypes.REGISTER_FAIL: return registerFailed(state, action);
 		
-		case actionTypes.LOGOUT_START: return logoutStart(state, action);
-        case actionTypes.LOGOUT_SUCCESS: return logoutSuccess(state, action);
-		case actionTypes.LOGOUT_FAIL: return logoutFailed(state, action);
-		
-		case actionTypes.PRODUCT_ACTION_START: return productActionStart(state, action);
-        case actionTypes.PRODUCT_ACTION_SUCCESS: return productActionSuccess(state, action);
-        case actionTypes.PRODUCT_ACTION_FAIL: return productActionFailed(state, action);
+		case actionTypes.LOCAL_LOGOUT_START: return authActionStart(state, action);
+        case actionTypes.LOCAL_LOGOUT_SUCCESS: return localLogoutSuccess(state, action);
+		case actionTypes.LOCAL_LOGOUT_FAIL: return localLogoutFailed(state, action);
+
         default:
             return state;
     }

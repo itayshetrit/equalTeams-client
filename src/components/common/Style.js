@@ -6,6 +6,30 @@ export const MainDiv = styled.div`
     height: 100vh;
 
 `
+export const WhiteInput = styled.input`
+  border: none;
+  color: white;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+  background: none;
+  transition: 1s;
+  padding-right: 5px;
+  &:focus {
+    outline: none;
+    border-bottom-color: white;
+    transition: 1s;
+  }
+  &::placeholder{
+    color:rgba(255, 255, 255, 0.8);
+  }
+`;
+
+export const WhiteError = styled.span`
+  font-size: 0.8rem;
+  text-align: center;
+  color: white;
+`;
+
+
 export const HoldMain = styled.div`
     display:flex;
     flex-direction: column;
@@ -64,15 +88,6 @@ transform:translate(0,-50%);
 
 `;
 
-export const FlexRowPrice = styled.div`
-display:flex;
-flex-direction:row;
-justify-content:space-around;
-div{
-    width:90%;
-    text-align: right !important;
-}
-`;
 
 export const FlexRow = styled.div`
 display:flex;
@@ -92,22 +107,11 @@ border:2px solid rgba(255,255,255,0.4);
 padding:10px 5px;
 border-radius:5px;
 cursor: pointer;
+&:hover{
+    color: white;
+    text-decoration: none;
+}
 `;
-
-export const BorderBlur = styled.div`
-    border:2px solid rgba(255,255,255,0.4);
-    padding:10px 5px;
-    border-radius:5px;
-    width:15%;
-    cursor: pointer;
-    &:hover{
-        color: blueviolet;
-        background:white;
-        font-weight:600;
-        /* transition: linear 300ms; */
-    }
-
-`
 
 export const FlexRow2 = styled.div`
 display:flex;
@@ -130,55 +134,6 @@ export const ToastMsg = styled.div`
  direction:rtl;
  justify-content:center;
  align-items:center;
- direction: rtl;
-`;
-
-export const CalanderDiv = styled.div`
- background-color: rgba(0, 0, 0, 0.652);
- border-radius: 10px;
- box-shadow:0 1px 3px white, 0 -1px 3px white;
-`;
-
-export const Wellcome = styled.div`
-display:flex;
-flex-direction:row;
-justify-content:center;
-width:100%;
-font-size:2rem;
-background: 50% 100%/50% 50% no-repeat radial-gradient(ellipse at bottom, #fff, transparent, transparent);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-align: center;
-    -webkit-animation: reveal 3s ease-in-out forwards 0.2s, glow 2.5s linear infinite 2s;
-            animation: reveal 3s ease-in-out forwards 0.2s, glow 2.5s linear infinite 2s;
-
-  @-webkit-keyframes reveal {
-      80% {
-          letter-spacing: 8px;
-        }
-        100% {
-            background-size: 300% 300%;
-        }
-    }
-    @keyframes reveal {
-        80% {
-            letter-spacing: 8px;
-        }
-        100% {
-            background-size: 300% 300%;
-        }
-    }
-    @-webkit-keyframes glow {
-        40% {
-            text-shadow: 0 0 8px #fff;
-        }
-    }
-    @keyframes glow {
-        40% {
-            text-shadow: 0 0 8px #fff;
-        }
-    }
 `;
 
 export const RegularHover = styled.div`
@@ -199,17 +154,17 @@ export const RegularHover = styled.div`
 
 export const Options = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-evenly;
-    width:100%;
-    div {
+    width:50%;
+    div, a {
         color: rgba(255, 255, 255, 0.94);
-        padding: 0 1%;
-        /* margin: 0 0.5%; */
+        padding: 3% 0;
+        margin-top: 20px;
         cursor: pointer;
         text-decoration: none;
         font-size: large;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.777), -1px -1px 4px rgba(255, 255, 255, 0.777);
+        box-shadow: 0 2px 4px rgba(255, 255, 255, 0.2), 0 -2px 4px rgba(255, 255, 255, 0.2);
         border-radius: 5px;
         transition: 0.3s;
         &:hover {
@@ -219,3 +174,24 @@ export const Options = styled.div`
         }
     }
 `
+
+export const Submit = styled.button`
+  border-radius:5px;
+  width:200px;
+  padding: 5%;
+  font-size:1.3rem;
+  border: 2px solid white;
+  margin:20px auto;
+  background-image: linear-gradient(120deg, blueviolet 0%, rgba(126, 60, 187, 0.836) 100%);
+  transition: all 0.4s;
+  outline:none;
+  color: white;
+  cursor: pointer;
+  &:hover{
+    transition: all 0.2s;
+    outline:none;
+    background:white;
+    color:blueviolet;
+  }
+
+`;

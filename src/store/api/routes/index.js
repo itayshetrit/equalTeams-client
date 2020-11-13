@@ -3,16 +3,19 @@ const devURL = "http://localhost:8000/";
 const ServerRoutes = {
 
 	// Auth
-	register: devURL + "users/add", //post
-	logoutAll: devURL + "users/logoutAll", //post	
-	login: devURL + "users/login", //post
-	checkAuth: devURL + "users/checkAuth/me", //get
+	register: devURL + "auth/register", //post
+	logoutSpecific: devURL + "auth/logoutSpecific", //post	
+	logoutAll: devURL + "auth/logoutAll", //post	
+	login: devURL + "auth/login", //post
+	checkAuth: devURL + "auth/checkAuth", //get
+
+	addTeam: devURL + "manager/addTeam",
 
 	// Clients
 	// editGuestByID
 	// editGuestByID: devURL+"guests/",	//crud
-	getUsers: devURL + "usersByStadium/",	//get
-	crudUser: devURL + "users/",	//crud
+	getUsers: devURL + "players/usersByTeam/",	//get
+	crudUser: devURL + "players/",	//crud
 	elections: devURL + "elections",
 
 

@@ -1,37 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 
 const DeleteModal = (props) => {
-    const [show, setShow] = useState(false);
 
-    const handleClose = () => setShow(false);
-    const modal_del = () => {
-        props.del(props.id);
-        setShow(false);
-        props.gU()
+    const handleClose = () => { props.setBeerToDelete(null); };
+    const runFunc = () => {
+        props.func(props.id);
+        handleClose();
     }
-    const handleShow = () => setShow(true);
-
     return (
-        <div>
-            <div onClick={handleShow} style={{cursor:"pointer"}}>{props.button}</div>
-            <Modal show={show} onHide={handleClose} animation={true}>
-                <Modal.Header style={{display:"flex" , justifyContent:"center", backgroundColor:"white"}}>
-                    <Modal.Title>מחיקת רשומה</Modal.Title>
-                </Modal.Header>
-                <Modal.Body style={{ textAlign: "center", backgroundColor:"white" }}>?האם את/ה בטוח/ה שברצונך למחוק רשומה זו</Modal.Body>
-                <Modal.Footer style={{ justifyContent: "space-around", backgroundColor:"white" }}>
-                    <Button variant="success" onClick={handleClose}>
-                        לא
-                    </Button>
-                    <Button variant="danger" onClick={() => modal_del()}>
-                        כן
-                    </Button>
-
-                </Modal.Footer>
-            </Modal>
-        </div>
+        <Modal show={true} onHide={handleClose} animation={true}>
+            <Modal.Header style={{ background: "white", display: "flex", justifyContent: "center" }}>
+                <Modal.Title>{props.title}</Modal.Title>
+            </Modal.Header>
+    <Modal.Body style={{ background: "white", textAlign: "center" }}>{props.msg}</Modal.Body>
+            <Modal.Footer style={{ background: "white", justifyContent: "space-around" }}>
+                <Button variant="dark" onClick={handleClose}>
+                    No
+                </Button>
+                <Button variant="warning" onClick={() => runFunc()}>
+                    Yes
+                </Button>
+            </Modal.Footer>
+        </Modal>
     );
 }
 export default DeleteModal;

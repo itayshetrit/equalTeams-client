@@ -29,7 +29,7 @@ const AddUser = (props) => {
     <Title style={{ textDecoration: "underline", margin: "30px auto", color: "white" }}>Gal Vaizman</Title>
     <HoldMain>
       <Main className="animated fadeIn slow">
-        <Title style={{ fontSize: "1.8rem", margin: "20px auto" }}>Add User</Title>
+        <Title style={{ fontSize: "1.8rem", margin: "20px auto" }}>הוספת שחקן</Title>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <Group>
             <PositionRelative>

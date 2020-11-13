@@ -1,14 +1,14 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Login from './Login'
-import Answer from './Answer';
+import Register from './Register';
 import Routes from '../routes/index'
 const UnAuthNav = () => {
 	return (
 		<Switch>
 			<Route path={Routes.LogAndReg.login} component={Login} exact={true}></Route>
-			<Route path={Routes.LogAndReg.answer} component={Answer} exact={true}></Route>
-			<Redirect from="/" to="/login" />
+			<Route path={Routes.LogAndReg.register} component={Register} exact={true}></Route>
+			<Redirect from="/" to={Routes.LogAndReg.login} />
 		</Switch>
 	)
 }
