@@ -16,7 +16,7 @@ import whatsapp from '../../../assets/icons/g_whatsapp.svg'
 import call from '../../../assets/icons/g_call.svg'
 import pencil from '../../../assets/icons/g_pencil.svg'
 import trash from '../../../assets/icons/g_trash.svg'
-import EditModal from '../../common/modals/EditModal'
+import EditModal from '../../common/modals/EditModal2'
 import DeleteModal from '../../common/modals/DeleteModal'
 import plus from '../../../assets/pics/auth/plus.svg';
 import minus from '../../../assets/pics/auth/minus.svg';

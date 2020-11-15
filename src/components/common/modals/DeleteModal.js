@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button'
 
 const DeleteModal = (props) => {
 
-    const handleClose = () => { props.setBeerToDelete(null); };
+    const handleClose = () => { props.closeModal(null); };
     const runFunc = () => {
         props.func(props.id);
         handleClose();

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { useDispatch } from 'react-redux';
 import { Main, MainDiv, RInput, Span, Submit, HoldMain, Form, Group, SpanRed } from '../../LogAndReg/style'
 import { useToasts } from "react-toast-notifications";
@@ -11,7 +11,10 @@ import password from '../../../assets/pics/auth/password.svg';
 import { addUser } from '../../../store/actions/users/user-actions';
 import { ToastMsg, Title, PositionRelative, PlaceHolderImage } from '../../common/Style';
 import Logout from '../../common/components/LogoutAll';
+import { MySlider } from '../../common/slider/SliderStyle';
 const AddUser = (props) => {
+  const [attack,setAttack] = useState(5)
+  const [defense,setDefense] = useState(5)
   const { register, handleSubmit, errors } = useForm()
   const { addToast } = useToasts();
   const dispatch = useDispatch();
@@ -51,31 +54,40 @@ const AddUser = (props) => {
           </Group>
           <Group>
             <PositionRelative>
-              <PlaceHolderImage src={stadium} style={{ width: "20px", top:"0", transform: "rotate(90deg)" }} alt="user" />
-              <RInput placeholder="מגרש" type="text" name="stadium" ref={register({ required: true, pattern: /^[A-Za-zא-ת]+$/i, minLength: 2, maxLength: 20 })} />
-            </PositionRelative>
-            {errors.stadium && errors.stadium.type === 'required' && <Span><SpanRed>!</SpanRed><Span> שדה חובה </Span><SpanRed>!</SpanRed></Span>}
-            {errors.stadium && (errors.stadium.type === 'maxLength' || errors.stadium.type === 'minLength' ||
-              errors.stadium.type === 'pattern') && <Span><SpanRed>!</SpanRed><Span> 2-20 אותיות (עברית ואנגלית) בלבד </Span><SpanRed>!</SpanRed></Span>}
-          </Group>
-          <Group>
-            <PositionRelative>
               <PlaceHolderImage src={phone} style={{ width: "15px" }} alt="phone" />
-              <RInput placeholder="מס' פלאפון" name="phone" ref={register({ required: true, pattern: /^[0]{1}[5]{1}[0-9]{8}$/ })} />
+              <RInput placeholder="מס' פלאפון ( לא חובה)" name="phone" ref={register({ pattern: /^[0]{1}[5]{1}[0-9]{8}$/ })} />
             </PositionRelative>
             {errors.phone && errors.phone.type === 'required' && <Span><SpanRed>!</SpanRed><Span> שדה חובה </Span><SpanRed>!</SpanRed></Span>}
             {errors.phone && (errors.phone.type === 'maxLength' || errors.phone.type === 'minLength' ||
               errors.phone.type === 'pattern') && <Span><SpanRed>!</SpanRed><Span> מספר פלאפון לא חוקי </Span><SpanRed>!</SpanRed></Span>}
           </Group>
-
           <Group>
-            <PositionRelative>
-              <PlaceHolderImage src={password} style={{ width: "15px" }} alt="password" />
-              <RInput defaultValue="123456" placeholder="סיסמא" name="password" ref={register({ required: true, pattern: /^[A-Za-z0-9א-ת]+$/i, minLength: 6, maxLength: 20 })} />
-            </PositionRelative>
-            {errors.password && errors.password.type === 'required' && <Span><SpanRed>!</SpanRed><Span> שדה חובה </Span><SpanRed>!</SpanRed></Span>}
-            {errors.password && (errors.password.type === 'maxLength' || errors.password.type === 'minLength' ||
-              errors.password.type === 'pattern') && <Span><SpanRed>!</SpanRed><Span> 6-20 אותיות וספרות בלבד </Span><SpanRed>!</SpanRed></Span>}
+            <div>
+              <MySlider
+                max={18.4}
+                step={0.1}
+                minDistance={2}
+                defaultValue={[attack]}
+                thumbText={"%"}
+                onChange={(value) => {
+                  setAttack(value[0]);
+                }}
+              />
+            </div>
+          </Group>
+          <Group>
+            <div>
+              <MySlider
+                max={18.4}
+                step={0.1}
+                minDistance={2}
+                defaultValue={[defense]}
+                thumbText={"%"}
+                onChange={(value) => {
+                  setDefense(value[0]);
+                }}
+              />
+            </div>
           </Group>
           <Submit type="submit">הוספה</Submit>
         </Form>

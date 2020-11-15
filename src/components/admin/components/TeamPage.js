@@ -16,6 +16,7 @@ import trash from '../../../assets/icons/g_trash.svg';
 import whatsapp from '../../../assets/icons/g_whatsapp.svg';
 import call from '../../../assets/icons/g_call.svg';
 const TeamPage = (props) => {
+    const [addPlayer, setAddPlayer] = useState(false);
     const [playerToEdit, setPlayerToEdit] = useState(null);
     const [playerToDelete, setPlayerToDelete] = useState(null);
     const dispatch = useDispatch();
@@ -75,7 +76,7 @@ const TeamPage = (props) => {
             <div style={{ fontSize: "large" }}>{team}</div>
             <Options>
                 <div>צור משחק</div>
-                <div>הוספת שחקן</div>
+                <div onClick={setAddPlayer(!addPlayer)}>הוספת שחקן</div>
                 <div>היסטורית משחק</div>
             </Options>
 
