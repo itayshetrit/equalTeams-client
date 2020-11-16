@@ -25,6 +25,7 @@ export const Main = styled.div`
     flex-direction: column;
     align-self:center;
     width:80%;
+    direction: rtl;
     max-width:600px;
     font-size: 0.8rem;
     background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);

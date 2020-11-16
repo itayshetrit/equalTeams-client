@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { useToasts } from "react-toast-notifications";
+import { Link } from "react-router-dom";
+import Table from 'react-bootstrap/Table';
 
-import DeleteModal from '../../common/modals/DeleteModal'
+import TheadUsers from './TheadUsers';
+import Routes from '../../routes/index'
+
+import DeleteModal from '../../common/modals/DeleteModal';
+import AddPlayerModal from '../../common/modals/AddPlayerModal';
+import EditPlayerModal from '../../common/modals/EditPlayerModal';
+
 
 import { getUsers, cleanUsers } from '../../../store/actions/users/users-actions';
 import { deleteUserById } from '../../../store/actions/users/user-actions';
@@ -22,7 +30,7 @@ const TeamPage = (props) => {
     const dispatch = useDispatch();
     const { addToast } = useToasts();
     const { error, users } = useSelector(state => state.usersReducer);
-    const team = props.match.params.id.substring(3, props.match.params.id.length)
+    const team = props.match.params.team.substring(5, props.match.params.team.length)
 
     const gU = () => {
         dispatch(getUsers(team))
@@ -54,6 +62,7 @@ const TeamPage = (props) => {
             count++;
             return <tr key={index}>
                 {/* <td>{choise ? <input type="checkbox" className="checkbox animated fadeInRight" onClick={() => add_del(item)} /> : count}</td> */}
+                <td>{count}</td>
                 <td>{item.fname + ' ' + item.lname}</td>
                 <td><a href={'https://api.whatsapp.com/send?phone=972' + item.phone}><img alt="whatsapp" width="20" src={whatsapp} /></a></td>
                 <td><a href={"tel:" + item.phone}><img alt="telephone" width="20" src={call} /></a></td>
@@ -64,7 +73,6 @@ const TeamPage = (props) => {
                     <img alt="edit" src={pencil} width="22" onClick={() => setPlayerToEdit(item)} />
                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                      <img alt="edit" src={trash} width="22" onClick={() => setPlayerToDelete(item._id)} />
-                    {/* <DeleteModal gU={gU} del={del} id={item._id} button={<img alt="trash" src={trash} width="22" />} /> */}
                 </td>
             </tr>
         })
@@ -75,19 +83,38 @@ const TeamPage = (props) => {
             <Title style={{ color: "white" }}>Equal Teams</Title>
             <div style={{ fontSize: "large" }}>{team}</div>
             <Options>
-                <div>צור משחק</div>
-                <div onClick={setAddPlayer(!addPlayer)}>הוספת שחקן</div>
+                <Link to={Routes.Admin.elections + team}>צור משחק</Link>
+                <div onClick={() => setAddPlayer(!addPlayer)}>הוספת שחקן</div>
                 <div>היסטורית משחק</div>
             </Options>
-
+            <Table id='myTable' responsive style={{ width: "100%", margin: "2% auto", background: "white", color: "black" }}>
+                <TheadUsers />
+                <tbody>
+                    {players}
+                </tbody>
+            </Table>
             {/* {playexrToEdit && <InfoModal onClose={setPlayerToEdit} data={playerToEdit} />} */}
             {playerToDelete &&
                 <DeleteModal
                     func={del}
                     id={playerToDelete}
-                    setPlayerToDelete={setPlayerToDelete}
-                    title="Delete Beer"
-                    msg="Are you sure?"
+                    closeModal={setPlayerToDelete}
+                    title="מחיקת שחקן"
+                    msg="האם אתה בטוח?"
+                />
+            }
+            {addPlayer &&
+                <AddPlayerModal
+                    closeModal={setAddPlayer}
+                    team={team}
+                    render={gU}
+                />
+            }
+            {playerToEdit &&
+                <EditPlayerModal
+                    closeModal={setPlayerToEdit}
+                    render={gU}
+                    data={playerToEdit}
                 />
             }
 

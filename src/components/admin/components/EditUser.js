@@ -10,6 +10,7 @@ import notes from '../../../assets/pics/auth/notes.svg';
 import plus from '../../../assets/pics/auth/plus_c.svg';
 import minus from '../../../assets/pics/auth/minus_c.svg';
 import { editUserById, cleanUsers } from '../../../store/actions/users/user-actions';
+import { MySlider } from '../../common/slider/SliderStyle';
 const EditUser = props => {
 
     const [attack, setAttack] = useState(props.data.attack)
@@ -25,7 +26,7 @@ const EditUser = props => {
             if (!res.error) {
                 addToast(<ToastMsg>הפעולה הצליחה</ToastMsg>, { appearance: "success", autoDismiss: true });
                 props.handleClose()
-                props.gU()
+                props.render()
             }
             else {
                 console.log((res.error));
@@ -34,9 +35,9 @@ const EditUser = props => {
         })
     }
 
-    return (<HoldMain style={{ direction: "rtl" }}>
+    return (
         <Main className="animated fadeIn" style={{ width: "100%" }}>
-            <Title style={{ fontSize: "1.8rem", margin: "20px auto" }}>edit</Title>
+            <Title style={{ fontSize: "1.8rem", margin: "20px auto" }}>עריכת שחקן</Title>
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <Group>
                     <PositionRelative>
@@ -57,61 +58,52 @@ const EditUser = props => {
                         errors.lname.type === 'pattern') && <Span><SpanRed>!</SpanRed><Span> 2-20 אותיות (עברית ואנגלית) בלבד </Span><SpanRed>!</SpanRed></Span>}
                 </Group>
                 <Group>
-                    <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
-                        <div style={{ display: "flex", flexDirection: "column", width: "15%", justifyContent: "center" }}>
-                            <div style={{ textAlign: "center" }}>התקפה</div>
-                            <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-                                <div><img style={{ cursor: "pointer" }} onClick={() => {
-                                    if (attack + 1 < 11) {
-                                        setAttack(attack + 1)
-                                    }
-                                }} alt="plus" src={plus} width="20" /></div>
-                                <div style={{ fontSize: "1rem" }}>{attack}</div>
-                                <div><img style={{ cursor: "pointer" }} onClick={() => {
-                                    if (attack - 1 > -1) {
-                                        setAttack(attack - 1)
-                                    }
-                                }} alt="minus" src={minus} width="20" /></div>
-                            </div>
-                        </div>
-                        <div style={{ display: "flex", flexDirection: "column", width: "15%" }}>
-                            <div style={{ textAlign: "center" }}>הגנה</div>
-                            <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-                                <div><img style={{ cursor: "pointer" }} onClick={() => {
-                                    if (defense + 1 < 11) {
-                                        setDefense(defense + 1)
-                                    }
-                                }} alt="plus" src={plus} width="20" /></div>
-                                <div style={{ fontSize: "1rem" }}>{defense}</div>
-                                <div><img style={{ cursor: "pointer" }} onClick={() => {
-                                    if (defense - 1 > -1) {
-                                        setDefense(defense - 1)
-                                    }
-                                }} alt="minus" src={minus} width="20" /></div>
-                            </div>
-                        </div>
-                        <div style={{ display: "flex", flexDirection: "column", width: "15%" }}>
-                            <div style={{ textAlign: "center" }}>כביסה</div>
-                            <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
-                                <div><img style={{ cursor: "pointer" }} onClick={() => {
-                                    if (laundry + 1 < 11) {
-                                        setLaundry(laundry + 1)
-                                    }
-                                }} alt="plus" src={plus} width="20" /></div>
-                                <div style={{ fontSize: "1rem" }}>{laundry}</div>
-                                <div><img style={{ cursor: "pointer" }} onClick={() => {
-                                    if (laundry - 1 > 0) {
-                                        setLaundry(laundry - 1)
-                                    }
-                                }} alt="minus" src={minus} width="20" /></div>
-                            </div>
+                    <MySlider
+                        max={10}
+                        step={0.1}
+                        // minDistance={2}
+                        defaultValue={attack}
+                        thumbText={"%"}
+                        onChange={(value) => {
+                            setAttack(value);
+                        }}
+                    />
+                </Group>
+                <Group>
+                    <MySlider
+                        max={10}
+                        step={0.1}
+                        // minDistance={2}
+                        defaultValue={defense}
+                        thumbText={"%"}
+                        onChange={(value) => {
+                            setDefense(value);
+                        }}
+                    />
+                </Group>
+                <Group>
+
+                    <div style={{ display: "flex", flexDirection: "column", width: "30%", margin:"auto" }}>
+                        <div style={{ textAlign: "center" }}>כביסה</div>
+                        <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
+                            <div><img style={{ cursor: "pointer" }} onClick={() => {
+                                if (laundry + 1 < 11) {
+                                    setLaundry(laundry + 1)
+                                }
+                            }} alt="plus" src={plus} width="20" /></div>
+                            <div style={{ fontSize: "1rem" }}>{laundry}</div>
+                            <div><img style={{ cursor: "pointer" }} onClick={() => {
+                                if (laundry - 1 > -1) {
+                                    setLaundry(laundry - 1)
+                                }
+                            }} alt="minus" src={minus} width="20" /></div>
                         </div>
                     </div>
                 </Group>
                 <Group>
                     <PositionRelative>
                         <PlaceHolderImage src={phone} style={{ width: "15px" }} alt="phone" />
-                        <RInput placeholder="מס' פלאפון" defaultValue={props.data.phone} name="phone" ref={register({ required: true, pattern: /^[0]{1}[5]{1}[0-9]{8}$/ })} />
+                        <RInput placeholder="מס' פלאפון (לא חובה)" defaultValue={props.data.phone} name="phone" ref={register({ pattern: /^[0]{1}[5]{1}[0-9]{8}$/ })} />
                     </PositionRelative>
                     {errors.phone && errors.phone.type === 'required' && <Span><SpanRed>!</SpanRed><Span> שדה חובה </Span><SpanRed>!</SpanRed></Span>}
                     {errors.phone && (errors.phone.type === 'maxLength' || errors.phone.type === 'minLength' ||
@@ -120,8 +112,8 @@ const EditUser = props => {
 
                 <Submit type="submit">שמירה</Submit>
             </Form>
-        </Main>
-    </HoldMain>
+        </Main >
+
     )
 
 }

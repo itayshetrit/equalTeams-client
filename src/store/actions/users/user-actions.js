@@ -35,7 +35,8 @@ export const addUser = (body) => {
         if (status === 200) {
             return dispatch(userActionSuccess(actionTypes.ADD_USER_SUCCESS,null));
         } else {
-            return dispatch(userActionFail(actionTypes.ADD_USER_FAIL));
+            console.log(error);
+            return dispatch(userActionFail(actionTypes.ADD_USER_FAIL,error));
         }
     }
 }

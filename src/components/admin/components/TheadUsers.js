@@ -5,12 +5,13 @@ const TheadUsers = React.memo(() => {
         <tr>
             <th>#</th>
             <th>שם</th>
-            <th>ווצאפ</th>
-            <th>שיחה</th>
-            <th>התקפה</th>
-            <th>הגנה</th>
-            <th>כביסה</th>
-            <th>עריכה/מחיקה</th>
+            <th></th>
+            <th></th>
+            <th>A</th>
+            <th>D</th>
+            {/* <th>כביסה</th> */}
+            <th></th>
+            {/* <th>עריכה/מחיקה</th> */}
 
         </tr>
     </thead>

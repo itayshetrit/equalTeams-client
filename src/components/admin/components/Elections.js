@@ -6,12 +6,39 @@ import TheadUsers from './TheadUsers';
 import { ToastMsg, Title, Options, RegularHover, FlexRow } from '../../common/Style'
 import Logout from '../../common/components/LogoutAll'
 import { MainDiv } from '../../LogAndReg/style';
-import { elections, cleanElections } from '../../../store/actions/elections/elections-actions';
 
-const GetUsers = (props) => {
-    const { error, list } = useSelector(state => state.electionsReducer);
+import { getUsers, cleanUsers } from '../../../store/actions/users/users-actions';
+import { elections, cleanElections } from '../../../store/actions/elections/elections-actions';
+let chooses = [];
+const Elections = (props) => {
+    const team = props.match.params.team.substring(5, props.match.params.team.length);
+    const [date, setDate] = useState()
+    const [time, setTime] = useState()
+    // const { error, list } = useSelector(state => state.electionsReducer);
     const dispatch = useDispatch();
-    const { addToast } = useToasts();
+    // const { addToast } = useToasts();
+    const { error, users } = useSelector(state => state.usersReducer);
+    const gU = () => {
+        dispatch(getUsers(team))
+    }
+
+    useEffect(() => {
+        gU()
+        return () => {
+            dispatch(cleanUsers());
+        }
+    }, [team])
+
+
+    let players = "קבוצה ריקה, התחילו להוסיף";
+    if (users.length) {
+        for (let i of users) {
+            chooses.push({ name: i.fname + " " + i.lname, choose: false })
+        }
+        players = chooses.map((item, index) => {
+            return <div key={index} style={{ width: "33%" }}>{item.name}</div>
+        })
+    }
 
     // useEffect(() => {
     //     gU(props.match.params.team.substring(5,props.match.params.team.length))
@@ -21,19 +48,19 @@ const GetUsers = (props) => {
     // }, [props.match.params.team])
 
 
-    useEffect(() => {
-        dispatch(elections({
-            list: JSON.parse(localStorage['list']),
-            numOfTeams: parseInt(localStorage['numOfTeams'])
-        }))
-        return () => {
-            dispatch(cleanElections());
-        }
-    }, [])
+    // useEffect(() => {
+    //     dispatch(elections({
+    //         list: JSON.parse(localStorage['list']),
+    //         numOfTeams: parseInt(localStorage['numOfTeams'])
+    //     }))
+    //     return () => {
+    //         dispatch(cleanElections());
+    //     }
+    // }, [])
 
-    if(list){
-        console.log(list);
-    }
+    // if(list){
+    //     console.log(list);
+    // }
     // console.log(localStorage['numOfTeams']);
     // console.log(JSON.parse(localStorage['list']));
 
@@ -44,8 +71,7 @@ const GetUsers = (props) => {
     // if (numOfTeams){
     //     console.log(numOfTeams);
     // }
-    let players;
-    let count = 0;
+
     // if (users) {
     //     players = users.map((item, index) => {
     //         count++;
@@ -66,18 +92,18 @@ const GetUsers = (props) => {
     //     })
     // }
     return (
-        <MainDiv id="start" className="animated fadeIn">
-            <Title style={{ textDecoration: "underline", color: "white", fontFamily: "Varela" }}>בחירות</Title>
+        <MainDiv id="start" className="animated fadeIn" style={{ color: "white" }}>
+            <div>תאריך</div>
+            <div><input type="date" onChange={(e) => setDate(e.target.value)} /></div>
+            <div>שעה</div>
+            <div><input type="time" onChange={(e) => setTime(e.target.value)} /></div>
 
+            <div style={{ display: "flex", flexWrap: "wrap", width: "100%" }}>
+                {players}
+            </div>
 
-            {/* <Table id='myTable' responsive style={{ width: "100%", margin: "2% auto", background: "white", color: "black" }}>
-                <TheadUsers />
-                <tbody>
-                    {players}
-                </tbody>
-            </Table> */}
-            <Logout />
+            {/* <Logout /> */}
         </MainDiv>)
 }
 
-export default GetUsers
+export default Elections;

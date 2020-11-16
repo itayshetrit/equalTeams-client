@@ -5,9 +5,9 @@ export const LogAndReg = {
 
 export const Admin = {
     admin: '/admin',
-    team_page: '/team_page/:id',
+    team_page: '/team_page/:team',
     get_users: '/get_users',
-    elections: '/elections',
+    elections: '/elections/:team',
     add_user: '/add_user'
 }
 const Routes = {

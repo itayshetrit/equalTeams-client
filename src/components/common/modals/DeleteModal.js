@@ -14,13 +14,13 @@ const DeleteModal = (props) => {
             <Modal.Header style={{ background: "white", display: "flex", justifyContent: "center" }}>
                 <Modal.Title>{props.title}</Modal.Title>
             </Modal.Header>
-    <Modal.Body style={{ background: "white", textAlign: "center" }}>{props.msg}</Modal.Body>
+    <Modal.Body style={{ background: "white", textAlign: "center", direction:"rtl" }}>{props.msg}</Modal.Body>
             <Modal.Footer style={{ background: "white", justifyContent: "space-around" }}>
                 <Button variant="dark" onClick={handleClose}>
-                    No
+                    לא
                 </Button>
-                <Button variant="warning" onClick={() => runFunc()}>
-                    Yes
+                <Button variant="success" onClick={() => runFunc()}>
+                    כן
                 </Button>
             </Modal.Footer>
         </Modal>

@@ -3,9 +3,9 @@ import ReactSlider from 'react-slider';
 import styled from 'styled-components';
 
 const StyledSlider = styled(ReactSlider)`
-    width: 300px;
+    width: 100%;
 	height: 8px;
-	color: orange;
+	color: blueviolet;
 	font-size: 14px;
 	margin: 35px 0px 20px 0px;
 `;
@@ -14,7 +14,7 @@ const StyledThumb = styled.div`
     height: 22px;
 	width: 22px;
 	text-align: center;
-	border: 2px solid rgba(255, 166, 0, 0.5);
+	border: 2px solid rgba(137, 43, 226, 0.5);
     background-color: white;
 	border-radius: 50%;
 	cursor: grab;
@@ -39,7 +39,7 @@ const Thumb = (props, state, text) => <StyledThumb {...props}><ThumbText>{state.
 const StyledTrack = styled.div`
     top: 0;
     bottom: 0;
-    background: orange;
+    background: blueviolet;
     border-radius: 999px;
 `;
 
