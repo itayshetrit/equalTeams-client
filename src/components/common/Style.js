@@ -1,5 +1,30 @@
 import styled from 'styled-components'
 
+export const Details = styled.div`
+    
+    div{
+      margin-bottom:10px;
+    }
+
+`
+
+export const PlayersHolder = styled.div`
+  display:flex;
+  flex-wrap:wrap;
+  width: 100%;
+  margin-bottom:20px;
+
+`
+
+export const NumOfTeamsHolder = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 50%;
+    margin: auto;
+`
+
 export const MainDiv = styled.div`
     
     background-image: linear-gradient(120deg, blueviolet 0%, rgba(126, 60, 187, 0.836) 100%);
@@ -66,12 +91,13 @@ export const Card = styled.div`
 `
 export const Title = styled.div`
 text-shadow: 0px 1px 2px rgba(0,0,0,0.33);
-font-family: "GoogleMedium";
+font-family: "varela";
 font-size:2.8rem;
 color: blueviolet;
 display:flex;
 flex-direction:row;
 justify-content:center;
+margin: 20px auto;
 `;
 
 export const PositionRelative = styled.div`
@@ -88,6 +114,17 @@ transform:translate(0,-50%);
 
 `;
 
+export const Players = styled.div`
+    border: none;
+    box-shadow: 0 1px 8px white;
+    border-radius: 3px;
+    width: 29%;
+    margin: 10px 2%;
+    padding: 7px 7px;
+    color: ${props => props.chosen ? "blueviolet" : "white"};
+    background: ${props => props.chosen ? "white" : "none"};
+    font-weight: ${props => props.chosen ? "bold" : "500"};
+`;
 
 export const FlexRow = styled.div`
 display:flex;
@@ -157,6 +194,7 @@ export const Options = styled.div`
     flex-direction: column;
     justify-content: space-evenly;
     width:50%;
+    margin: auto;
     div, a {
         color: rgba(255, 255, 255, 0.94);
         padding: 3% 0;

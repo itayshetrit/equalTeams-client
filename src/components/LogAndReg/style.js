@@ -5,6 +5,7 @@ export const MainDiv = styled.div`
   height: 100%;
   min-height: 100vh;
   display:flex;
+  color: white;
   flex-direction:column;
   justify-content:space-evenly;
   align-items:center;

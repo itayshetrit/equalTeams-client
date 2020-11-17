@@ -17,7 +17,7 @@ import { deleteUserById } from '../../../store/actions/users/user-actions';
 
 import { MainDiv } from '../../LogAndReg/style';
 
-import { Title, Options, ToastMsg, WhiteError, Submit } from '../../common/Style';
+import { Title, Options, ToastMsg } from '../../common/Style';
 
 import pencil from '../../../assets/icons/g_pencil.svg';
 import trash from '../../../assets/icons/g_trash.svg';
@@ -43,6 +43,12 @@ const TeamPage = (props) => {
         }
     }, [team])
 
+    useEffect(() => {
+        if (error) {
+            addToast(error, { appearance: "error", autoDismiss: true });
+        }
+    }, [error]);
+    
     const del = async (id) => {
         dispatch(deleteUserById(id)).then(data => {
             if (!data.error) {
@@ -55,7 +61,7 @@ const TeamPage = (props) => {
         })
     }
 
-    let players = "קבוצה ריקה, התחילו להוסיף";
+    let players = null;
     if (users.length) {
         let count = 0;
         players = users.map((item, index) => {
@@ -81,18 +87,19 @@ const TeamPage = (props) => {
     return (
         <MainDiv style={{ color: "white" }} className="animated fadeIn">
             <Title style={{ color: "white" }}>Equal Teams</Title>
-            <div style={{ fontSize: "large" }}>{team}</div>
+            <div style={{ fontSize: "1.3rem", textDecoration: "underline" }}>{team}</div>
             <Options>
                 <Link to={Routes.Admin.elections + team}>צור משחק</Link>
                 <div onClick={() => setAddPlayer(!addPlayer)}>הוספת שחקן</div>
                 <div>היסטורית משחק</div>
             </Options>
-            <Table id='myTable' responsive style={{ width: "100%", margin: "2% auto", background: "white", color: "black" }}>
+            {players?
+            <Table id='myTable' responsive style={{ width: "100%", margin: "5% auto", background: "white", color: "black" }}>
                 <TheadUsers />
                 <tbody>
                     {players}
                 </tbody>
-            </Table>
+            </Table> : "קבוצה ריקה - התחל להוסיף שחקנים" }
             {/* {playexrToEdit && <InfoModal onClose={setPlayerToEdit} data={playerToEdit} />} */}
             {playerToDelete &&
                 <DeleteModal

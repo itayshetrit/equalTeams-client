@@ -30,11 +30,12 @@ const ThumbText = styled.div`
     color: black;
 	position: absolute;
 	bottom: 20px;
-	left: 0px;
+	left: 2px;
+	/* text-align: center; */
 	font-size:0.8rem;
 `;
 
-const Thumb = (props, state, text) => <StyledThumb {...props}><ThumbText>{state.valueNow + text}</ThumbText></StyledThumb>;
+const Thumb = (props, state, text) => <StyledThumb {...props}><ThumbText>{state.valueNow}</ThumbText></StyledThumb>;
 
 const StyledTrack = styled.div`
     top: 0;
@@ -45,7 +46,7 @@ const StyledTrack = styled.div`
 
 const Track = (props, state) => <StyledTrack {...props} index={state.index} />;
 
-export const MySlider = ({ onChange, value, defaultValue, max, step, minDistance, thumbText }) => {
+export const MySlider = ({ onChange, value, defaultValue, min, max, step, minDistance, thumbText }) => {
 	return <StyledSlider
 		defaultValue={defaultValue}
 		renderTrack={Track}
@@ -53,6 +54,7 @@ export const MySlider = ({ onChange, value, defaultValue, max, step, minDistance
 		minDistance={minDistance}
 		step={step}
 		max={max}
+		min={min}
 		value={value}
 		onChange={onChange}
 	/>

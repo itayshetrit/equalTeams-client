@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
-import { Main, MainDiv, RInput, Span, Submit, HoldMain, Form, Group, SpanRed } from '../../LogAndReg/style'
+import { Main,RInput, Span, Submit, Form, Group, SpanRed } from '../../LogAndReg/style'
 import { useToasts } from "react-toast-notifications";
 import { useForm } from 'react-hook-form';
 import user from '../../../assets/pics/auth/user.svg';
-import { sha512 } from 'js-sha512';
-import stadium from '../../../assets/pics/auth/stadium.svg';
 import phone from '../../../assets/pics/auth/phone.svg';
-import password from '../../../assets/pics/auth/password.svg';
 import { addUser } from '../../../store/actions/users/user-actions';
 import { ToastMsg, Title, PositionRelative, PlaceHolderImage } from '../../common/Style';
-import Logout from '../../common/components/LogoutAll';
 import { MySlider } from '../../common/slider/SliderStyle';
 const AddUser = (props) => {
   const [attack, setAttack] = useState(5)

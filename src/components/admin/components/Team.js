@@ -3,7 +3,6 @@ import Table from 'react-bootstrap/Table';
 import TheadTeam from './TheadTeam';
 
 const Team = (props) => {
-    console.log(props.data);
     let count=0;
     let team = props.data.map((item, index) => {
         count++;
@@ -15,7 +14,8 @@ const Team = (props) => {
     return (<div>
         <div>קבוצה {props.count}
         </div>
-        <Table id='myTable' responsive style={{ width: "100%", margin: "2% auto", background: "white", color: "black" }}>
+        <Table id='myTable' responsive style={{ width: "100%", margin: "5% auto", 
+        background: "white", color: "black", borderRadius:"3px" }}>
             <TheadTeam num={props.count} />
             <tbody>
                 {team}

@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useToasts } from "react-toast-notifications";
 import { useForm } from 'react-hook-form';
-import { Main, MainDiv, RInput, Span, Submit, HoldMain, Form, Group, SpanRed } from '../../LogAndReg/style';
+import { Main,  RInput, Span, Submit, Form, Group, SpanRed } from '../../LogAndReg/style';
 import { ToastMsg, Title, PositionRelative, PlaceHolderImage } from '../../common/Style';
 import user from '../../../assets/pics/auth/user.svg';
 import phone from '../../../assets/pics/auth/phone.svg';
-import notes from '../../../assets/pics/auth/notes.svg';
 import plus from '../../../assets/pics/auth/plus_c.svg';
 import minus from '../../../assets/pics/auth/minus_c.svg';
-import { editUserById, cleanUsers } from '../../../store/actions/users/user-actions';
+import { editUserById } from '../../../store/actions/users/user-actions';
 import { MySlider } from '../../common/slider/SliderStyle';
 const EditUser = props => {
 
@@ -37,7 +36,7 @@ const EditUser = props => {
 
     return (
         <Main className="animated fadeIn" style={{ width: "100%" }}>
-            <Title style={{ fontSize: "1.8rem", margin: "20px auto" }}>עריכת שחקן</Title>
+            <Title style={{ fontSize: "1.8rem", margin: "20px auto", fontFamily:"varela" }}>עריכת שחקן</Title>
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <Group>
                     <PositionRelative>

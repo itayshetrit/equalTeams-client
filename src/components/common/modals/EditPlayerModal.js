@@ -1,6 +1,5 @@
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
 import EditUser from '../../admin/components/EditUser';
 
 const EditPlayerModal = (props) => {
