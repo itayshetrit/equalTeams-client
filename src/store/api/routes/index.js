@@ -1,4 +1,4 @@
-// const devURL = "https://be-simple-api.herokuapp.com/";
+// const devURL = "https://equal-teams-api.herokuapp.com/";
 const devURL = "http://localhost:8000/";
 const ServerRoutes = {
 

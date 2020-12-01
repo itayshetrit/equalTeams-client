@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { ToastProvider } from "react-toast-notifications";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -11,9 +11,10 @@ import UnAuthNav from '../components/LogAndReg/UnAuthNav' //login and register
 import AdminNav from '../components/admin/AdminSwitch' // admin
 import { withRouter } from 'react-router-dom';
 import infinite from '../assets/spinners/spinner.svg'
-// import infinite from '../assets/spinners/football.gif'
+import Footer from '../components/common/footer/Footer'
 
-function App({ history }) {
+function App() {
+  const [footer, setFooter] = useState(false)
   const election = useSelector(state => state.electionsReducer);
   const auth = useSelector(state => state.authReducer);
   const user = useSelector(state => state.userReducer);
@@ -25,7 +26,7 @@ function App({ history }) {
       dispatch(checkAuth());
     }
   }, [auth.authenticated]);
-  
+
   // useEffect(() => {
   //   history.replace(auth.authRedirectPath);
   // }, [auth.authRedirectPath, history]);
@@ -35,7 +36,10 @@ function App({ history }) {
     view = <><Loading /></>
   }
   else if (auth.authenticated && !auth.loading && auth.user) {
-    view = <><AdminNav /></>
+    view = <>
+      <AdminNav />
+      <Footer />
+    </>
   }
   // else if (auth.authenticated && !auth.loading && auth.user && auth.user.role === 1) {
   //   view = null;
@@ -46,9 +50,12 @@ function App({ history }) {
   }
   return (
     <div className="App animated fadeIn">
-      <ToastProvider placement="bottom-center">{view}</ToastProvider>
+      <ToastProvider placement="bottom-center">
+        {view}
+
+      </ToastProvider>
       <Modal centered show={user.loading || users.loading || election.loading} animation={true}>
-        <Modal.Body style={{ textAlign: "center", color: "black", direction: "rtl"}}><img alt="infinite" src={infinite} width="200" /></Modal.Body>
+        <Modal.Body style={{ textAlign: "center", color: "black", direction: "rtl" }}><img alt="infinite" src={infinite} width="200" /></Modal.Body>
       </Modal>
     </div>
   );

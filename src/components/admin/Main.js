@@ -9,7 +9,7 @@ import Routes from '../routes/index';
 import {  Title, Options, WhiteInput, WhiteError,Submit } from '../common/Style';
 import { MainDiv } from './../LogAndReg/style';
 
-
+import Footer from '../common/footer/Footer'
 import Logout from './../common/components/LogoutAll';
 
 import { checkAuth } from '../../store/actions/auth/auth-actions'
@@ -31,7 +31,7 @@ const Main = () => {
     const onSubmit = async data => {
         dispatch(addTeam(data)).then(data => {
             if (data.error) {
-                addToast(data.error.error, { appearance: "error", autoDismiss: true });
+                addToast(data.error, { appearance: "error", autoDismiss: true });
             }
             else {
                 addToast("הפעולה הצליחה", { appearance: "success", autoDismiss: true, autoDismissTimeout: 2000 });
@@ -42,10 +42,9 @@ const Main = () => {
 
     return (<MainDiv style={{ color: "white" }} className="animated fadeIn">
         <Title style={{ color: "white", margin:"20px auto" }}>Equal Teams</Title>
-
-        <div style={{cursor:"pointer", marginBottom:"10px"}} onClick={() => setShowForm(!showForm)}>צור קבוצה חדשה</div>
+        <Submit style={{marginBottom:"10px"}} onClick={() => setShowForm(!showForm)}>צור קבוצה חדשה</Submit>
         {showForm &&
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form style={{marginTop:"15px"}} onSubmit={handleSubmit(onSubmit)}>
                 
                 <WhiteInput placeholder="שם קבוצה" name="team" ref={register({ required: true, pattern: /^[ A-Za-z0-9א-ת]+$/i, minLength: 2, maxLength: 20 })} />
                 <br/>
@@ -57,8 +56,6 @@ const Main = () => {
             </form>
         }
         <Options>{list}</Options>
-
-        <Logout />
     </MainDiv>)
 }
 

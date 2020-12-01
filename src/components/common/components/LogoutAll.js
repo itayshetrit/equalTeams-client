@@ -5,7 +5,7 @@ import RemoveModal from '../modals/RemoveModal'
 import {logoutAll1} from '../../../store/actions/auth/auth-actions'
 import { useToasts } from "react-toast-notifications";
 import { ToastMsg } from '../Style'
-import logout1 from '../../../assets/pics/auth/logout.svg'
+import logout1 from '../../../assets/footer/logout.svg'
 const Logout = (props) => {
     const { addToast } = useToasts();
     const dispatch = useDispatch();
@@ -24,7 +24,7 @@ const Logout = (props) => {
     return(<div style={{cursor:"pointer", display:"flex", flexDirection:"row", justifyContent:"center"
     // , position: "absolute", bottom: "0"
     , margin: "40px auto"}}>
-        <RemoveModal button={<div><img alt="logout2" src={logout1} width="55" /><div style={{color:"white", marginTop:"10px"}}>logout</div></div>} 
+        <RemoveModal button={<div><img alt="logout2" src={logout1} width="25" /></div>} 
                 msg={"האם את/ה בטוח/ה שברצונך להתנתק?"} func={logout} title={"התנתקות"} 
                 id={5}/>
     </div>)

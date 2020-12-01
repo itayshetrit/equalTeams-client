@@ -20,7 +20,7 @@ export const HoldMain = styled.div`
     /* align-items:center; */
     `
 export const Main = styled.div`
-    /* height: 100%; */
+    font-family:varela;
     padding:0;
     display:flex;
     flex-direction: column;

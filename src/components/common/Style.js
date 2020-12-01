@@ -12,7 +12,9 @@ export const PlayersHolder = styled.div`
   display:flex;
   flex-wrap:wrap;
   width: 100%;
+  height: 200px;
   margin-bottom:20px;
+  overflow-y: scroll;
 
 `
 
@@ -120,7 +122,7 @@ export const Players = styled.div`
     border-radius: 3px;
     width: 29%;
     margin: 10px 2%;
-    padding: 7px 7px;
+    padding: 4px 4px;
     color: ${props => props.chosen ? "blueviolet" : "white"};
     background: ${props => props.chosen ? "white" : "none"};
     font-weight: ${props => props.chosen ? "bold" : "500"};
@@ -215,8 +217,8 @@ export const Options = styled.div`
 
 export const Submit = styled.button`
   border-radius:5px;
-  width:200px;
-  padding: 5%;
+  width:50%;
+  padding: 1%;
   font-size:1.3rem;
   border: 2px solid white;
   margin:20px auto;
