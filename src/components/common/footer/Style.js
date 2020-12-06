@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Nav = styled.div`
     width:100%;
-    height: 8vh !important;
+    height: 8vh;
     display:flex;
     flex-direction: row;
     justify-content:space-evenly;
@@ -20,10 +20,9 @@ export const Nav = styled.div`
         img{
           width: 25px;
           @media (max-width:768px){
-      width:25px;
-    }
         }
       }
+    }
     
 `;
 

@@ -30,7 +30,7 @@ export const NumOfTeamsHolder = styled.div`
 export const MainDiv = styled.div`
     
     background-image: linear-gradient(120deg, blueviolet 0%, rgba(126, 60, 187, 0.836) 100%);
-    height: 100vh;
+    min-height: 100vh;
 
 `
 export const WhiteInput = styled.input`
@@ -122,6 +122,9 @@ export const Players = styled.div`
     border-radius: 3px;
     width: 29%;
     margin: 10px 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 4px 4px;
     color: ${props => props.chosen ? "blueviolet" : "white"};
     background: ${props => props.chosen ? "white" : "none"};

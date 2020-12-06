@@ -13,6 +13,7 @@ const Elections = (props) => {
     const today = new Date();
     const team = props.match.params.team.substring(5, props.match.params.team.length);
     const [date, setDate] = useState(null)
+    const [handleElections, setHandleElections] = useState(null)
     const [numOfTeams, setNumOfTeams] = useState(3)
     const [time, setTime] = useState(null)
     // const { error, list } = useSelector(state => state.electionsReducer);
@@ -38,11 +39,16 @@ const Elections = (props) => {
     }, [error]);
 
     const go = () => {
-        let newList = list.filter(x => x.choose === true);
-        dispatch(elections({
-            list: newList,
-            numOfTeams
-        }))
+        if (date && time) {
+            let newList = list.filter(x => x.choose === true);
+            dispatch(elections({
+                list: newList,
+                numOfTeams
+            }))
+        }
+        else{
+            setHandleElections(true)
+        }
     }
 
     const setChoose = (id) => {
@@ -137,6 +143,7 @@ const Elections = (props) => {
             {/* <Logout /> */}
             {date === "תאריך לא חוקי" ? <InfoModal msg={"תאריך לא חוקי"} onClose={setDate} /> : null}
             {time === "שעה לא חוקית" ? <InfoModal msg={"שעה לא חוקית"} onClose={setTime} /> : null}
+            {handleElections && <InfoModal msg={"נא לבחור תאריך ושעה"} onClose={setHandleElections} />}
         </MainDiv>)
 }
 

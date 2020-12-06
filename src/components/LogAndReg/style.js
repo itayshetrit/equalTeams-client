@@ -6,6 +6,7 @@ export const MainDiv = styled.div`
   min-height: 100vh;
   display:flex;
   color: white;
+  padding: 0;
   flex-direction:column;
   justify-content:space-evenly;
   align-items:center;
@@ -51,6 +52,7 @@ export const Main1 = styled.div`
     @media (max-width:768px){
       width:80%;
       margin: 20px auto;
+
     }
     
 `;
