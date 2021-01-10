@@ -1,5 +1,5 @@
-// const devURL = "https://equal-teams-api.herokuapp.com/";
-const devURL = "http://localhost:8000/";
+const devURL = "ec2-18-224-29-77.us-east-2.compute.amazonaws.com:8000/";
+// const devURL = "http://localhost:8000/";
 const ServerRoutes = {
 
 	// Auth
